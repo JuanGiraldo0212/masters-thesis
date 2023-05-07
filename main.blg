@@ -1,0 +1,232 @@
+This is BibTeX, Version 0.99d
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: main.aux
+Reallocating 'name_of_file' (item size: 1) to 35 items.
+A level-1 auxiliary file: frontmatter/title-page-no-uvic.aux
+Reallocating 'name_of_file' (item size: 1) to 31 items.
+A level-1 auxiliary file: frontmatter/committee-page.aux
+Reallocating 'name_of_file' (item size: 1) to 22 items.
+A level-1 auxiliary file: chapters/abstract.aux
+Reallocating 'name_of_file' (item size: 1) to 30 items.
+A level-1 auxiliary file: chapters/acknowledgements.aux
+Reallocating 'name_of_file' (item size: 1) to 24 items.
+A level-1 auxiliary file: chapters/dedication.aux
+Reallocating 'name_of_file' (item size: 1) to 39 items.
+A level-1 auxiliary file: chapters/introduction/introduction.aux
+Reallocating 'name_of_file' (item size: 1) to 35 items.
+A level-1 auxiliary file: chapters/background/background.aux
+Reallocating 'name_of_file' (item size: 1) to 31 items.
+A level-1 auxiliary file: chapters/overview/overview.aux
+Reallocating 'name_of_file' (item size: 1) to 49 items.
+A level-1 auxiliary file: chapters/delivery-platform/delivery-platform.aux
+Reallocating 'name_of_file' (item size: 1) to 61 items.
+A level-1 auxiliary file: chapters/architectural-framework/architectural-framework.aux
+Reallocating 'name_of_file' (item size: 1) to 59 items.
+A level-1 auxiliary file: chapters/reference-architecture/reference-architecture.aux
+Reallocating 'name_of_file' (item size: 1) to 35 items.
+A level-1 auxiliary file: chapters/evaluation/evaluation.aux
+Reallocating 'name_of_file' (item size: 1) to 35 items.
+A level-1 auxiliary file: chapters/conclusion/conclusion.aux
+Reallocating 'name_of_file' (item size: 1) to 9 items.
+The style file: IEEEtran.bst
+Reallocating 'name_of_file' (item size: 1) to 5 items.
+Reallocating 'name_of_file' (item size: 1) to 70 items.
+A level-1 auxiliary file: chapters/appendices/implementation-package/implementation-package.aux
+Reallocating 'name_of_file' (item size: 1) to 60 items.
+A level-1 auxiliary file: chapters/appendices/additional-charts/additional-charts.aux
+Reallocating 'singl_function' (item size: 4) to 100 items.
+Reallocating 'singl_function' (item size: 4) to 100 items.
+Reallocating 'singl_function' (item size: 4) to 100 items.
+Reallocating 'wiz_functions' (item size: 4) to 6000 items.
+Reallocating 'singl_function' (item size: 4) to 100 items.
+Reallocating 'field_info' (item size: 4) to 11854 items.
+Database file #1: main.bib
+I was expecting a `,' or a `}'---line 199 of file main.bib
+ : 
+ : title = {The Talavera Manifesto for Quantum Software Engineering and Programming}
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+Warning--I didn't find a database entry for "bosch-2014-continuous"
+Warning--I didn't find a database entry for "fitzgerald-2014-continuous"
+Warning--I didn't find a database entry for "fitzgerald-2017-continuous"
+Warning--I didn't find a database entry for "bass-2015-devops"
+Warning--I didn't find a database entry for "kim-2016-devops"
+Warning--I didn't find a database entry for "kalliosaari-2016-devops"
+Warning--I didn't find a database entry for "shanin-2017-continuous"
+Warning--I didn't find a database entry for "humble-2010-continuous"
+Warning--I didn't find a database entry for "humble-2011-enterprises"
+Warning--I didn't find a database entry for "savor-2016-continuous"
+Warning--I didn't find a database entry for "juristo-2013-basics"
+Warning--I didn't find a database entry for "pfleeger-1999-albert"
+Warning--I didn't find a database entry for "ebert-1997-road"
+Warning--I didn't find a database entry for "wohlin-2012-experimentation"
+Warning--I didn't find a database entry for "basili-1993-experimental"
+Warning--I didn't find a database entry for "fagerholm-2014-building"
+Warning--I didn't find a database entry for "bosh-2012-building"
+Warning--I didn't find a database entry for "fabian-2017-right"
+Warning--I didn't find a database entry for "kevic-2017-characterizing"
+Warning--I didn't find a database entry for "fagerholm-2017-right"
+Warning--I didn't find a database entry for "schermann-2018-continuous"
+Warning--I didn't find a database entry for "kaulgud-2016-shiting"
+Warning--I didn't find a database entry for "schermann-2016-bifrost"
+Warning--I didn't find a database entry for "schermann-2018-live"
+Warning--I didn't find a database entry for "mattos-2017-towards"
+Warning--I didn't find a database entry for "gerostathopoulos-2016-towards"
+Warning--I didn't find a database entry for "porter-2018-tess"
+Warning--I didn't find a database entry for "jabbari-2016-what"
+Warning--I didn't find a database entry for "artac-2017-devops"
+Warning--I didn't find a database entry for "sharma-2017-devops-dummies"
+Warning--I didn't find a database entry for "humble-2006-deployment"
+Warning--I didn't find a database entry for "horn-2001-autonomic"
+Warning--I didn't find a database entry for "weyns-2021-introduction"
+Warning--I didn't find a database entry for "kephart-2003-vision"
+Warning--I didn't find a database entry for "inverardi-2006-software"
+Warning--I didn't find a database entry for "salehie-2009-self-adaptive"
+Warning--I didn't find a database entry for "doyle-2013-feedback"
+Warning--I didn't find a database entry for "hellerstein-2004-feedback"
+Warning--I didn't find a database entry for "astrom-2013-adaptive"
+Warning--I didn't find a database entry for "muller-2014-highly"
+Warning--I didn't find a database entry for "landau-2011-multimodel"
+Warning--I didn't find a database entry for "brun-2009-engineering"
+Warning--I didn't find a database entry for "bantz-2003-autonomic"
+Warning--I didn't find a database entry for "huebscher-2008-survey"
+Warning--I didn't find a database entry for "sterritt-2005-concise"
+Warning--I didn't find a database entry for "de-lemos-2002-architectural"
+Warning--I didn't find a database entry for "insaurralde-2015-autonomic"
+Warning--I didn't find a database entry for "krupitzer-2016-comparison"
+Warning--I didn't find a database entry for "ibm-2005-architectural"
+Warning--I didn't find a database entry for "kramer-2007-self"
+Warning--I didn't find a database entry for "villegas-2013-dynamico"
+Warning--I didn't find a database entry for "oreizy-1999-architecture"
+Warning--I didn't find a database entry for "dobson-2006-survey"
+Warning--I didn't find a database entry for "blair-2009-models"
+Warning--I didn't find a database entry for "bencomo-2019-models"
+Warning--I didn't find a database entry for "tamura-2013-towards"
+Warning--I didn't find a database entry for "cheng-2009-software"
+Warning--I didn't find a database entry for "patikirikorala-2012-systematic"
+Warning--I didn't find a database entry for "de-lemos-2013-software"
+Warning--I didn't find a database entry for "de-lemos-2017-software"
+Warning--I didn't find a database entry for "qureshi-2010-requirements"
+Warning--I didn't find a database entry for "sawyer-2010-requirements"
+Warning--I didn't find a database entry for "ghezzi-2008-dynamically"
+Warning--I didn't find a database entry for "gacek-2008-friends"
+Warning--I didn't find a database entry for "andersson-2013-software"
+Warning--I didn't find a database entry for "baresi-2010-disappearing"
+Warning--I didn't find a database entry for "goltz-2015-design"
+Warning--I didn't find a database entry for "iftikhar-2017-activforms"
+Warning--I didn't find a database entry for "chapin-2001-types"
+Warning--I didn't find a database entry for "mens-2005-challenges"
+Warning--I didn't find a database entry for "oreizy-1998-architecture"
+Warning--I didn't find a database entry for "bosch-2016-data"
+Warning--I didn't find a database entry for "weyns-2015-design"
+Warning--I didn't find a database entry for "inverardi-2013-software"
+Warning--I didn't find a database entry for "becker-2015-karlskrona"
+Warning--I didn't find a database entry for "buckley-2005-towards"
+Warning--I didn't find a database entry for "riungu-kalliosaari-2016-devops"
+Warning--I didn't find a database entry for "lwakatare-2019-devops"
+Warning--I didn't find a database entry for "luz-2019-adopting"
+Warning--I didn't find a database entry for "shafiq-2021-literature"
+Warning--I didn't find a database entry for "mao-2016-sapienz"
+Warning--I didn't find a database entry for "marginean-2019-sapfix"
+Warning--I didn't find a database entry for "syed-2015-software"
+Warning--I didn't find a database entry for "amershi-2019-software"
+Warning--I didn't find a database entry for "nelson-smith-2013-test"
+Warning--I didn't find a database entry for "morris-2016-infrastructure"
+Warning--I didn't find a database entry for "guerriero-2019-infrastructure"
+Warning--I didn't find a database entry for "huttermann-2012-infrastructure"
+Warning--I didn't find a database entry for "nugroho-2007-survey"
+Warning--I didn't find a database entry for "inzinger-2014-madcat"
+Warning--I didn't find a database entry for "bosch-2016-data-driven"
+Warning--I didn't find a database entry for "storey-2016-disrupting"
+Warning--I didn't find a database entry for "erlenhov-2020-empirical"
+Warning--I didn't find a database entry for "khomh-2012-faster"
+Warning--I didn't find a database entry for "waldemar-2013-testing"
+Warning--I didn't find a database entry for "cherinka-2022-impact"
+Warning--I didn't find a database entry for "shore-2004-fail"
+Warning--I didn't find a database entry for "jiang-2015-co-evolution"
+Warning--I didn't find a database entry for "aversano-2007-learning"
+Warning--I didn't find a database entry for "sunghun-2006-automatic"
+Warning--I didn't find a database entry for "shihab-2012-industrial"
+Warning--I didn't find a database entry for "hounsell-1998-automatic"
+Warning--I didn't find a database entry for "strathman-1999-automated"
+Warning--I didn't find a database entry for "chandrasekar-2002-simulation"
+Warning--I didn't find a database entry for "bennaceur-2019-modelling"
+Warning--I didn't find a database entry for "cito-2019-interactive"
+Warning--I didn't find a database entry for "beyer-2016-site"
+Warning--I didn't find a database entry for "beyer-2018-site"
+Warning--I didn't find a database entry for "radant-2014-analysis"
+Warning--I didn't find a database entry for "breaux-2021-software"
+Warning--I didn't find a database entry for "tichy-1998-should"
+Warning--I didn't find a database entry for "kritikos-2013-survey"
+Warning--I didn't find a database entry for "hesse-2013-supporting"
+Warning--I didn't find a database entry for "basili-1988-tame"
+Warning--I didn't find a database entry for "villegas-2013-context"
+Warning--I didn't find a database entry for "homer-2014-cloud"
+Warning--I didn't find a database entry for "erl-2015-cloud"
+Warning--I didn't find a database entry for "tamura-2012-qos-care"
+Warning--I didn't find a database entry for "sivanandam-2008-terminologies"
+Warning--I didn't find a database entry for "van-genuchten-2012-compound"
+Warning--I didn't find a database entry for "hatton-2017-long"
+Warning--I didn't find a database entry for "tavcar-2019-review"
+Warning--I didn't find a database entry for "zeng-2016-one"
+Warning--I didn't find a database entry for "zhao-2018-systems"
+Warning--I didn't find a database entry for "muller-2017-rise"
+Warning--I didn't find a database entry for "holland-2007-taxonomy"
+Warning--I didn't find a database entry for "diao-2005-control"
+Warning--I didn't find a database entry for "villegas-2011-framework"
+Warning--I didn't find a database entry for "bass-2003-software"
+Warning--I didn't find a database entry for "winter-2019-monitoring"
+Warning--I didn't find a database entry for "alsen-2017-future"
+Warning--I didn't find a database entry for "dahlqvist-2019-growing"
+-- IEEEtran.bst version 1.14 (2015/08/26) by Michael Shell.
+-- http://www.michaelshell.org/tex/ieeetran/bibtex/
+-- See the "IEEEtran_bst_HOWTO.pdf" manual for usage information.
+Warning--empty journal in deutch-1992-rapid-solutions
+Warning--empty journal in weder-2020-lifecycle
+Warning--empty journal in gheorghe-pop-2020-devops
+Warning--empty title in piattini-2020-talavera
+Warning--empty journal in piattini-2020-talavera
+
+Done.
+You've used 17 entries,
+            4087 wiz_defined-function locations,
+            1083 strings with 14514 characters,
+and the built_in function-call counts, 11526 in all, are:
+= -- 963
+> -- 281
+< -- 61
++ -- 143
+- -- 59
+* -- 568
+:= -- 1884
+add.period$ -- 35
+call.type$ -- 17
+change.case$ -- 16
+chr.to.int$ -- 105
+cite$ -- 22
+duplicate$ -- 879
+empty$ -- 887
+format.name$ -- 69
+if$ -- 2646
+int.to.chr$ -- 0
+int.to.str$ -- 17
+missing$ -- 161
+newline$ -- 100
+num.names$ -- 17
+pop$ -- 377
+preamble$ -- 1
+purify$ -- 0
+quote$ -- 2
+skip$ -- 917
+stack$ -- 0
+substring$ -- 303
+swap$ -- 667
+text.length$ -- 26
+text.prefix$ -- 0
+top$ -- 5
+type$ -- 17
+warning$ -- 5
+while$ -- 41
+width$ -- 19
+write$ -- 216
+(There was 1 error message)

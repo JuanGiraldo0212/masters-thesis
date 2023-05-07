@@ -1,0 +1,94 @@
+\RequirePackage{fix-cm}
+\documentclass[
+	titlepage=firstiscover,
+	open=any,
+	paper=a4,
+	bibliography=totoc,
+	index=totoc,
+	parskip=half, % Gap between paragraphs: full, half, false
+	chapterprefix,
+	twoside,
+	11pt,
+	headsepline,
+	pagesize,
+	egregdoesnotlikesansseriftitles]{scrbook}
+
+\include{macros/packages}
+\include{macros/commands}
+\include{macros/comments}
+
+% Load glossary  
+\loadglsentries{chapters/glossary/glossary}
+
+% Set the dissertation title here:
+\newcommand\thesistitle{Integrating Quantum Computation into Software Production Environments}
+\hypersetup{pdftitle={\thesistitle}}
+
+\begin{document}
+
+\frontmatter
+
+\dominitoc
+
+%\include{frontmatter/title-page-with-logos}
+\include{frontmatter/title-page-no-uvic}
+%\include{frontmatter/title-page-no-bars}
+%\include{frontmatter/title-page}
+\include{frontmatter/committee-page}
+\include{chapters/abstract}
+
+\myphantomsection{Table of Contents}{\tableofcontents}
+\myphantomsection{List of Figures}{\listoffigures}
+\myphantomsection{List of Tables}{\listoftables}
+
+\include{chapters/acknowledgements}
+\include{chapters/dedication}
+
+\mainmatter
+
+% Starts at 7 because of the phantom sections
+% it is increased by 1 before each chapter
+% (this is for the table of contents in each chapter)
+\setcounter{mtc}{7}
+
+\part{Motivation and Context}
+
+\include{chapters/introduction/introduction}
+\include{chapters/background/background}
+
+\part{Contributions}
+\label{part:contributions}
+
+\include{chapters/overview/overview}
+\include{chapters/delivery-platform/delivery-platform}
+\include{chapters/architectural-framework/architectural-framework}
+\include{chapters/reference-architecture/reference-architecture}
+
+\part{Evaluation}
+
+\include{chapters/evaluation/evaluation}
+
+\part{Summary}
+
+\include{chapters/conclusion/conclusion}
+
+% Deactives numbering from here onward
+% \backmatter
+
+% Print the glossary
+\printnoidxglossaries
+\glsaddallunused
+
+\bibliographystyle{IEEEtran}
+\bibliography{main}
+
+\part{Appendices}
+
+\appendix
+\include{chapters/appendices/implementation-package/implementation-package}
+\include{chapters/appendices/additional-charts/additional-charts}
+
+\let\clearpage\relax
+
+
+\end{document}

@@ -1,0 +1,218 @@
+\startchapter{Contributions Overview}
+\label{chapter:contribution-overview}
+
+\minitoc
+
+\begin{InfoBox}[Correspondences in This Chapter]
+	\emph{Addressed Research Question(s)}: \textsc{Q}1---How do autonomic managers fit into continuous software engineering practices, and corresponding computing environments, for the development phase and for long term evolution? \textsc{Q}2---How can self-improvement and self-management capabilities be integrated with quality assurance in continuous software engineering? \textsc{Q}4---How can development-time and run-time autonomic mechanisms be integrated reusing knowledge artifacts from both sides (\ie{development and execution})? \textsc{Q}5---How can autonomic managers produce architectural and deployment variants? \textsc{Q}7---How can autonomic managers help reduce maintenance work stemming from emerging behavior?
+\end{InfoBox}
+
+\section{Rethinking the Software Evolution Life Cycle}
+\label{sect:overview--off-line-and-on-line-reconceptualization}
+
+Recent software engineering practices are intended to reduce the impact of episodic and expensive activities during development. Development teams invest resources in automating their delivery processes and adapting their software services to take advantage of technological advances. A major factor motivating such an investment is removing discontinuities from the development process. In spite of these efforts, two major discontinuities remain. On the one hand, run-time quality attributes are usually evaluated as part of the delivery pipeline, but the software design, configuration and deployment are rarely adjusted with the same frequency (\cf{$\encirclered{A}$ in Figure~\ref{fig:overview--discontinuities}}). On the other hand, run-time changes and incidents on the operations side do no explicitly affect the evolution of development artifacts (\cf{$\encirclered{B}$ in Figure~\ref{fig:overview--discontinuities}}). In both cases, the lack of continuity in the evolution process tends to cause disruption, either in the form of unsatisfied quality requirements or technical debt.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.85\columnwidth]{fig/overview/overview--discontinuities.pdf}
+	\caption{Discontinuities in the development process}
+	\label{fig:overview--discontinuities}
+\end{figure}
+
+From a software engineering perspective, software evolution is largely a product of human work. Indeed, software changes are mainly produced by stakeholders.\footnote{A recent practice consists of using software bots to free developers from tedious development tasks~\cite{storey-2016-disrupting}. Among these, bots have proven useful for introducing minor software patches, such as upgrading outdated dependencies~\cite{erlenhov-2020-empirical}. However, developing features, correcting defects, configuring and deploying software systems, among other major activities are still largely human endeavors.} Developers introduce changes and integrate them into an automated delivery pipeline. However, regardless of its degree of automation, no stage of such a pipeline is explicitly concerned with introducing software changes into the source repository, for example to tune the software configuration. Its main role has been checking whether software products meet expected quality levels. One could argue that self-* capabilities do contribute to software evolution. In fact, they are usually considered a form of run-time software evolution~\cite{muller-2014-highly}. Nevertheless, self-management actions rarely cross the boundary to the development side, hence, the discontinuities (\cf{$\encirclered{A}$ and $\encirclered{B}$}). This is consistent with the lack of attention to changes at the code level in the models-at-run-time community~\cite{bencomo-2019-models}. Thus, we identify an opportunity to integrate autonomic computing with continuous software engineering.
+
+In light of the aforementioned opportunity, we reassess the time of change timeline and repurpose the delivery pipeline. We extend the pipeline's role to produce meaningful software changes. Section~\ref{subsect:overview--time-of-change-timeline} describes the concrete updates we make to the time of change timeline. And Section~\ref{subsect:overview--self-management} explains how we rethink the role of self-management to automate software evolution during development.
+
+\subsection{Reconceptualizing The Time of Change Timeline}
+\label{subsect:overview--time-of-change-timeline}
+
+Figure~\ref{fig:overview--off-line-and-on-line-reconceptualization} depicts our offline and online reconceptualization. We split the timeline into offline and online  based on whether the software evolution is human or automation driven (\cf{$\encircleblue{A}$}). Accordingly, we favor the use of offline and online over development-side and execution-side. Such a nomenclature is commonly used in reference to pre-production and production environments (\cf{$\encircleblue{E}$}), respectively. Nevertheless, as depicted in Figure~\ref{fig:overview--off-line-and-on-line-reconceptualization} (\cf{$\encircleblue{B}$}), the production environment is no longer exclusively used for execution. The delivery pipeline requires executing the software system in non-production environments to perform various types of assessments. Therefore, neither development nor execution are exclusively bound to a particular environment.
+
+\afterpage{
+	\begin{landscape}
+		\begin{figure}[p]
+			\centering
+			\includegraphics[width=1\columnwidth]{fig/overview/overview--off-line-and-on-line-reconceptualization.pdf}
+			\caption{Offline and online reconceptualization}
+			\label{fig:overview--off-line-and-on-line-reconceptualization}
+		\end{figure}
+	\end{landscape}
+}
+
+%\afterpage{
+%	\begin{landscape}
+%		\begin{figure}[p]
+%			\centering
+%			\includegraphics[width=0.75\columnwidth]{fig/background/background--releases.pdf}
+%			\caption{The release cycle according to the time of change timeline}
+%			\label{fig:overview--release-cycle}
+%		\end{figure}
+%	\end{landscape}
+%}
+
+In addition to traditional times of change (\cf{$\encircleblue{C}$}), we propose evolution-time to characterize when the system undergoes software changes. On the offline side of the timeline, this would typically correspond to the \emph{coding} activity. On the online side, however, it corresponds to autonomic processes (\ie{self-evolution jobs}). We deliberately locate evolution-time in the \texttt{development} environment for two reasons: First, it is stable enough to avoid the waste of computational resources; And second, it is not as critical as subsequent environments for introducing software changes automatically. Previous environments \texttt{integration} and \texttt{test} typically run automated jobs for every commit pushed to the source repository. Thus, running self-evolution jobs in these environments would mean running time-consuming processes too frequently. Furthermore, changes between consecutive commits may not be significant enough to justify such use of the computational resources. Thus, self-evolution jobs can be run in the development environment, after having released an alpha or beta version,\footnote{The software release life cycle varies by development team. Generally, the cycle starts with a pre-alpha release in the integration environment, through alpha, beta, and release candidate, to a stable version in staging. One example of such a life cycle, excluding the pre-alpha version, is Mozilla Firefox, which provides a Nightly release (\ie{alpha}), Aurora release (\ie{beta}), Beta candidate (\ie{release candidate}), and Main release (\ie{stable})~\cite{khomh-2012-faster}.} and before performing quality assurance (\ie{before the QA environment in Figure~\ref{fig:overview--off-line-and-on-line-reconceptualization}}).
+
+Evolution-time takes place at run-time as well. After all, it is during execution where new usage patterns emerge. Some form of self-evolution is necessary at run-time to ensure that the system is always operating based on relevant models, policies and assumptions. Nevertheless, evolving the system at run-time, without any kind of prior work (\eg{exploration, analysis, reasoning and comparison of configuration alternatives}) may be counterproductive. Consider self-tuning as an example. Sudden increases in service demand can rapidly change and behave erratically. If the execution conditions change often, it is likely that autonomic managers spend their time chasing new types of workloads without finding appropriate configurations timely. If more computing resources are allocated to decrease the search time, the cost-effectiveness may be negatively impacted. If the workload changes before paying off the cost of the evolution time, the cost will accumulate over time, yielding no value overall at the end of the billing period.
+
+If we consider the iterative nature of the software engineering process, it is not completely necessary to anticipate the system's operating conditions. Autonomic managers can collect and learn from production data over time. This means that the interaction between pre-production and production autonomic managers is analogous to the interaction between development and IT operations teams. As in traditional DevOps settings, autonomic managers from both sides have to work cooperatively rather than independently. Therefore, evolution-time does have a place at run-time, where it can complement evolution strategies discovered autonomically at development-time.
+
+We propose assessment-time to characterize the manual and automated validation process performed before deploying a release candidate to production. The staging environment provides an appropriate level of stability to justify the time invested on additional assessment procedures. Furthermore, assessment-time could be potentially used to evaluate other aspects of the system that could not be evaluated otherwise through testing. Examples of such an evaluation include  user acceptance checks and extra-functional assessment of machine learning models (\eg{fairness and explainability}). Since the staging environment is also known as \emph{acceptance}, acceptance-time would be acceptable too. However we consider assessment-time more semantically accurate.
+
+We also propose a list of more granular phases that we call checkpoints. Unlike most times of change, they usually occur more than once through the timeline (\cf{$\encircleblue{D}$}). Checkpoints may introduce software changes by assisting stakeholders in evaluating configuration alternatives (\eg{experimentation-time}); they may assess the system's quality by observing its behavior (\eg{verification-time}); or they may predict \glspl{kpi} by running the system in a controlled environment (\eg{simulation-time}). These checkpoints enable new opportunities for exploiting autonomic computing during development. First and foremost, self-management capabilities are no longer exclusively applied at run-time, on the production environment. This means that their purpose can be adapted to the needs of other environments from the delivery pipeline. Therefore, offline activities that could not be automated for production can now be accommodated somewhere else (\eg{experimentation}). Second, autonomic managers can conduct time-consuming activities on pre-production environments to reduce processing time at run-time. Finally, these checkpoints enable further integration between autonomic computing and continuous software engineering. Efforts can be dedicated to reduce remaining discontinuities by shifting offline activities to the online side, thus contributing to the continuity of the software evolution process.
+
+\subsection{Repurposing Self-Management With Respect to Software Evolution}
+\label{subsect:overview--self-management}
+
+We propose three ways in which self-management capabilities can be repurposed to automate software evolution. The three added purposes emerge from how we conceive self-evolution (\cf{Section~\ref{subsect:background--self-adaptation-and-self-evolution}}). That is, evolving a software system from a software engineering perspective, as well as from a control theory perspective. The first proposed way is intended to help reduce operative development work caused by run-time variability. The new purpose consists of producing various types of persistent updates to development artifacts based on run-time changes (\cf{$\encircleblack{1}$ in Figure~\ref{fig:overview--off-line-and-on-line-reconceptualization}}). A persistent update refers to a software change intended to create a new operative version of a software artifact. Examples of persistent updates include updating a deployment specification in a source control system, and updating a template instance in a deployment management software. 
+Since run-time variability increases the technical debt (\eg{configuration drift, \emph{snowflake} servers and infrastructure erosion~\cite{morris-2016-infrastructure}}), persistent updates can be seen as technical debt payments. 
+% As described in the \gls{iac} management case study (\cf{Section~\ref{sect:overview--iac-case-study}}), run-time variability increases the technical debt. Therefore, persistent updates can be seen as technical debt payments.
+The second proposed way is intended to improve development artifacts in various ways actively (\cf{$\encircleblack{2}$ in Figure~\ref{fig:overview--off-line-and-on-line-reconceptualization}}). Through experimentation and optimization techniques, self-management capabilities can be used to explore design, deployment, and configuration alternatives aiming to improve \glspl{kpi}. Once an autonomic manager has found an improvement, it proposes the respective changes as persistent updates. And the third way is intended to update run-time artifacts to keep them relevant with respect to the system's operation context and long-term objectives---that is, self-regulation (\cf{$\encircleblack{3}$ in Figure~\ref{fig:overview--off-line-and-on-line-reconceptualization}}). In this case, the run-time updates are created in response to emergent behavior. For example, whenever the usage demand pattern changes for a particular software service, the demand model associated with the service must be updated. In this case, the demand model is a reference control input that should remain relevant for correctly controlling the system's operation.
+
+We conceive self-regulation as an autonomic capability with two levels of control. The first level is concerned with short term adaptation goals, while the second one focuses on knowledge updates to prolong the relevance of the first one. Such a hierarchical control structure is based on adaptive control, more specifically on \gls{miac} and \gls{mrac}, and the \gls{acra}~\cite{ibm-2005-architectural}.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.9\columnwidth]{fig/overview/overview--evolution-outline.pdf}
+	\caption{Self-evolution through self-improvement, self-regulation and self-management}
+	\label{fig:overview--evolution-outline}
+\end{figure}
+
+\afterpage{
+	\begin{figure}[p]
+		\centering
+		\includegraphics[width=1\columnwidth]{fig/overview/overview--autonomic-devops-vertical.pdf}
+		\caption{Autonomic and continuous software evolution process}
+		\label{fig:overview--continuous-software-evolution-process}
+	\end{figure}
+}
+
+Figure~\ref{fig:overview--evolution-outline} represents the relationship between self-management, self-improvement, and self-regulation in the context of the delivery pipeline. The relationships depicted in Figure~\ref{fig:overview--evolution-outline} (\cf{$\encircleblack{1}$,~$\encircleblack{2}$ and~$\encircleblack{3}$}) represent each a form of self-evolution. We extend the delivery pipeline to support paths $\encircleblack{1}$ and $\encircleblack{2}$ for delivering persistent updates autonomically. Conceptually, this implies realizing the practice of two-way continuous delivery. From left to right (\ie{Dev$\,\rightarrow\,$Ops}), the pipeline realizes continuous delivery as it is usually put in practice. And from right to left (\ie{Dev$\,\leftarrow\,$Ops}), it delivers value to the development team. Technically, however, some changes are produced in the development environment (\cf{$\encircleblack{2}$}), not on the operations side. Nevertheless, these changes are the product of controlled execution scenarios that reflect realistic operation conditions. In other words, the software changes are enacted in production-like environments.
+
+Figure~\ref{fig:overview--continuous-software-evolution-process} illustrates the proposed evolution paths in the context of DevOps. On the left, we depict human- and automation-driven evolution as two engineering cycles rotating in opposite directions (\ie{Dev$\,\rightarrow\,$Ops and Dev$\,\leftarrow\,$Ops}). On the right, we depict how the two cycles integrate, producing a continuous process in terms of software evolution. By connecting the two cycles, we aim to reduce the discontinuities previously discussed (\cf{$\encirclered{A}$ and~$\encirclered{B}$ in Figure~\ref{fig:overview--discontinuities}}).
+
+%\begin{figure}[h]
+%	\centering
+%	\begin{subfigure}{.4\textwidth}
+%		\centering
+%		\includegraphics[width=1\columnwidth]{fig/overview/overview--autonomic-devops-cycles.pdf}
+%		\caption{Independent view}
+%		\label{fig:overview--autonomic-devops-cycles}
+%	\end{subfigure}%
+%	\hfill
+%	\begin{subfigure}{.5\textwidth}
+%		\centering
+%		\includegraphics[width=1\columnwidth]{fig/overview/overview--autonomic-devops-integration.pdf}
+%		\caption{Integrated view}
+%		\label{fig:overview--autonomic-devops-integration}
+%	\end{subfigure}
+%	\caption{Autonomic and continuous software evolution process}
+%	\label{fig:overview--continuous-software-evolution-process}
+%\end{figure}
+
+\section{Our Contributions}
+\label{sect:overview--contributions}
+
+This section summarizes the four general contributions of this dissertation.
+
+\begin{description}[style=unboxed,leftmargin=0cm,font=\bfseries\normalsize]
+	\item[Framework for Continuous Software Evolution Pipelines\autodot]
+
+	We propose a framework for continuous software evolution pipelines to bridge offline and online evolution processes. We take advantage of existing infrastructure and automation intended for software delivery, and put it into service of autonomic managers. Our pipeline extends the concept of \gls{ci} to complete the evolution loop (\ie{Dev$\,\leftarrow\,$Ops}). That is, software changes stem not only from offline processes---driven by stakeholders, but also from online activities---driven by autonomic managers. Therefore, it enables feedback loops to capture run-time changes and integrate them \emph{safely} into source specifications. This means that live modifications to source code, originated on the Ops side, go through existing testing procedures to guarantee minimum and acceptable levels of quality and confidence.
+
+	Our software evolution pipeline considers two evolution workflows: with and without quality evaluation support. In the first case, an autonomic manager adapts a \gls{mart} that represents a specific aspect of the system, such as the \gls{osp} of a transportation system. As a result, the pipeline triggers a model transformation chain that ends up in the update of source specifications, or knowledge represented in models. This process is based on current software engineering practices, including, for example, using a code repository and following a branching model. In the second case, an autonomic manager adapts the system through the underlying computing platform. This time, since changes are applied immediately to the running system, changes to the source code specifications optionally skip quality control. By separating the run-time updates from the change enactment in the specifications, we aim at unifying the software evolution process. Thereby, our software evolution pipeline realizes a holistic and continuous process that connects software execution and development, while providing quality control to run-time changes. Furthermore, since run-time changes are integrated into source code repositories, run-time variability becomes traceable in existing processes and corresponding tools.
+
+	This contribution realizes self-evolution through self-management, as described in Section~\ref{subsect:overview--self-management} (\cf{$\encircleblack{1}$ in Figure~\ref{fig:overview--evolution-outline}}).
+
+	\item[Quality-driven Self-Improvement Feedback Loop\autodot]
+
+	We propose online self-improvement as a way to address the rapid pace of software change. More specifically, we propose the use of a feedback loop for exploring design and configuration alternatives during development. The main purpose of our self-improvement feedback loop is to improve \glspl{kpi} continuously before releasing a stable version of the software. That is, we propose taking advantage of non-production computing environments in the delivery pipeline. We connect our feedback loop with our continuous software evolution pipeline through various modeling layers, ranging from the physical computing infrastructure to the software application. This means that our feedback loop focuses on exploring configuration variants and finding possible improvements. Once the feedback loop identifies a variant that outperforms the baseline configuration, it delegates to the evolution pipeline the corresponding code updates.
+
+	Our self-improvement feedback loop relies on existing quality assessment procedures present in the delivery pipeline. By extending quality assessment with continuous improvement, our feedback loop frees stakeholders from maintenance work and expedites the implementation of incremental software changes. We follow the separation of concerns principle by splitting the online experiment management into three internal feedback loops. First, the \gls{efl} guides high-level self-evolution while satisfying high-level goals through online experiment design. Second, the \gls{pfl} derives, deploys and monitors infrastructure configuration variants. Finally, the \gls{cfl} derives, deploys and monitors architectural design variants.
+
+	Both the \gls{pfl} and the \gls{cfl} make use of combinatorial techniques to derive system variants. In the first case, the \gls{pfl} explores configuration parameters of declared virtual resources. In the second case, the \gls{cfl} explores design variants by applying domain-specific design patterns to the managed system's architecture. The \gls{cfl} relies on its capability to measure the impact of design patterns on \glspl{kpi}.
+
+	This contribution realizes self-evolution through self-improvement, as described in Section~\ref{subsect:overview--self-management} (\cf{$\encircleblack{2}$ in Figure~\ref{fig:overview--evolution-outline}}).
+
+	\item[Run-Time Evolution Reference Architecture\autodot]
+
+	We propose a reference architecture for guiding the design of dependable and resilient \glspl{cps}. The proposed architecture realizes a continuous engineering cycle where adaptation and evolution work cooperatively to achieve the system goals. Evolution plays both a reactive and a proactive role explicitly in this engineering cycle. Its main purpose is to regulate the reference models used for controlling the system's operation, thus, ultimately contributing to the managed system's long-term evolution. To do so, our architecture takes advantage of a hierarchy of autonomic control structures based on adaptive control and the \gls{acra}. Moreover, it achieves the continuous cycle between short-term adaptation and long-term evolution by keeping up-to-date representations of relevant aspects of the system (\ie{\glspl{mart}}).
+
+	Our run-time evolution reference architecture realizes our envisioned engineering cycle as follows. First, it uses evolutionary optimization and online experimentation to find suitable models to guide the adaptation of the managed system. Second, it uses online experimentation, supported by parameter optimization, to gather evidence of statistically significant improvements over the system's baseline design, thus generating knowledge of possible configuration states and their respective performances. Lastly, our reference architecture accommodates self-evolution for reflecting persistent changes in the physical infrastructure of execution as well as improving the use of resources. Self-adaptation is used to ensure that the managed system operates within acceptable and viable boundaries. Together, these characteristics contribute to achieving dependability and ensuring resiliency for \glspl{scps} at run-time.
+
+	% TODO Include the common knowledge layer and its motivation here
+
+	This contribution realizes self-evolution through self-regulation, as described in Section~\ref{subsect:overview--self-management} (\cf{$\encircleblack{3}$ in Figure~\ref{fig:overview--evolution-outline}}).
+
+	\item[An Implementation for the Continuous \gls{iac} Evolution Pipeline\autodot]
+	We provide a comprehensive implementation for the continuous evolution pipeline for \gls{iac} specifications. Our implementation covers the full life cycle of Terraform\footnote{\url{https://www.terraform.io}} (\ie{an \gls{iac} tool}) templates and instances as follows. First, it assists DevOps engineers in acquiring knowledge from an infrastructure deployed to a VMWare cloud. Our evolution pipeline creates the Terraform templates and stores them in a git repository. These templates represent the structural features of the deployment, including resource definitions and their interconnections with resources existing outside of the scope of the deployment (\eg{data stores and networks}). Furthermore, our implementation creates the corresponding template and template instance in IBM Cloud Automation Manager.\footnote{\url{https://www.ibm.com/ca-en/marketplace/cognitive-automation}} In this case, the template instance represents the actual parameter values used for the deployed resources (\eg{The amount of storage associated with a \gls{vm}}). And second, our evolution pipeline prevents configuration drift between the Terraform templates, the IBM \gls{cam} instance, and the VMWare deployment by counteracting live deployment updates with changes on the development side continuously and incrementally. More details about this contribution are included in Appendix~\ref{appendix:implementation-package}.
+	
+	Our implementation of the evolution pipeline integrates well with our implementation of the self-improvement feedback loop. Modifications to the deployment and configuration specifications are proposed as code contributions through our pipeline implementation.
+\end{description}
+
+
+\section{Cloud Infrastructure Management Case Study}
+\label{sect:overview--iac-case-study}
+
+\gls{iac} is the practice of configuring system dependencies and provisioning local and remote compute instances automatically. One requirement of the \gls{iac} life cycle is that specifications need be the only source of change. Otherwise, \gls{iac} tools could not guarantee idempotency, at least without removing already deployed resources. That is, the deployment process could not be executed multiple times expecting the same result every time. Therefore, \gls{iac} tools can provide guarantees on the repeatability, convergence and predictability of the deployment process~\cite{nelson-smith-2013-test,waldemar-2013-testing}. Modifying both the specification and the generated infrastructure leads to configuration inconsistencies, thereby increasing the technical debt\footnote{In \gls{iac}, the best practice for modifying a deployed infrastructure consists of changing the source specification, thereby evaluating the changes throughout the delivery pipeline. In addition to this being a time-consuming process, changes are typically deployed according to a release schedule---unless they are critical bugs. In cases where the changes are required immediately, a system administrator may decide to bypass the delivery pipeline, applying the changes directly to the target infrastructure.} and possibly affecting these guarantees.\footnote{\gls{iac} tools may guarantee these properties by destroying and recreating existing resources (\eg{a virtual machine}). Therefore, even if the resource is modified outside the \gls{iac} life cycle, the tool can guarantee the desired state. Often, this limitation comes from the cloud vendor, which may provide limited support for run-time updates.} Nevertheless, computing infrastructures are subject to change during development and execution.
+
+Hybrid cloud deployments illustrate the need for run-time modifications. Large organizations make extensive use of automation to conduct management operations, such as cost reduction, load balancing, workload migration during maintenance periods, resource upgrades, and policy compliance enforcement. Cloud software management performs these updates live. Moreover, there is a growing concern in the enterprise world for \emph{Day 2+ operations}~\cite{cherinka-2022-impact}. This concept refers to the phase posterior to initial software deployment on \emph{Day 1} into real-world execution conditions. On Day 2, and the days following, IT operations teams begin to stress software and infrastructure resilience, scale, data flow management, security, and governance~\cite{cherinka-2022-impact}. Because of this, IT operations teams may use scripts developed in-house and third party software to manage the deployed infrastructure. Both cloud automation and Day 2+ operations are necessary for organizations to manage their hybrid cloud successfully. Nevertheless, they are both excluded from the \gls{iac} life cycle. Run-time modifications are an irreconcilable requirement that make the hybrid cloud incompatible with the current \gls{iac} life cycle.
+
+% Day 2+ operations involve the continuous improvement of software and the way it is managed in a production environment.
+
+\subsection{Problem Definition}
+\label{subsect:overview--iac-case-study-problem}
+
+Even if IT operations teams decide to migrate their ad-hoc deployments to \gls{iac}, three problems emerge, namely: knowledge acquisition of deployed infrastructures, configuration drift, and continuous improvement.
+
+\subsubsection{Knowledge Acquisition}
+\label{subsubsect:overview--iac-case-study-knowledge-acquisition}
+
+The team may have been managing their computing resources through scripts, third-party command-line applications and administration portals. The cost of such a migration can be significant. It can include hundreds or even thousands of resources. Furthermore, there is a constant trade-off between spending time migrating the infrastructure deployment and developing bug fixes and features. This is primarily true when the changes do not produce any direct benefit for the users. Moreover, manually writing the \gls{iac} specifications could result in many functional bugs, which may only become visible once the infrastructure is in production.
+
+\subsubsection{Configuration Drift}
+\label{subsubsect:overview--iac-case-study-configuration-drift}
+
+Deployed infrastructures will continue to be updated live for the aforementioned reasons. This causes an incremental drift between the \gls{iac} specifications and the deployed resources. Eventually, the discrepancy is such that specifications can no longer be used~\cite{morris-2016-infrastructure}. Since they contain outdated information, they will likely disrupt running services when redeployed. Thus, \gls{iac} specifications become obsolete over time, losing the initial investment in effort, time and money.
+
+In an enterprise environment, \gls{iac} is usually managed through cloud management software, such as IBM \gls{cam} and Terraform Cloud. The IT department provides self-serve facilities to deploy pre-configured services. This means that other members of the organization tune and deploy the services they need, while the IT department focuses on maintaining the \gls{iac} specifications, also referred to as templates. This separation between templates and instances makes the configuration drift problem even more challenging. This is because run-time changes can affect both, making it necessary to coordinate the evolution of independent instances and the template they share. From here onward, we refer to this pair of template-instances as specifications.
+
+\subsubsection{Continuous Improvement}
+\label{subsubsect:overview--iac-case-study-continuous-improvement}
+
+DevOps engineers usually design and configure the initial computing infrastructure based on service demand assumptions and historical data. Once the software system goes live, they spend time adjusting the initial configuration based on the actual service demand (\ie{Day 2+ operations}). During this time, users of the software application often encounter errors and briefly experience limited functionality.\footnote{This is an agile practice where the fail-and-fix-fast philosophy applies~\cite{shore-2004-fail}} Reducing errors and risks during Day 2+ operations is critical to the business success nonetheless. However, \gls{iac} specifications are prone to errors as much as application code. With a 28\% change ratio, \gls{iac} files are equally changed as other types of production files, even more so than software tests~\cite{jiang-2015-co-evolution}. Since change of source code is a predictor of bug proneness~\cite{aversano-2007-learning,sunghun-2006-automatic} or risk~\cite{shihab-2012-industrial}, infrastructure code is vulnerable to similar issues~\cite{jiang-2015-co-evolution}. Therefore, manual modification of \gls{iac} files may hinder the adjustment and improvement process.
+
+Continuous improvement of \gls{iac} specifications is also regularly conducted during development. Automated performance testing is usually one of the quality checks in continuous delivery. Software development teams setup automated reporting to identify performance regressions or service degradation in general. The idea is to identify performance problems early in the development process, and correct them if possible before deploying the software to production. Ideally, these problems are solved by refactoring the software system, possibly impacting the overall design, configuration and deployment. Nevertheless, over-provisioning the computing infrastructure is seen as an alternative. However, because new code can add additional inefficiencies, a vicious cycle sets in (\ie{over provisioning as a default response to new inefficiencies}) while the cost of operation augments silently until it is too high, or adding more computing power stops being effective.
+
+The problem that continuous improvement posits is twofold. On the one hand, development and operations teams ought to coordinate efforts for exploring configuration alternatives and adjusting the \gls{iac} specifications accordingly. On the other hand, this process should be conducted frequently to ensure meeting service level objectives in the face of changing execution conditions, while reducing error proneness in the adjustment process.
+
+\section{Smart Urban Transit System Case Study}
+\label{sect:overview--suts-case-tudy}
+
+In the context of Intelligent Transportation Systems, Smart Urban Transit Systems (\gls{suts}) enable the optimization of public transportation services through the continuous exploitation of operational data from multiple context sources. \gls{suts} make extensive use of \gls{iot} sensors and effectors to collect valuable data about the physical components of the system. Such data help characterize, predict, and control the system's behavior. Moreover, given the scale of \gls{suts}, optimizing their operation is crucial to prevent negative effects on the city's overall transit. As the performance of routes affects not only the citizens who use them but also the mobility of the whole city from a global perspective, their effectiveness is crucial for the city's quality of life.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.75\columnwidth]{fig/overview/overview--case-study.pdf}
+	\caption{Conceptual model of \gls{suts} case study}
+	\label{fig:overview--suts-case-study}
+\end{figure}
+
+Figure~\ref{fig:overview--suts-case-study} depicts common elements of a transportation system. Although there are various types of vehicles, we simplify the case study by considering them as buses. The elemental notion of a bus route is described by a set of \textit{arcs} that connect stops---freestanding or as part of a station---and which buses traverse at predefined frequencies (\ie \textit{headways}) to complete required trips. Upon arrival at a bus stop, a bus completes a \textit{service time} defined by the time required for onboard passenger disembarkation and boarding of passengers. The latter is based on identified probability distributions describing passenger arrivals at the stop. There exist several measures of effectiveness that quantify and describe the performance of system routes from both a control and user (\eg{headway design and waiting times, respectively}) perspectives~\cite{hounsell-1998-automatic,strathman-1999-automated,chandrasekar-2002-simulation}. Two relevant measures are part of the \glspl{kpi} of our \gls{suts} case study: the \gls{HCoV} and the \gls{EWTaBS}. The former captures the variability among observed headways from a route controller perspective~\cite{strathman-1999-automated,chandrasekar-2002-simulation}. The latter is a measure from the users' perspective that reflects the unjustified waiting time imposed by service irregularity ~\cite{strathman-1999-automated,hounsell-1998-automatic}. As depicted in Figure~\ref{fig:overview--suts-feature-model}, these measures of effectiveness can be used to describe the resiliency of \gls{suts} in terms of its reliability (\ie low headway variability) and availability (\ie readiness of bus service when required) during changing conditions. The element hierarchy within the green tree associates target qualities of the system, namely dependability and resiliency, with system capabilities (\ie{Self-evolution and self-adaptation}) and metrics (\ie{\gls{HCoV} and \gls{EWTaBS}}). Darker elements in the figure represent the concepts addressed in the scope of this case study. This decomposition extends the one introduced by \cite{bennaceur-2019-modelling}.
+
+\subsection{Problem Definition}
+\label{subsect:overview--suts-case-study-problem}
+
+Inevitably, the operational complexity of an intricate system such as our \gls{suts} case study potentially exceeds the reasoning capabilities of human planners and operators. This results in far from acceptable system performance characterized by undesirable values of \gls{HCoV} and \gls{EWTaBS} defined in the \gls{osp}. Currently, human planners and controllers face two major challenges. First, there is a lack of guarantees about the effectiveness of short-term control actions performed on the system when its operation oversteps its viability zone. This refers to human controllers currently not being able to anticipate the potential impact of changes made to a particular route (\eg{increased buses or departure frequency}) because of unforeseen conditions requiring immediate attention. Second, and similarly to the previous challenge, the suitability of long-term evolution adjustments to the \gls{osp} defined by the planners is uncertain and mostly empirical. Thus, they are unable to fulfill the plans during operation. Consequently, there exist many opportunities to smarten transportation \gls{cps}. New and innovative mechanisms are required to augment the capabilities of constituent components to make it more resilient, efficient, autonomous, and self-managed, thus contributing to the system's advancement towards \gls{suts}.
+
+\begin{landscape}
+	\begin{figure}[p]
+		\centering
+		\includegraphics[width=1\columnwidth]{fig/overview/overview--feature-model.pdf}
+		\caption{Feature-based classification scheme for \gls{scps}.}
+		\label{fig:overview--suts-feature-model}
+	\end{figure}
+\end{landscape}
+
+\section{Chapter Summary}
+
+This chapter presented an overview of the contributions achieved in the development of this dissertation. We started by identifying two remaining discontinuities in the software development process. Then, we described our reconceptualization of the time of change timeline focusing on the delivery pipeline and its constituents. Based on this, we introduced and briefly described our contributions, namely: A framework for continuous software evolution pipelines; An implementation for the continuous \acrshort{iac} evolution pipeline; A quality-driven self-improvement feedback loop; And a run-time evolution reference architecture. Finally, this chapter presented the two case studies we used to evaluate our contributions, namely cloud infrastructure management and smart urban transportation.

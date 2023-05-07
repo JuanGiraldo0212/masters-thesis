@@ -1,0 +1,238 @@
+% Encoding: UTF-8
+%
+% R U L E S
+%
+% - Do not use the attribute 'Series', instead specify the  acronym in the booktitle
+%     e.g., Proceedings of the 1st International Workshop on... (RCoSE)
+%  - Do not use the attributes 'Address', 'Month' and 'Issue date'
+%  - Use simple names for the attribute 'Publiher'
+%     e.g., 'Springer' instead of 'Springer Berlin Heidelberg', or 'IEEE' instead of 'IEEE Press'
+%  - Do not use contractions in author and journal names
+%  - Use camel case for the entry type and lower case for the attribute names
+%  - Use latex for ordinal numbers (e.g., 7\textsuperscript{th} instead of 7th)
+%  - Do not include https://doi.org/ in the 'DOI' attribute
+%  - Do not use the DOI URL as the 'URL' attribute
+%  - Capitalize journal and booktitle attributes
+
+@Book{nielsen-2011-quantum-computation,
+author = {Nielsen, Michael A. and Chuang, Isaac L.},
+title = {Quantum Computation and Quantum Information},
+year = {2011},
+isbn = {1107002176},
+publisher = {Cambridge},
+edition = {10th},
+abstract = {One of the most cited books in physics of all time, Quantum Computation and Quantum Information remains the best textbook in this exciting field of science. This 10th anniversary edition includes an introduction from the authors setting the work in context. This comprehensive textbook describes such remarkable effects as fast quantum algorithms, quantum teleportation, quantum cryptography and quantum error-correction. Quantum mechanics and computer science are introduced before moving on to describe what a quantum computer is, how it can be used to solve problems faster than 'classical' computers and its real-world implementation. It concludes with an in-depth treatment of quantum information. Containing a wealth of figures and exercises, this well-known textbook is ideal for courses on the subject, and will interest beginning graduate students and researchers in physics, computer science, mathematics, and electrical engineering.}
+}
+
+@Article{feynman-1986-quantum-computers,
+author={Feynman, Richard P.},
+title={Quantum mechanical computers},
+journal={Foundations of Physics},
+year={1986},
+volume={16},
+number={6},
+pages={507-531},
+abstract={The physical limitations, due to quantum mechanics, on the functioning of computers are analyzed.},
+doi={10.1007/BF01886518},
+url={https://link.springer.com/article/10.1007/BF01886518}
+}
+
+@Article{deutch-1992-rapid-solutions,
+author = {Deutsch, D and Jozsa, R},
+title = {Rapid Solution of Problems by Quantum Computation},
+year = {1992},
+publisher = {University of Bristol},
+}
+
+@Article{shor-1997-factorization,
+author = {Shor, Peter W.},
+title = {Polynomial-Time Algorithms for Prime Factorization and Discrete Logarithms on a Quantum Computer},
+year = {1997},
+publisher = {Society for Industrial and Applied Mathematics},
+volume = {26},
+number = {5},
+issn = {0097-5397},
+url = {https://dl.acm.org/doi/10.1137/S0097539795293172},
+doi = {10.1137/S0097539795293172},
+abstract = {A digital computer is generally believed to be an efficient universal computing device; that is, it is believed able to simulate any physical computing device with an increase in computation time by at most a polynomial factor. This may not be true when quantum mechanics is taken into consideration. This paper considers factoring integers and finding discrete logarithms, two problems which are generally thought to be hard on a classical computer and which have been used as the basis of several proposed cryptosystems. Efficient randomized algorithms are given for these two problems on a hypothetical quantum computer. These algorithms take a number of steps polynomial in the input size, e.g., the number of digits of the integer to be factored.},
+journal = {SIAM J. Comput.},
+pages = {1484–1509},
+numpages = {26},
+}
+
+@Inproceedings{grover-1996-search,
+author = {Grover, Lov K.},
+title = {A Fast Quantum Mechanical Algorithm for Database Search},
+year = {1996},
+isbn = {0897917855},
+publisher = {Association for Computing Machinery},
+url = {https://dl.acm.org/doi/10.1145/237814.237866},
+doi = {10.1145/237814.237866},
+booktitle = {Proceedings of the Twenty-Eighth Annual ACM Symposium on Theory of Computing},
+pages = {212–219},
+numpages = {8},
+}
+
+@Article{arute-2019-supremacy,
+author={Arute, Frank et al.},
+title={Quantum supremacy using a programmable superconducting processor},
+journal={Nature},
+year={2019},
+volume={574},
+number={7779},
+pages={505-510},
+abstract={The promise of quantum computers is that certain computational tasks might be executed exponentially faster on a quantum processor than on a classical processor1. A fundamental challenge is to build a high-fidelity processor capable of running quantum algorithms in an exponentially large computational space. Here we report the use of a processor with programmable superconducting qubits2--7 to create quantum states on 53 qubits, corresponding to a computational state-space of dimension 253 (about 1016). Measurements from repeated experiments sample the resulting probability distribution, which we verify using classical simulations. Our Sycamore processor takes about 200 seconds to sample one instance of a quantum circuit a million times---our benchmarks currently indicate that the equivalent task for a state-of-the-art classical supercomputer would take approximately 10,000 years. This dramatic increase in speed compared to all known classical algorithms is an experimental realization of quantum supremacy8--14 for this specific computational task, heralding a much-anticipated computing paradigm.},
+issn={1476-4687},
+doi={10.1038/s41586-019-1666-5},
+url={https://www.nature.com/articles/s41586-019-1666-5}
+}
+
+@Article{madsen-2022-advantage,
+author={Madsen, Lars S. et al.},
+title={Quantum computational advantage with a programmable photonic processor},
+journal={Nature},
+year={2022},
+volume={606},
+number={7912},
+pages={75-81},
+abstract={A quantum computer attains computational advantage when outperforming the best classical computers running the best-known algorithms on well-defined tasks. No photonic machine offering programmability over all its quantum gates has demonstrated quantum computational advantage: previous machines1,2 were largely restricted to static gate sequences. Earlier photonic demonstrations were also vulnerable to spoofing3, in which classical heuristics produce samples, without direct simulation, lying closer to the ideal distribution than do samples from the quantum hardware. Here we report quantum computational advantage using Borealis, a photonic processor offering dynamic programmability on all gates implemented. We carry out Gaussian boson sampling4 (GBS) on 216 squeezed modes entangled with three-dimensional connectivity5, using a time-multiplexed and photon-number-resolving architecture. On average, it would take more than 9,000{\thinspace}years for the best available algorithms and supercomputers to produce, using exact methods, a single sample from the programmed distribution, whereas Borealis requires only 36{\thinspace}$\mu$s. This runtime advantage is over 50 million times as extreme as that reported from earlier photonic machines. Ours constitutes a very large GBS experiment, registering events with up to 219 photons and a mean photon number of 125. This work is a critical milestone on the path to a practical quantum computer, validating key technological features of photonics as a platform for this goal.},
+issn={1476-4687},
+doi={10.1038/s41586-022-04725-x},
+url={https://www.nature.com/articles/s41586-022-04725-x}
+}
+
+@Misc{fahri-2000-adiabatic,
+  doi = {10.48550/ARXIV.QUANT-PH/0001106},
+  url = {https://arxiv.org/abs/quant-ph/0001106},
+  author = {Farhi, Edward and Goldstone, Jeffrey and Gutmann, Sam and Sipser, Michael},
+  title = {Quantum Computation by Adiabatic Evolution},
+  publisher = {arXiv},
+  year = {2000}
+}
+
+@Article{ladd-2010-quantum-computers,
+author={Ladd, T. D. et al.},
+title={Quantum computers},
+journal={Nature},
+year={2010},
+volume={464},
+number={7285},
+pages={45-53},
+abstract={With basic information processing units (qubits) governed by the exotic phenomena of quantum mechanics, quantum computers have the potential to be far better at performing certain calculations than today's computers using conventional 'bits'. That said, it's far from clear what technology practical quantum computers --- if and when they arrive --- will use. In an extensive review, six researchers from major labs in the field describe the latest work on the hardware for quantum information systems. Current materials are compared --- including the nuclear spins of donor atoms in doped silicon, electron spins in gallium arsenide and nitrogen-vacancy centres in diamond --- and the materials that are yet to come are speculated upon.},
+issn={1476-4687},
+doi={10.1038/nature08812},
+url={https://www.nature.com/articles/nature08812}
+}
+
+@Article{preskill-2018-nisq,
+	doi = {10.22331/q-2018-08-06-79},
+	url = {https://quantum-journal.org/papers/q-2018-08-06-79/},
+	year = 2018,
+	publisher = {Quantenwissenschaften},
+	volume = {2},
+	pages = {79},
+	author = {John Preskill},
+	title = {Quantum Computing in the {NISQ} era and beyond},
+	journal = {Quantum}
+}
+
+@Article{peruzzo-2014-vqe,
+	doi = {10.1038/ncomms5213},
+	year = 2014,
+	publisher = {Springer},
+	volume = {5},
+	number = {1},
+	author = {Alberto Peruzzo et al.},
+	title = {A variational eigenvalue solver on a photonic quantum processor},
+	journal = {Nature Communications}
+}
+
+@Misc{farhi-2014-qaoa,
+  doi = {10.48550/ARXIV.1411.4028},
+  url = {https://arxiv.org/abs/1411.4028},
+  author = {Farhi, Edward and Goldstone, Jeffrey and Gutmann, Sam},
+  title = {A Quantum Approximate Optimization Algorithm},
+  publisher = {arXiv},
+  year = {2014},
+}
+
+@Inproceedings{rosemberg-2015-trading,
+author = {Rosenberg, Gili and Haghnegahdar, Poya and Goddard, Phil and Carr, Peter and Wu, Kesheng and de Prado, Marcos L\'{o}pez},
+title = {Solving the Optimal Trading Trajectory Problem Using a Quantum Annealer},
+year = {2015},
+publisher = {Association for Computing Machinery},
+url = {https://dl.acm.org/doi/abs/10.1145/2830556.2830563},
+abstract = {We solve a multi-period portfolio optimization problem using D-Wave Systems' quantum annealer. We derive a formulation of the problem, discuss several possible integer encoding schemes, and present numerical examples that show high success rates. The formulation incorporates transaction costs (including permanent and temporary market impact), and, significantly, the solution does not require the inversion of a covariance matrix. The discrete multi-period portfolio optimization problem we solve is significantly harder than the continuous variable problem. We present insight into how results may be improved using suitable software enhancements, and why current quantum annealing technology limits the size of problem that can be successfully solved today. The formulation presented is specifically designed to be scalable, with the expectation that as quantum annealing technology improves, larger problems will be solvable using the same techniques.},
+booktitle = {Proceedings of the 8th Workshop on High Performance Computational Finance}
+}
+
+@Article{hardwood-2021-routing,
+  author={Harwood, Stuart and Gambella, Claudio and Trenev, Dimitar and Simonetto, Andrea and Bernal, David and Greenberg, Donny},
+  journal={IEEE Transactions on Quantum Engineering}, 
+  title={Formulating and Solving Routing Problems on Quantum Computers}, 
+  year={2021},
+  volume={2},
+  number={},
+  pages={1-17},
+  doi={10.1109/TQE.2021.3049230},
+  url = {https://ieeexplore.ieee.org/document/9314905}
+  }
+
+ @Article{akshay-2019-energy,
+title = {Quantum computing for energy systems optimization: Challenges and opportunities},
+journal = {Energy},
+volume = {179},
+pages = {76-89},
+year = {2019},
+doi = {https://doi.org/10.1016/j.energy.2019.04.186},
+url = {https://www.sciencedirect.com/science/article/pii/S0360544219308254},
+author = {Akshay Ajagekar and Fengqi You},
+keywords = {Quantum computing, Energy systems, Optimization},
+abstract = {The purpose of this paper is to explore the applications of quantum computing to energy systems optimization problems and discuss some of the challenges faced by quantum computers with techniques to overcome them. The basic concepts underlying quantum computation and their distinctive characteristics in comparison to their classical counterparts are also discussed. Along with different hardware architecture description of two commercially available quantum systems, an example making use of open-source software tools is provided as a first step for diving into the new realm of programming quantum computers for solving systems optimization problems. The trade-off between qualities of these two quantum architectures is also discussed. Complex nature of energy systems due to their structure and large number of design and operational constraints make energy systems optimization a hard problem for most available algorithms. Problems like facility location allocation for energy systems infrastructure development, unit commitment of electric power systems operations, and heat exchanger network synthesis which fall under the category of energy systems optimization are solved using both classical algorithms implemented on conventional CPU based computer and quantum algorithm realized on quantum computing hardware. Their designs, implementation and results are stated. Additionally, this paper describes the limitations of state-of-the-art quantum computers and their great potential to impact the field of energy systems optimization.}
+}
+
+@Article{piattini-2020-talavera,
+author = {Piattini, Mario and Peterssen Nodarse, Guido and Pérez-Castillo, Ricardo and Hevia Oliver, Jose Luis and Serrano, Manuel and Hernández González, Guillermo and Guzmán, Ignacio and Andrés Paradela, Claudio and Polo, Macario and Murina, Ezequiel and Jiménez Navajas, Luis and Marqueño, Juan and Gallego, Ramses and Tura, Jordi and Phillipson, Frank and Murillo, Juan and Niño, Alfonso and Rodríguez, Moisés},
+year = {2020},
+month = {03},
+url = {https://ceur-ws.org/Vol-2561/paper0.pdf}
+title = {The Talavera Manifesto for Quantum Software Engineering and Programming}
+}
+
+@article{weder-2020-lifecycle,
+author = {Weder, Benjamin and Barzen, Johanna and Leymann, Frank and Salm, Marie and Vietz, Daniel},
+title = {The Quantum Software Lifecycle},
+year = {2020},
+publisher = {Association for Computing Machinery},
+url = {https://doi.org/10.1145/3412451.3428497},
+doi = {10.1145/3412451.3428497},
+abstract = {Quantum computing is an emerging paradigm that enables to solve a variety of problems more efficiently than it is possible on classical computers. As the first quantum computers are available, quantum algorithms can be implemented and executed on real quantum hardware. However, the capabilities of today’s quantum computers are very limited and quantum computations are always disturbed by some error. Thus, further research is needed to develop or improve quantum algorithms, quantum computers, or required software tooling support. Due to the interdisciplinary nature of quantum computing, a common understanding of how to develop and execute a quantum software application is needed. However, there is currently no methodology or lifecycle comprising all relevant phases that can occur during the development and execution process. Hence, in this paper, we introduce the quantum software lifecycle consisting of ten phases a gate-based quantum software application should go through. We analyze the purpose of each phase, the available methods and tools that can be applied, and the open problems or research questions. Therefore, the lifecycle can be used as a baseline for discussions and future research.},
+booktitle = {Proceedings of the 1st ACM SIGSOFT International Workshop on Architectures and Paradigms for Engineering Quantum Software},
+pages = {2–9},
+numpages = {8},
+keywords = {Quantum Computing, NISQ, Software Engineering, Quantum Applications, Software Lifecycle, Quantum Software Development},
+}
+
+@article{garcia-2023-testing,
+author = {García de la Barrera, Antonio and García-Rodríguez de Guzmán, Ignacio and Polo, Macario and Piattini, Mario},
+title = {Quantum software testing: State of the art},
+journal = {Journal of Software: Evolution and Process},
+volume = {35},
+number = {4},
+pages = {e2419},
+doi = {https://doi.org/10.1002/smr.2419},
+url = {https://onlinelibrary.wiley.com/doi/abs/10.1002/smr.2419},
+abstract = {Abstract Quantum computing is expected to exponentially outperform classic computing on a broad set of problems, including encryption, machine learning, and simulations. It has an impact yet to explore on all software lifecycle's processes and techniques. Testing quantum software raises a significant number of challenges due to the unique properties of quantum physics—such as superposition and entanglementand the stochastic behavior of quantum systems. It is, therefore, an open research issue. In this work, we offer a systematic mapping study of quantum software testing engineering, presenting a comprehensive view of the current state of the art. The main identified trends in testing techniques are (1) the statistic approaches based on repeated measurements and (2) the use of Hoare-like logics to reason about software correctness. Another relevant line of research is reversible circuit testing, which is partially applicable to quantum software unitary testing. Finally, we have observed a flourishing of secondary studies and frameworks supporting testing processes from 2018 onwards.},
+year = {2023}
+}
+
+@article{gheorghe-pop-2020-devops,
+  author={Gheorghe-Pop, Ilie-Daniel and Tcholtchev, Nikolay and Ritter, Tom and Hauswirth, Manfred},
+  booktitle={2020 IEEE Globecom Workshops (GC Wkshps}, 
+  title={Quantum DevOps: Towards Reliable and Applicable NISQ Quantum Computing}, 
+  year={2020},
+  volume={},
+  number={},
+  pages={1-6},
+  doi={10.1109/GCWkshps50303.2020.9367411}}
+

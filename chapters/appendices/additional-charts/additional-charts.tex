@@ -1,0 +1,127 @@
+\startappendix{Latency Measurements for the Cloud Media Encoding Service}
+\label{appendix:additional-charts}
+
+This appendix presents additional charts related to our cloud infrastructure management case study. The measurements presented in these charts were part of the controlled experiments presented in Section~\ref{sect:evaluation--infrastructure-management}. The latency box plots represent, visually, why the \gls{cfl} selected the variants it selected for each execution scenario. These plots are useful for humans in the loop assessing the proposed changes. Figure~\ref{fig:additional-charts--regular} displays box plots for video and playlist requests regarding the Regular execution scenario. Similarly, \cref{fig:additional-charts--linear,fig:additional-charts--spike} display box plots for the Linear and Spike execution scenarios, respectively.~\cref{fig:additional-charts--qqplot-regular,fig:additional-charts--qqplot-linear,fig:additional-charts--qqplot-spike} display QQ plots based on the same data.
+
+\begin{figure}[h]
+	\centering
+	\begin{subfigure}[b]{0.49\textwidth}
+		\centering
+		\includegraphics[width=\linewidth]{fig/additional-charts/software-architecture-variants/boxplot_video_Constant.pdf}
+		\caption{Video requests}
+		\label{fig:additional-charts--video-regular}
+	\end{subfigure}
+	%
+	\begin{subfigure}[b]{0.49\textwidth}
+		\centering
+		\includegraphics[width=\linewidth]{fig/additional-charts/software-architecture-variants/boxplot_playlist_Constant.pdf}
+		\caption{Playlist requests}
+		\label{fig:additional-charts--playlist-regular}
+	\end{subfigure}
+	\caption{Latency box plots for the Regular scenario}
+	\label{fig:additional-charts--regular}
+\end{figure}
+
+\begin{figure}[h]
+	\centering
+	\begin{subfigure}[b]{0.8\textwidth}
+		\centering
+		\includegraphics[width=\linewidth]{fig/additional-charts/software-architecture-variants/boxplot_video_Linear.pdf}
+		\caption{Video requests}
+		\label{fig:additional-charts--video-linear}
+	\end{subfigure}
+	%
+	\begin{subfigure}[b]{0.8\textwidth}
+		\centering
+		\includegraphics[width=\linewidth]{fig/additional-charts/software-architecture-variants/boxplot_playlist_Linear.pdf}
+		\caption{Playlist requests}
+		\label{fig:additional-charts--playlist-linear}
+	\end{subfigure}
+	\caption{Latency box plots for the Linear scenario}
+	\label{fig:additional-charts--linear}
+\end{figure}
+
+\begin{figure}[h]
+	\centering
+	\begin{subfigure}[b]{0.8\textwidth}
+		\centering
+		\includegraphics[width=\linewidth]{fig/additional-charts/software-architecture-variants/boxplot_video_Spike.pdf}
+		\caption{Video requests}
+		\label{fig:additional-charts--video-spike}
+	\end{subfigure}
+	%
+	\begin{subfigure}[b]{0.8\textwidth}
+		\centering
+		\includegraphics[width=\linewidth]{fig/additional-charts/software-architecture-variants/boxplot_playlist_Spike.pdf}
+		\caption{Playlist requests}
+		\label{fig:additional-charts--playlist-spike}
+	\end{subfigure}
+	\caption{Latency box plots for the Spike scenario}
+	\label{fig:additional-charts--spike}
+\end{figure}
+
+\begin{landscape}
+	\begin{figure}[p]
+		\centering
+		\begin{subfigure}[b]{0.7\columnwidth}
+			\centering
+			\includegraphics[width=\linewidth]{fig/additional-charts/software-architecture-variants/qqplot_video_Constant.pdf}
+			\caption{Video requests}
+			\label{fig:additional-charts--qqplot-video-regular}
+			\vspace{0.75cm}
+		\end{subfigure}
+		%
+		\begin{subfigure}[b]{0.7\columnwidth}
+			\centering
+			\includegraphics[width=\linewidth]{fig/additional-charts/software-architecture-variants/qqplot_playlist_Constant.pdf}
+			\caption{Playlist requests}
+			\label{fig:additional-charts--qqplot-playlist-regular}
+		\end{subfigure}
+		\caption{Latency QQ plots for the Regular scenario}
+		\label{fig:additional-charts--qqplot-regular}
+	\end{figure}
+\end{landscape}
+
+\begin{landscape}
+	\begin{figure}[p]
+		\centering
+		\begin{subfigure}[b]{0.7\columnwidth}
+			\centering
+			\includegraphics[width=\linewidth]{fig/additional-charts/software-architecture-variants/qqplot_video_Linear.pdf}
+			\caption{Video requests}
+			\label{fig:additional-charts--qqplot-video-linear}
+			\vspace{0.75cm}
+		\end{subfigure}
+		%
+		\begin{subfigure}[b]{0.7\columnwidth}
+			\centering
+			\includegraphics[width=\linewidth]{fig/additional-charts/software-architecture-variants/qqplot_playlist_Linear.pdf}
+			\caption{Playlist requests}
+			\label{fig:additional-charts--qqplot-playlist-linear}
+		\end{subfigure}
+		\caption{Latency QQ plots for the Linear scenario}
+		\label{fig:additional-charts--qqplot-linear}
+	\end{figure}
+\end{landscape}
+
+\begin{landscape}
+	\begin{figure}[p]
+		\centering
+		\begin{subfigure}[b]{0.7\columnwidth}
+			\centering
+			\includegraphics[width=\linewidth]{fig/additional-charts/software-architecture-variants/qqplot_video_Spike.pdf}
+			\caption{Video requests}
+			\label{fig:additional-charts--qqplot-video-spike}
+			\vspace{0.75cm}
+		\end{subfigure}
+		%
+		\begin{subfigure}[b]{0.7\columnwidth}
+			\centering
+			\includegraphics[width=\linewidth]{fig/additional-charts/software-architecture-variants/qqplot_playlist_Spike.pdf}
+			\caption{Playlist requests}
+			\label{fig:additional-charts--qqplot-playlist-spike}
+		\end{subfigure}
+		\caption{Latency QQ plots for the Spike scenario}
+		\label{fig:additional-charts--qqplot-spike}
+	\end{figure}
+\end{landscape}

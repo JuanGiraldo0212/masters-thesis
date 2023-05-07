@@ -1,0 +1,13 @@
+{\reset@font\mtcSfont\mtc@string\contentsline{section}{\noexpand \leavevmode \numberline {4.1}Two-Way Continuous Integration: The Autonomic Manager's Viewpoint}{\reset@font\mtcSfont 51}{section.4.1}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {4.1.1}The CI-Aware and Direct Self-Evolution Workflows}{\reset@font\mtcSSfont 52}{subsection.4.1.1}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {4.1.2}Technical Considerations}{\reset@font\mtcSSfont 53}{subsection.4.1.2}}
+{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode \numberline {4.1.2.1}Contribution Strategy}{\reset@font\mtcSSSfont 53}{subsubsection.4.1.2.1}}
+{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode \numberline {4.1.2.2}Conflict Resolution}{\reset@font\mtcSSSfont 54}{subsubsection.4.1.2.2}}
+{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode \numberline {4.1.2.3}Quality Assurance}{\reset@font\mtcSSSfont 55}{subsubsection.4.1.2.3}}
+{\reset@font\mtcSfont\mtc@string\contentsline{section}{\noexpand \leavevmode \numberline {4.2}Round-Trip Engineering: The Artifact's Viewpoint}{\reset@font\mtcSfont 55}{section.4.2}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {4.2.1}A Running Example}{\reset@font\mtcSSfont 56}{subsection.4.2.1}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {4.2.2}Continuous Integration Loop}{\reset@font\mtcSSfont 56}{subsection.4.2.2}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {4.2.3}Continuous Models at Run-Time (\firstacronymfont {MART\glstextup {s}}) Evolution}{\reset@font\mtcSSfont 59}{subsection.4.2.3}}
+{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode \numberline {4.2.3.1}The Fork and Collect Algorithm}{\reset@font\mtcSSSfont 63}{subsubsection.4.2.3.1}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {4.2.4}Run-time State Synchronization and Specification Update Workflows}{\reset@font\mtcSSfont 65}{subsection.4.2.4}}
+{\reset@font\mtcSfont\mtc@string\contentsline{section}{\noexpand \leavevmode \numberline {4.3}Chapter Summary}{\reset@font\mtcSfont 69}{section.4.3}}

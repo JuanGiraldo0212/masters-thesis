@@ -1,0 +1,56 @@
+\startappendix{Implementation Package}
+\label{appendix:implementation-package}
+
+\section{Implementation Projects and Modules}
+
+This appendix describes the two projects composing our infrastructure for autonomic and continuous long-term software evolution. The first project encompasses modules related to our infrastructure management case study. Table~\ref{tab:iac-source-code} describes these modules. This project is publicly hosted on Github,\footnote{\url{https://github.com/RigiResearch/middleware}} and contains 13,110 \gls{sloc}. The second project contains modules related to our \gls{suts} case study. Table~\ref{tab:suts-source-code} describes these modules. This project is publicly hosted on Github,\footnote{\url{https://github.com/RigiResearch/rigi-dt-experimentation-cps-code}} and contains 8,888 \gls{sloc}. Source code information was generated using 'SLOCCount' by David A. Wheeler.\footnote{\url{https://dwheeler.com/sloccount/}}
+
+\begin{longtable}{l l p{10cm}}
+	\caption{Source code modules related to our infrastructure management case study}
+	\label{tab:iac-source-code} \\
+%	All source code was written in Java, unless otherwise specified.
+	\toprule
+	Module & \gls{sloc} & Description \\
+	\midrule
+	notations & 4244 & Xtext\footnote{A language engineering framework, available at \url{https://www.eclipse.org/Xtext/}} Parser, Match and Diff engine, and Merge strategy for \gls{hcl} model instances. This module allows instantiating an \gls{hcl} model from Terraform templates, and comparing \gls{hcl} models to find structural differences. Furthermore, it contains facilities for merging various models into a single one. \\
+	experimentation & 3469 & Architecture and infrastructure variant generation and realization. This module contains classes for evolutionary exploration of configuration alternatives, and their deployment and monitoring. Moreover, it contains R code for computing fitness scores, and summarizing and reporting experimentation results.\\
+	metamodels & 1272 & Metamodel definitions using Java's XML API (Graph metamodel), and Eclipse's Xcore\footnote{A \gls{dsl} for metamodel definition, available at \url{https://wiki.eclipse.org/Xcore}} \gls{dsl} (\gls{hcl} and Monitoring metamodels). \\
+	coordinator & 1216 & Evolution actions coordination for infrastructure changes. This module exposes a \gls{rest} endpoint for coordinating evolution actions corresponding to run-time changes. It triggers the model transformation chain to produce code and parameter updates, and then communicates with Git and IBM \gls{cam}. \\
+	historian.runtime & 1205 & Runtime library implementing the \textsc{Fork and Collect} algorithm, and associated document transformations introduced in Section~\ref{sect:delivery-platform--round-trip-engineering}. Moreover, this module contains binding definitions for reusing our Graph metamodel to configure the document transformations. \\
+	historian & 524 & Command-line utility for generating various kinds of artifacts from an OpenAPI specification, including: a base monitoring project that uses the Historian's runtime library; And either a DOT\footnote{A graph description language, available at \url{https://graphviz.org/doc/info/lang.html}} or CXL\footnote{An XML-based language for describing the content of concept maps, available at \url{https://cmap.ihmc.us/xml/CXL.html}} specification to visualize the cloud endpoints of interest. \\
+	vmware.hcl.agent & 975 & Run-time agent implementation for VMWare's vCenter API. Moreover, this module contains the model transformation code for updating an \gls{hcl} model from a JSON document collected from vCenter's \gls{api}. \\
+	misc & 205 & Docker image definition files and configuration code related to Gradle.\\
+	\bottomrule
+\end{longtable}
+
+\begin{longtable}{l l p{10cm}}
+	\caption{Source code modules related to our \gls[hyper=false]{suts} case study}
+	\label{tab:suts-source-code} \\
+%	All source code was written in Java, unless otherwise specified.
+	\toprule
+	Module & \gls{sloc} & Description \\
+	\midrule
+	simulation & 2053 & A discrete event simulation framework developed to represent the entities from our \gls{suts} case study, as well as their interrelationships and behavior according to statistical distributions. This project is based on the JSL\footnote{An open source Java Simulation Library (JSL), available at \url{https://github.com/rossetti/JSL}} library. This module also contains implementations for various metrics we used to evaluate configuration variants. Moreover, this module contains binding definitions for reusing our Graph metamodel to configure the simulated system topology.\\
+	evolution & 1869 & An evolutionary framework for exploring the configuration space of our \gls{suts} case study, as well as optimizing the corresponding metrics. This module defines a genetic algorithm based on the Jenetics library\footnote{A genetic algorithm, evolutionary algorithm, genetic programming, and multi-objective optimization library, available at \url{https://jenetics.io/}}, and components of the fitness function. Furthermore, it uses the \texttt{simulation} module to compute the fitness score of chromosomes.\\
+	differentiation & 1709 & Class model and parser implementation for arithmetic function differentiation. The model is completely based on an open source implementation\footnote{The external code is available at \url{https://github.com/accelad-com/nilgiri-math}}, and the parser is based on the exp4j\footnote{a library for interpreting arithmetic expressions, available at \url{https://www.objecthunter.net/exp4j/}} library.\\
+	metamodels & 1322 & Metamodel definitions using Java's XML API (Graph metamodel), and Eclipse's Xcore \gls{dsl} (Simulation and Scenario metamodels).\\
+	pre-processing & 1088 & Data cleaning, filtering, formatting and aggregation. The source code is written in Java (886) and Python (202). \\
+	experimentation & 582 & Java bridge for R-based implementations of statistical tests. \\
+	misc & 220 & Configuration code related to Gradle.\\
+	\bottomrule
+\end{longtable}
+
+\section{Implementation Demos}
+
+The following are video demos of some components of our infrastructure. In particular, these videos highlight the \gls{iac} evolution pipeline:
+
+\begin{itemize}[noitemsep]
+	\item \href{https://vimeo.com/680120325}{CASCON 2019 Exhibit: Round-Trip Engineering Scenarios for \gls{iac} Templates}
+	\item Reverse engineering and continuous update of \gls{iac} templates:
+	\begin{itemize}[noitemsep]
+		\item \href{https://vimeo.com/367155115}{Scenario including the Evolution Coordinator and the Run-time agent}
+		\item \href{https://vimeo.com/368732413}{Scenario including the Evolution Coordinator, the Run-time agent and IBM \gls[hyper=false]{cam}}
+	\end{itemize}
+	\item \href{https://vimeo.com/370146279}{Two-way \gls[hyper=false]{ci} running on OpenStack and CircleCI}
+	\item \href{https://vimeo.com/346932476}{Historian: A monitoring framework to support the automated evolution of models at run-time} (Historian's first version)
+\end{itemize}

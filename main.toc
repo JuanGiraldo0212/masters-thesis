@@ -1,0 +1,139 @@
+\babel@toc {english}{}\relax 
+\contentsline {chapter}{Supervisory Committee}{ii}{section*.1}%
+\contentsline {chapter}{Abstract}{iii}{section*.2}%
+\contentsline {chapter}{Table of Contents}{v}{section*.4}%
+\contentsline {chapter}{List of Figures}{viii}{section*.6}%
+\contentsline {chapter}{List of Tables}{x}{section*.8}%
+\contentsline {chapter}{Acknowledgments}{xi}{section*.10}%
+\contentsline {chapter}{Dedication}{xiv}{section*.12}%
+\contentsline {part}{\nonumberline Part\nobreakspace I.\hskip .5em\relax Motivation and Context}{1}{part.1}%
+\contentsline {chapter}{\nonumberline \hspace *{1.5em}Chapter\nobreakspace 1.\hskip .5em\relax Introduction}{2}{chapter.1}%
+\contentsline {section}{\numberline {1.1}Motivation}{3}{section.1.1}%
+\contentsline {section}{\numberline {1.2}Problem Definition and Research Questions}{4}{section.1.2}%
+\contentsline {section}{\numberline {1.3}Contributions}{4}{section.1.3}%
+\contentsline {section}{\numberline {1.4}Research Methodology}{5}{section.1.4}%
+\contentsline {section}{\numberline {1.5}Thesis Outline}{5}{section.1.5}%
+\contentsline {chapter}{\nonumberline \hspace *{1.5em}Chapter\nobreakspace 2.\hskip .5em\relax Context and State-of-the-Art Background}{7}{chapter.2}%
+\contentsline {section}{\numberline {2.1}Continuous Software Engineering}{8}{section.2.1}%
+\contentsline {subsection}{\numberline {2.1.1}\acrlong [hyper=false]{ci}}{8}{subsection.2.1.1}%
+\contentsline {subsection}{\numberline {2.1.2}Continuous Delivery}{8}{subsection.2.1.2}%
+\contentsline {subsection}{\numberline {2.1.3}Continuous Experimentation}{9}{subsection.2.1.3}%
+\contentsline {subsection}{\numberline {2.1.4}DevOps}{12}{subsection.2.1.4}%
+\contentsline {section}{\numberline {2.2}Autonomic Computing}{13}{section.2.2}%
+\contentsline {subsection}{\numberline {2.2.1}Control-based Software Adaptation}{14}{subsection.2.2.1}%
+\contentsline {subsection}{\numberline {2.2.2}Self-Management, Self-Regulation, and Self-Improvement}{17}{subsection.2.2.2}%
+\contentsline {subsection}{\numberline {2.2.3}Run-Time Processes of Self-Adaptive Software Systems}{18}{subsection.2.2.3}%
+\contentsline {subsection}{\numberline {2.2.4}Autonomic Computing in Software Development}{21}{subsection.2.2.4}%
+\contentsline {section}{\numberline {2.3}Run-Time Software Evolution}{22}{section.2.3}%
+\contentsline {subsection}{\numberline {2.3.1}Self-Adaptation and Self-Evolution}{24}{subsection.2.3.1}%
+\contentsline {subsection}{\numberline {2.3.2}The Time of Change Timeline}{25}{subsection.2.3.2}%
+\contentsline {section}{\numberline {2.4}\acrlong [hyper=false]{iac}}{26}{section.2.4}%
+\contentsline {section}{\numberline {2.5}Chapter Summary}{29}{section.2.5}%
+\contentsline {part}{\nonumberline Part\nobreakspace II.\hskip .5em\relax Contributions}{31}{part.2}%
+\contentsline {chapter}{\nonumberline \hspace *{1.5em}Chapter\nobreakspace 3.\hskip .5em\relax Contributions Overview}{32}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Rethinking the Software Evolution Life Cycle}{32}{section.3.1}%
+\contentsline {subsection}{\numberline {3.1.1}Reconceptualizing The Time of Change Timeline}{34}{subsection.3.1.1}%
+\contentsline {subsection}{\numberline {3.1.2}Repurposing Self-Management With Respect to Software Evolution}{37}{subsection.3.1.2}%
+\contentsline {section}{\numberline {3.2}Our Contributions}{40}{section.3.2}%
+\contentsline {section}{\numberline {3.3}Cloud Infrastructure Management Case Study}{42}{section.3.3}%
+\contentsline {subsection}{\numberline {3.3.1}Problem Definition}{43}{subsection.3.3.1}%
+\contentsline {subsubsection}{\numberline {3.3.1.1}Knowledge Acquisition}{43}{subsubsection.3.3.1.1}%
+\contentsline {subsubsection}{\numberline {3.3.1.2}Configuration Drift}{43}{subsubsection.3.3.1.2}%
+\contentsline {subsubsection}{\numberline {3.3.1.3}Continuous Improvement}{44}{subsubsection.3.3.1.3}%
+\contentsline {section}{\numberline {3.4}Smart Urban Transit System Case Study}{45}{section.3.4}%
+\contentsline {subsection}{\numberline {3.4.1}Problem Definition}{46}{subsection.3.4.1}%
+\contentsline {section}{\numberline {3.5}Chapter Summary}{48}{section.3.5}%
+\contentsline {chapter}{\nonumberline \hspace *{1.5em}Chapter\nobreakspace 4.\hskip .5em\relax A Framework for Continuous Software Evolution Pipelines}{49}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Two-Way Continuous Integration: The Autonomic Manager's Viewpoint}{51}{section.4.1}%
+\contentsline {subsection}{\numberline {4.1.1}The CI-Aware and Direct Self-Evolution Workflows}{52}{subsection.4.1.1}%
+\contentsline {subsection}{\numberline {4.1.2}Technical Considerations}{53}{subsection.4.1.2}%
+\contentsline {subsubsection}{\numberline {4.1.2.1}Contribution Strategy}{53}{subsubsection.4.1.2.1}%
+\contentsline {subsubsection}{\numberline {4.1.2.2}Conflict Resolution}{54}{subsubsection.4.1.2.2}%
+\contentsline {subsubsection}{\numberline {4.1.2.3}Quality Assurance}{55}{subsubsection.4.1.2.3}%
+\contentsline {section}{\numberline {4.2}Round-Trip Engineering: The Artifact's Viewpoint}{55}{section.4.2}%
+\contentsline {subsection}{\numberline {4.2.1}A Running Example}{56}{subsection.4.2.1}%
+\contentsline {subsection}{\numberline {4.2.2}Continuous Integration Loop}{56}{subsection.4.2.2}%
+\contentsline {subsection}{\numberline {4.2.3}Continuous Models at Run-Time (\firstacronymfont {MART\glstextup {s}}) Evolution}{59}{subsection.4.2.3}%
+\contentsline {subsubsection}{\numberline {4.2.3.1}The Fork and Collect Algorithm}{63}{subsubsection.4.2.3.1}%
+\contentsline {subsection}{\numberline {4.2.4}Run-time State Synchronization and Specification Update Workflows}{65}{subsection.4.2.4}%
+\contentsline {section}{\numberline {4.3}Chapter Summary}{69}{section.4.3}%
+\contentsline {chapter}{\nonumberline \hspace *{1.5em}Chapter\nobreakspace 5.\hskip .5em\relax Quality-driven Self-Improvement Feedback Loop}{71}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Overview of the Feedback Loop in Our Solution Strategy}{73}{section.5.1}%
+\contentsline {subsection}{\numberline {5.1.1}Self-Managed Evolution of Development Artifacts}{73}{subsection.5.1.1}%
+\contentsline {subsection}{\numberline {5.1.2}Continuous Quality Assessment and Improvement}{74}{subsection.5.1.2}%
+\contentsline {subsection}{\numberline {5.1.3}Multi-Layer System Modeling and Evolution}{75}{subsection.5.1.3}%
+\contentsline {section}{\numberline {5.2}Online Experiment Modeling}{77}{section.5.2}%
+\contentsline {section}{\numberline {5.3}Online Experiment Management}{78}{section.5.3}%
+\contentsline {subsection}{\numberline {5.3.1}The Experimentation Feedback Loop (\acrshort {efl})}{79}{subsection.5.3.1}%
+\contentsline {subsection}{\numberline {5.3.2}Statistical Analysis of Experiment Results}{82}{subsection.5.3.2}%
+\contentsline {subsection}{\numberline {5.3.3}The Provisioning Feedback Loop (\acrshort {pfl})}{82}{subsection.5.3.3}%
+\contentsline {subsection}{\numberline {5.3.4}The Configuration Feedback Loop (\acrshort {cfl})}{83}{subsection.5.3.4}%
+\contentsline {section}{\numberline {5.4}System Variant Generation}{83}{section.5.4}%
+\contentsline {subsection}{\numberline {5.4.1}Infrastructure Variant Generation}{83}{subsection.5.4.1}%
+\contentsline {subsection}{\numberline {5.4.2}Architectural Variant Generation}{85}{subsection.5.4.2}%
+\contentsline {section}{\numberline {5.5}Chapter Summary}{89}{section.5.5}%
+\contentsline {chapter}{\nonumberline \hspace *{1.5em}Chapter\nobreakspace 6.\hskip .5em\relax Run-Time Evolution Reference Architecture}{91}{chapter.6}%
+\contentsline {section}{\numberline {6.1}Overview of the Reference Architecture in Our Solution Strategy}{93}{section.6.1}%
+\contentsline {subsection}{\numberline {6.1.1}Dependability and Resiliency in Autonomic Cyber-Physical Systems}{93}{subsection.6.1.1}%
+\contentsline {subsection}{\numberline {6.1.2}Adaptation and Evolution as Autonomic Operational Modes}{94}{subsection.6.1.2}%
+\contentsline {subsection}{\numberline {6.1.3}Self-Regulated Evolution of Run-Time Artifacts}{96}{subsection.6.1.3}%
+\contentsline {section}{\numberline {6.2}Architecture Overview}{96}{section.6.2}%
+\contentsline {subsection}{\numberline {6.2.1}Achieving a Dependable Autonomy}{98}{subsection.6.2.1}%
+\contentsline {subsubsection}{\numberline {6.2.1.1}Error mitigation through multi-model identification}{98}{subsubsection.6.2.1.1}%
+\contentsline {subsubsection}{\numberline {6.2.1.2}Reliable models through model inference}{99}{subsubsection.6.2.1.2}%
+\contentsline {subsubsection}{\numberline {6.2.1.3}Evidence collection through experimentation}{100}{subsubsection.6.2.1.3}%
+\contentsline {subsubsection}{\numberline {6.2.1.4}Autonomic behavior through adaptive control}{100}{subsubsection.6.2.1.4}%
+\contentsline {subsection}{\numberline {6.2.2}Achieving Resilient Operations}{101}{subsection.6.2.2}%
+\contentsline {subsubsection}{\numberline {6.2.2.1}Predictable adaptation through reliable models}{101}{subsubsection.6.2.2.1}%
+\contentsline {subsubsection}{\numberline {6.2.2.2}Run-time validation through evidence collection}{102}{subsubsection.6.2.2.2}%
+\contentsline {subsubsection}{\numberline {6.2.2.3}Error mitigation through parameter estimation}{102}{subsubsection.6.2.2.3}%
+\contentsline {subsubsection}{\numberline {6.2.2.4}Goal achievement through hyperparameter optimization}{102}{subsubsection.6.2.2.4}%
+\contentsline {subsubsection}{\numberline {6.2.2.5}Assurance through viability zones and control objectives}{102}{subsubsection.6.2.2.5}%
+\contentsline {subsection}{\numberline {6.2.3}Realizing the Knowledge Layer}{103}{subsection.6.2.3}%
+\contentsline {subsubsection}{\numberline {6.2.3.1}Implicit and Explicit Knowledge Processing}{105}{subsubsection.6.2.3.1}%
+\contentsline {subsubsection}{\numberline {6.2.3.2}Online Knowledge Synthesis}{107}{subsubsection.6.2.3.2}%
+\contentsline {section}{\numberline {6.3}Chapter Summary}{109}{section.6.3}%
+\contentsline {part}{\nonumberline Part\nobreakspace III.\hskip .5em\relax Evaluation}{112}{part.3}%
+\contentsline {chapter}{\nonumberline \hspace *{1.5em}Chapter\nobreakspace 7.\hskip .5em\relax Evaluation}{113}{chapter.7}%
+\contentsline {section}{\numberline {7.1}Infrastructure Management Case Study}{114}{section.7.1}%
+\contentsline {subsection}{\numberline {7.1.1}Concrete Case of Application: A Cloud Media Encoding Service}{114}{subsection.7.1.1}%
+\contentsline {subsection}{\numberline {7.1.2}Functional Validation}{115}{subsection.7.1.2}%
+\contentsline {subsubsection}{\numberline {7.1.2.1}Implementation Details}{116}{subsubsection.7.1.2.1}%
+\contentsline {subsubsection}{\numberline {7.1.2.2}Application Scenario 1: Assistance With Knowledge Acquisition}{117}{subsubsection.7.1.2.2}%
+\contentsline {subsubsection}{\numberline {7.1.2.3}Application Scenario 2: Prevention of Configuration Drift}{122}{subsubsection.7.1.2.3}%
+\contentsline {subsection}{\numberline {7.1.3}Experimental Validation of Our Proof of Concept}{124}{subsection.7.1.3}%
+\contentsline {subsubsection}{\numberline {7.1.3.1}Implementation Details}{124}{subsubsection.7.1.3.1}%
+\contentsline {subsubsection}{\numberline {7.1.3.2}Experimentation Setup}{126}{subsubsection.7.1.3.2}%
+\contentsline {subsubsection}{\numberline {7.1.3.3}Experimentation Results}{127}{subsubsection.7.1.3.3}%
+\contentsline {subsection}{\numberline {7.1.4}Qualitative Validation}{133}{subsection.7.1.4}%
+\contentsline {subsubsection}{\numberline {7.1.4.1}Holistic and Continuous Software Evolution Process}{133}{subsubsection.7.1.4.1}%
+\contentsline {subsubsection}{\numberline {7.1.4.2}Contribution to Reduce Remaining Discontinuities}{135}{subsubsection.7.1.4.2}%
+\contentsline {section}{\numberline {7.2}Smart Urban Transit System Case Study}{136}{section.7.2}%
+\contentsline {subsection}{\numberline {7.2.1}Concrete Case of Application: The \acrshort {mio} Transportation System}{136}{subsection.7.2.1}%
+\contentsline {subsection}{\numberline {7.2.2}Functional Validation}{137}{subsection.7.2.2}%
+\contentsline {subsubsection}{\numberline {7.2.2.1}The Managing System's Modeling Layer}{137}{subsubsection.7.2.2.1}%
+\contentsline {subsubsection}{\numberline {7.2.2.2}Model Identification Through A Topology-Conforming Simulation}{139}{subsubsection.7.2.2.2}%
+\contentsline {subsubsection}{\numberline {7.2.2.3}Multi-Model Identification Mechanism (\acrshort {mim})}{140}{subsubsection.7.2.2.3}%
+\contentsline {paragraph}{\numberline {7.2.2.3.1}Evolutionary optimization}{141}{paragraph.7.2.2.3.1}%
+\contentsline {paragraph}{\numberline {7.2.2.3.2}Function approximation}{142}{paragraph.7.2.2.3.2}%
+\contentsline {subsubsection}{\numberline {7.2.2.4}Multi-Adjustment Mechanism (\acrshort {am})}{143}{subsubsection.7.2.2.4}%
+\contentsline {subsubsection}{\numberline {7.2.2.5}Application Scenario: Model Identification and Run-Time Adjustment}{143}{subsubsection.7.2.2.5}%
+\contentsline {section}{\numberline {7.3}Chapter Summary}{146}{section.7.3}%
+\contentsline {part}{\nonumberline Part\nobreakspace IV.\hskip .5em\relax Summary}{148}{part.4}%
+\contentsline {chapter}{\nonumberline \hspace *{1.5em}Chapter\nobreakspace 8.\hskip .5em\relax Conclusions}{149}{chapter.8}%
+\contentsline {section}{\numberline {8.1}Dissertation Summary}{149}{section.8.1}%
+\contentsline {subsection}{\numberline {8.1.1}Addressed Challenges and Goals}{150}{subsection.8.1.1}%
+\contentsline {subsection}{\numberline {8.1.2}Contributions}{151}{subsection.8.1.2}%
+\contentsline {subsection}{\numberline {8.1.3}Contributions Significance}{155}{subsection.8.1.3}%
+\contentsline {section}{\numberline {8.2}Future Work}{156}{section.8.2}%
+\contentsline {subsection}{\numberline {8.2.1}Long-Term Software Evolution}{156}{subsection.8.2.1}%
+\contentsline {subsection}{\numberline {8.2.2}Knowledge-Preserving Experimentation}{157}{subsection.8.2.2}%
+\contentsline {subsection}{\numberline {8.2.3}Software Engineering at Run-Time}{158}{subsection.8.2.3}%
+\contentsline {chapter}{Acronyms}{159}{section*.80}%
+\contentsline {chapter}{\nonumberline Bibliography}{162}{chapter*.82}%
+\contentsline {part}{\nonumberline Part\nobreakspace V.\hskip .5em\relax Appendices}{164}{part.5}%
+\contentsline {chapter}{\nonumberline \hspace *{1.5em}Appendix\nobreakspace A.\hskip .5em\relax Implementation Package}{165}{appendix.A}%
+\contentsline {section}{\numberline {A.1}Implementation Projects and Modules}{165}{section.A.1}%
+\contentsline {section}{\numberline {A.2}Implementation Demos}{167}{section.A.2}%
+\contentsline {chapter}{\nonumberline \hspace *{1.5em}Appendix\nobreakspace B.\hskip .5em\relax Latency Measurements for the Cloud Media Encoding Service}{168}{appendix.B}%
+\providecommand \tocbasic@end@toc@file {}\tocbasic@end@toc@file 

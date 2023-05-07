@@ -1,0 +1,140 @@
+% Patch commands
+\usepackage{xpatch}
+
+% Configure the typeface
+% Find more options here:
+%     https://www.overleaf.com/learn/latex/Font_typefaces
+%     https://tug.org/FontCatalogue/
+\usepackage[T1]{fontenc}
+% My favorites are:
+%\usepackage{palatino}
+\usepackage{charter}
+
+% Better looking ttfamily font
+\usepackage[scaled=0.85]{beramono}
+
+% Prefix parts and titles in the table of contents
+\usepackage[english]{babel}
+% tocstyle is no longer part of the MikTex distribution (https://tex.stackexchange.com/a/565307/46854)
+%\usepackage[tocindentmanual]{tocstyle}
+%\usetocstyle{KOMAlike}
+\usepackage{tocbasic}
+
+% Headers and footers for thesis
+\usepackage[automark,autooneside=false]{scrlayer-scrpage}
+
+% Customize the table of contents
+\usepackage[titles]{tocloft}
+
+% Compact itemize and enumerate environments
+% Use as \begin{itemize*}...
+\usepackage{mdwlist}
+
+% Note that the line below could be modified to suit a particular system since
+% the "geometry" package behaves differently in Unix, Windows and Mac,
+% especially for the top margins.
+% Adjust the parameter "top" (measuring the height of the space allocated to a
+% header) and "headsep" (measuring the distance from the bottom of the header
+% to the first line of text.
+\usepackage[top=1.5in,left=1.3in,bottom=1in,right=1in,headsep=0.2in]{geometry}
+
+\usepackage{setspace}
+\onehalfspacing
+%\doublespacing
+
+% Long Table and decimal aligned columns
+\usepackage{dcolumn}
+\usepackage{longtable}
+
+% Center tables or figures that are too wide
+\usepackage{adjustbox}
+
+% Mathematics support
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+
+% Text Control
+\usepackage{xspace}
+\usepackage{textcase}
+
+% Graphics
+\usepackage{wasysym}
+\usepackage{graphics}
+\usepackage{graphicx} % A package to allow insertion of external image files
+
+\usepackage{xcolor} % text in color
+\usepackage{listings} % listing code
+% Add a frame environment for adding background and rounded corners to listings
+% From: https://tex.stackexchange.com/a/27676/46854
+\usepackage[framemethod=tikz,skipbelow=\topskip,skipabove=\topskip]{mdframed}
+
+\usepackage{url} % citing urls
+
+% Fancy chapter style -- This is incompatible with scrbook
+% From: https://texblog.org/2012/07/03/fancy-latex-chapter-styles/
+% Options: Sonny, Lenny, Glenn, Conny, Rejne, Bjarne, Bjornstrup
+% \usepackage[Lenny]{fncychap}
+
+% Table of contents per chapter
+% From: https://texfaq.org/FAQ-minitoc
+\usepackage[tight,k-tight]{minitoc}
+
+\usepackage[
+	nonumberlist, % do not show page numbers
+	acronym,      % generate acronym listing
+	toc,          % show listings as entries in table of contents
+	nopostdot,    % remove periods at the end of acronym entries
+	style=super,  % indent acronyms and descriptions
+	section=chapter
+] % use section level for toc entries
+{glossaries}
+
+% to prevent floats to go to a new section
+\usepackage[section]{placeins}
+
+\usepackage{hyperref} % links in the PDF
+
+% From: https://tex.stackexchange.com/a/354/46854
+%  and: https://tex.stackexchange.com/a/109922/46854
+\usepackage{float, pdflscape} % landscape pages in a (mainly) portrait document.
+
+% Prevent latex from adding a blank page after the landscape environment
+% From: https://tex.stackexchange.com/a/84508/46854
+\usepackage{afterpage}
+
+% Draw lines over table cells
+% From https://tex.stackexchange.com/a/9448/46854
+\usepackage{tabularx}
+\usepackage{tikz}
+
+\usepackage{booktabs} % \toprule, \midrule, \bottomrule
+
+% Create plots
+% From: https://tex.stackexchange.com/a/228233/46854
+\usepackage{pgfplots}
+
+% Figures and subfigures
+\usepackage{caption}
+\usepackage{subcaption}
+
+% Better description environments
+\usepackage{enumitem}
+
+% Algorithm environments
+\usepackage[linesnumbered,ruled]{algorithm2e}
+
+\usepackage{pgfplots} % Plot functions (evaluation chapter)
+\usepackage{multirow} % Multirow in a table cell (evaluation chapter)
+
+% Multiple references in one
+% From: https://stackoverflow.com/a/3328960
+\usepackage[capitalize]{cleveref}
+
+% I use this package to create a bar below a character (cf. frontmatter/title-page)
+% From: https://tex.stackexchange.com/a/125415/46854
+\usepackage{stackengine}
+
+% Use footnotes inside table and tabular environments
+% From: https://tex.stackexchange.com/a/109471/46854
+\usepackage{footnote}

@@ -1,0 +1,513 @@
+\startchapter{A Framework for Continuous Software Evolution Pipelines}
+\label{chapter:delivery-platform}
+
+\minitoc
+
+%\remarks{1. Reference the discontinuity described in Section~\ref{sect:overview--off-line-and-on-line-reconceptualization} (\cf{$\encirclered{B}$ in Figure~\ref{fig:overview--discontinuities}})}
+%\remarks{2. Read this chapter again and adjust the use of ``run-time agent". Perhaps it should be online agent---\cf{Figure~\ref{fig:overview--off-line-and-on-line-reconceptualization}}}
+
+% TODO The running example could be integrated into sections 4.2.3 and 4.2.4
+In this dissertation, we aim to develop self-evolution through self-management, self-improvement and self-regulation. This chapter addresses self-management, aiming to eliminate technical debt caused by run-time variability. It focuses on producing persistent updates to development artifacts based on run-time changes (\cf{Figure~\ref{fig:delivery-platform--evolution-outline-self-management}}). Research on autonomic computing has so far approached run-time changes aiming to provide quality guarantees in the face of uncertainty. This means that self-managing systems, as well as the adaptations they produce, are bound to the run-time context. Given our goal of automating operative development tasks, we leverage self-management capabilities on the development side by mapping run-time adaptations with persistent updates. That is, the contribution we present in this chapter monitors the execution environment, identifies run-time changes, and realizes and persists software changes on the development side. In this context, it is important to apply the principle of separation of concerns, meaning that run-time management should not be concerned with development-time updates. Otherwise, autonomic managers would have to adhere to continuous software engineering practices and tools. For example, they would have to be equipped with functions to interact with source code repositories, code review tools, automated tests, and other tools alike from the delivery pipeline. Additionally, not all persistent updates are intended to update code artifacts. For example, in a smart transportation system, service improvements must be recorded in an operation plan that usually rests in a database. In this case, even though the operation plan can be represented as a \gls{mart}, related updates would require the data to be persisted in a database instead of source code. Other types of persistent updates may require additional steps to complete the update. This includes tasks such as messaging stakeholders, or even asking them for confirmation to proceed with a particular course of action. Therefore, by separating the run-time adaptations from the evolution process of development-time artifacts, the task of evolving the system is simplified, allowing autonomic managers to focus on the self-management capabilities.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.75\columnwidth]{fig/delivery-platform/delivery-platform--evolution-outline-self-management.pdf}
+	\caption{Self-evolution through self-management}
+	\label{fig:delivery-platform--evolution-outline-self-management}
+\end{figure}
+
+This chapter focuses on the integration of system development and operation. This topic has been discussed and motivated before~\cite{gacek-2008-friends,ghezzi-2008-dynamically,baresi-2010-disappearing}, and some works have been developed~\cite{andersson-2013-software,cito-2019-interactive}. Nevertheless, the state of the art still lacks concrete contributions to bridge the gap between current engineering practices and run-time adaptations, not in the forward direction, but precisely from execution back to development. Furthermore, proposed contributions do not take advantage of execution environments other than production to reify predictive models and devise configuration alternatives. Ultimately, we propose an analogous relationship to that of development and operations teams, in which the autonomic managers on each side cooperatively contribute to the continuous improvement of the system and its artifacts. This chapter lays the foundation for exploiting this relationship.
+
+This chapter presents our framework for continuous software evolution pipeline from two perspectives. First, Section~\ref{sect:delivery-platform--self-evolution-through-two-way-ci} focuses on the evolution process from the autonomic manager's viewpoint. That is, the chapter presents how autonomic managers fit into the continuous delivery process through two-way \gls{ci}. We propose two evolution workflows. First, an autonomic manager adapts a \gls{mart} that represents a specific aspect of the system. For example, a model of the computing cluster configuration can be adapted to scale the cluster's computing power. Second, an autonomic manager adapts the system through the underlying computing platform. In this case, the change is applied directly and immediately, so the changes do not go through the quality procedures provided by the continuous delivery pipeline. Section~\ref{sect:delivery-platform--round-trip-engineering} concentrates on the evolution process from the artifact's viewpoint. That is, the chapter presents how development artifacts are updated from modifications to a \gls{mart}. This includes the transformation chain from the model to textual form, and then the update to the source code repository and other tools. In this way, both viewpoints constitute a holistic and continuous evolution process that connects the execution with the development of the system. However, not every change in a \gls{mart} implies a change in the software code of some artifact, but in the knowledge representation structure.
+
+\begin{InfoBox}[Correspondences in This Chapter]
+	\emph{Addressed Challenge(s)}: \textsc{Ch}1---Self-evolution mechanisms should be compatible with practices of continuous software engineering for quality assurance; \textsc{Ch}2---Autonomic managers should provide the criteria and decision-making process behind a change; and \textsc{Ch}3---Self-evolution mechanisms should capture live infrastructure modifications and propose corresponding software changes; 
+	\emph{Question(s)}: \textsc{Q}2---How can self-improvement and self-management capabilities be integrated with quality assurance in continuous software engineering? \textsc{Q}3---What are the modeling requirements to map live modifications to a computing infrastructure with changes to its deployment specification? and \textsc{Q}4---How can development-time and run-time autonomic mechanisms be integrated reusing knowledge artifacts from both sides? 
+	\emph{Goal(s)}: \textsc{G}1---Establish a general solution to integrate development-time and run-time autonomic work; and \textsc{G}2---Develop a self-evolution mechanism to update development and knowledge artifacts whenever the execution environment changes.
+	\emph{Contribution(s)}: \textsc{C}1---Continuous Software Evolution Pipeline.
+\end{InfoBox}
+
+\section{Two-Way Continuous Integration: The Autonomic Manager's Viewpoint}
+\label{sect:delivery-platform--self-evolution-through-two-way-ci}
+
+This section describes a support layer for realizing self-evolution from a software engineering perspective (\cf{$\encircleblack{1}$ and~$\encircleblack{2}$ in Figure~\ref{fig:overview--off-line-and-on-line-reconceptualization}}). It realizes the separation of concerns principle by allowing autonomic managers to evolve development artifacts without mixing management and development concerns. That is, they focus on updating run-time artifacts, avoiding the need to implement source code updates. On a conceptual level, we achieve this by extending \gls{ci} to consider software changes produced autonomically. Typically in \gls{ci}, a software developer integrates software changes into a shared source code repository. From there, a build server constructs executable artifacts and runs various types of tests. In this way, the developer gets quick feedback on the quality of their changes. Our extension to \gls{ci} consists of introducing changes enacted online by an autonomic manager. On a practical level, we achieve this by introducing a set of components to coordinate and realize evolution actions. Software changes enacted at run-time go through all the stages of testing and quality assessment composing the delivery pipeline.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.8\columnwidth]{fig/delivery-platform/delivery-platform--ci-loop-overview-v2.pdf}
+	\caption{Overview of our self-evolution support layer}
+	\label{fig:delivery-platform--ci-loop-overview}
+\end{figure}
+
+Our support layer reconciles \gls{iac} specifications with their corresponding elements from the managed system. It integrates run-time changes applied directly to the computing infrastructure into the source code repository. We call this support layer a run-time agent. Its main objective is to keep an up-to-date \gls{mart} representing the managed system's state to transform it to text form eventually, in order to track the modifications throughout versions. This is used to determine what parts of the corresponding specification need to be updated. Figure~\ref{fig:delivery-platform--ci-loop-overview} depicts a high-level overview of our self-evolution support layer that shows how information flows from both sides (\ie{the source code repository and the managed system}).
+
+\subsection{The CI-Aware and Direct Self-Evolution Workflows}
+\label{subsect:delivery-platform--self-evolution-workflows}
+
+\noindent We conceive two self-evolution workflows and illustrate them in Figure~\ref{fig:delivery-platform--ci-self-evolution-flows}, as follows.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.9\columnwidth]{fig/delivery-platform/delivery-platform--ci-self-evolution-flows-v2.pdf}
+	\caption{Direct and CI-aware self-evolution workflows}
+	\label{fig:delivery-platform--ci-self-evolution-flows}
+\end{figure}
+
+\begin{description}[style=unboxed,leftmargin=0cm,font=\bfseries\normalsize]
+	\item[CI-aware Evolution] This evolution workflow starts when an autonomic manager or a human in the loop requests a run-time agent to update a \gls{mart}. This update causes an immediate code contribution but an eventual deployment of the change, meaning that the  change will go through the delivery pipeline before it reaches the running system. Once the autonomic manager has caused the \gls{mart} update, the run-time agent produces an evolution action to update the corresponding \gls{iac} specifications in the source code repository. As expected, the build server notifies the delivery server about the test and quality assessment results. If the change passed the quality checks, the delivery server opens an update transaction in the run-time agent before re-deploying the system. It does so to avoid inconsistent \gls{mart} updates during the deployment. Once the update is done, the delivery server updates the \gls{mart} and closes the transaction.
+
+	\item[Direct Evolution] This evolution workflow starts when an autonomic manager updates the running system directly through the underlying computing platform. In this case, the change would typically skip the delivery pipeline because it was already applied in the production infrastructure. Nevertheless, skipping the delivery pipeline is optional. Provided the change does not meet established quality criteria, the run-time agent could undo it. This evolution flow may be necessary to avoid delays in the update process. A typical example that requires an immediate intervention in the infrastructure is sudden increases in demand that affect service quality.
+\end{description}
+
+\subsection{Technical Considerations}
+
+This section discusses three considerations regarding the implementation and adoption of our self-evolution workflows. We outline concerns that could potentially affect the development workflow and propose alternative solutions.
+
+
+\subsubsection{Contribution Strategy}
+
+Although \gls{cd} considers mechanisms to guarantee the software quality, unsupervised changes can produce adverse effects. For example, a defect in the \gls{mart} update process can cause side effects in the system's operation. We identify two strategies to update the \gls{iac} specifications: the committer strategy, in which run-time agents are collaborators to the source code repository (\ie{they have writing access}); and the contributor strategy, in which the agents propose code modifications as merge requests rather than directly committing the code. A similar contribution model can be applied to \gls{iac} management software. On the one hand, directly updating an \gls{iac} template instance is analogous to committing changes to a source code repository. In this case, effecting the modification refers to updating parameters of the template instance. On the other hand, duplicating the template instance and updating the parameters is analogous to creating a new repository branch. In this case, there is no concept of merge request. Therefore, stakeholders must review the new instance and replace the old one manually.
+	
+The committer strategy ensures no delay in reflecting the changes to the specifications. Because of this, updates under this strategy could produce fewer merge conflicts. However, it does not mitigate the risk of unwanted effects, such as an inconsistent behavior of the system as a consequence of flawed \gls{mart} semantics. In contrast, the contributor strategy completely avoids such a risk. This benefit comes at the cost of engineers allocating additional time to review the merge requests, delaying the updates and increasing the possibility of merge conflicts. While a merge request remains open, the \gls{mart} is inconsistent concerning either the specification or the running environment. One solution to this issue is to put the update on hold while the merge request is still open. When the code contribution is merged, the changes will go through the build server and both the \gls{mart} and the managed system will be updated.
+
+It is common today that computing platforms and autonomic managers make decisions to affect a running system. Therefore, it is acceptable, at least in some cases, to grant commit access to run-time agents. We believe that combining both contribution alternatives is the best option. Furthermore, since the software changes are directly linked to configuration changes in the infrastructure, the need for an extensive review is unlikely. First, the run-time changes likely come from automation, which means that possible adaptations have been tested thoroughly. Second, if the changes were enacted by a human in the loop, they are likely reviewing the corresponding software changes. Finally, if the changes were already applied at run-time, they must be enacted on the development side to maintain consistency. Software changes in the repository can be rather seen as an opportunity to store the history of run-time changes, their impact on the source code, and the execution conditions that triggered the change. This is in itself a knowledge base for training and reifying predictive models.
+
+\subsubsection{Conflict Resolution}
+
+Conflict resolution is not a trivial task. It requires spending time inspecting the code and making informed decisions about the merge conflicts. Therefore, automating conflict resolution likely requires simplifying the problem. We identify two strategies to do so. The first strategy aims to avoid conflicts related to source code formatting. The transformation from a \gls{mart} to its textual form must follow a standard process, which always generates statements in the same order, case and format (\eg{spacing and indentation}). The stakeholders working with the corresponding \gls{iac} specifications must follow the same formatting rules. To facilitate doing so, they can use a formatting utility before committing changes.\footnote{Nowadays, these formatting utilities are integrated with source code management tools, such as Git, through a \emph{hooks} \gls{api}. This way, formatting is executed automatically whenever changes are committed.} The second strategy is to either raise or lower the run-time agent's priority in the merge process. In case of merge conflicts, the agent can decide to either drop the local changes or replace the remote ones, according to its assigned priority level. The former requires to roll back the latest changes to keep the system and the \gls{mart} consistent with the specification.
+
+\subsubsection{Quality Assurance}
+
+One of the most important parts of continuous delivery is the application of quality control. We propose the use of pre- and post-validation rules to ensure invariants and quality validations before and after modifying the \gls{mart}. There could also be concerns on the \gls{mart} itself, rather than its state concerning a certain operation. For instance, consider an \gls{iac} specification where an IP address is specified outside of the network IP range. The state itself is erroneous, making it necessary to check the \gls{mart} quality before deployment. Another type of concern is business restrictions; validations on the \gls{mart} allow, for example, limiting what can be deployed by the tenant or even how. These business restrictions can be implemented as semantic restrictions on the \gls{mart}, as the \gls{mart} itself represents entities from the domain in which these rules live.
+
+It is worth noting that the build and delivery servers are in charge of several tasks in addition to the regular testing and deployment workflow. Checking the quality of the \gls{mart}, as suggested in this section, would likely happen in the build server as a testing step. Opening and closing an update transaction and updating the \gls{mart} are tasks of the delivery server, as shown in Figure~\ref{fig:delivery-platform--ci-self-evolution-flows}.
+
+
+\section{Round-Trip Engineering: The Artifact's Viewpoint}
+\label{sect:delivery-platform--round-trip-engineering}
+
+Section~\ref{sect:delivery-platform--self-evolution-through-two-way-ci} introduced two workflows for conducting self-evolution: \emph{direct evolution} and \emph{CI-aware evolution}. In the first case, \gls{iac} specifications need to be updated right after the running system is evolved. This is necessary to keep the specifications consistent with the managed system. In the second case, the specifications need be updated as well, but in this case the source of change is the \gls{mart}. This section describes how we perform round-trip engineering to keep the artifacts from both sides consistent. Section~\ref{subsect:delivery-platform--ci-loop} introduces the main components of our solution, and explains how their interactions realize the specification update process. Section~\ref{subsect:delivery-platform--continuous-model-evolution} concentrates on how direct evolution actions are mapped to \gls{mart} updates automatically, thus connecting the two self-evolution workflows. Finally, Section~\ref{subsect:delivery-platform--run-time-state-synchronization} describes how the main components of our solution coordinate the evolution of \gls{iac} templates and instances.
+
+\subsection{A Running Example}
+\label{subsect:delivery-platform--running-example}
+
+This section introduces a running example based on our \gls{iac} cloud management case study (\cf{Section~\ref{sect:overview--iac-case-study}}). We will reference such an example in the rest of the chapter. A rather simple but common software deployment includes a set of \glspl{vm} connected to a private virtual network. For the sake of simplicity, we reduce this example to a single virtual machine running on VMware's hybrid cloud.\footnote{\url{https://www.vmware.com}} This kind of deployment is commonly used for small data science projects, internal services, and demos. Notwithstanding, since the \gls{vm} is deployed to a hybrid cloud, it is subject to automatic migrations and policy conformance procedures. Therefore, even with such a small example, there may be configuration drift issues. In this example, we use the \gls{iac} tool Terraform\footnote{\url{https://www.terraform.io}} together with a template management software.
+
+Below are the variables required for the bare minimum configuration of the deployment instance.
+
+\begin{itemize}[noitemsep]
+	\item \textbf{Datastore:} Data store where the disk will be stored
+	\item \textbf{Disk size:} Hard drive size
+	\item \textbf{Folder:} Server folder where the \gls{vm} will be located
+	\item \textbf{Name:} Unique name associated with the \gls{vm}
+	\item \textbf{Network:} Existing network to which the machines will be connected
+	\item \textbf{Cores per socket:} Number of cores per socket
+	\item \textbf{\acrshortpl{vcpu}:} Number of virtual \acrshortpl{cpu}
+	\item \textbf{Operating system:} Base operating system
+	\item \textbf{\acrshort{mart}:} Amount of volatile memory
+	\item \textbf{Resource pool:} Resource pool associated with the \gls{vm}
+	\item \textbf{Virtual machine template:} Custom configuration on top of the base operating system
+\end{itemize}
+
+\subsection{Continuous Integration Loop}
+\label{subsect:delivery-platform--ci-loop}
+
+Figure~\ref{fig:delivery-platform--modeling-relationships} shows the elements of a run-time agent and their relation with the subject \gls{iac} specification. A run-time agent comprises five main components: (1) a \gls{mart} that represents a particular aspect of the managed system. Examples of this are models representing the physical and virtual hardware infrastructure. In the case of our running example, this \gls{mart} represents VMware resources that can be deployed with Terraform; (2) a model-to-text transformation to generate the textual representation of the \gls{mart} (\eg{Terraform templates}); (3) a model transformation to create a map of current configuration parameters and their values based on the \gls{mart}; (4) the run-time semantics from the application domain to test the \gls{mart} as part of the delivery pipeline (\cf{the aforementioned pre- and post-validation rules}); and (5) causal links, which are dependencies with other \glspl{mart}, allowing the propagation of changes from one model to its dependents, as well as the tracking of changes. For example, re-configuring the managed system's physical infrastructure should cause a change propagation to the virtual hardware infrastructure model, assuming the latter depends on the former.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.7\columnwidth]{fig/delivery-platform/delivery-platform--modeling-relationships-v2.pdf}
+	\caption{Domain and notation modeling relationships}
+	\label{fig:delivery-platform--modeling-relationships}
+\end{figure}
+
+A \gls{mart} conforms to a domain model, and must be equivalent to a notation. That is, a one-to-one relationship is expected between the specification notation and the domain model. However, achieving such a relationship is often difficult; it may be necessary to limit the facts that can be expressed to guarantee said equivalence. To map the concepts from one model to the other, the pair domain-notation is associated with a set of transformations. For example, a \gls{mart} representing the networking domain can be set up to work with OpenStack \gls{hot}\footnote{\url{https://docs.openstack.org/heat/latest/template_guide/}} and/or \gls{hcl}\footnote{\url{https://www.terraform.io/docs/language/syntax/configuration.html}} (\ie{Terraform templates' notation}). Each of these configurations contains the necessary information to update the model instance and the specification, given a change in either of them.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=1\columnwidth]{fig/delivery-platform/delivery-platform--ci-loop-v2.pdf}
+	\caption{Components of the \gls{ci} loop}
+	\label{fig:delivery-platform--ci-loop}
+\end{figure}
+
+Figure~\ref{fig:delivery-platform--ci-loop} represents the main components of the \gls{ci} loop. That is, the necessary components to realize round-trip engineering of the \gls{iac} specifications. From left to right in the transformation chain (\ie{forward engineering}), the \gls{iac} specifications are used to instantiate a local \gls{mart} instance inside the build and delivery servers. The specification parser reads the text files from the repository and returns an instance of the notation model (\ie{\texttt{Specification}}). The build server runs a job to validate the local \gls{mart}, and the delivery server updates the \gls{mart} hosted by the run-time agent. Other deployment tasks are conducted as established in the delivery pipeline. From right to left in the transformation chain (\ie{reverse engineering}), changes may arise from the managed system or the run-time agent. In the first case, a \emph{Historian} monitor periodically collects information from the cloud platform's \gls{api}. It maintains an up-to-date representation of the managed system's state based on the responses from the \gls{api}. Changes to the state detected by Historian are passed to the run-time agent. Listing~\ref{lst:delivery-platform--json-sample-view} depicts a simplified view from our running example. In this case, Historian collected relevant identifiers as well as properties of the deployed \gls{vm}. In the second case, an autonomic manager directly passes desired state changes to the run-time agent. In any case, the run-time agent passes template and instance updates to the evolution coordinator. This component then proposes the corresponding changes to the source code repository and the \gls{iac} template manager. The nature of these changes depends on the contribution model implemented. The code contribution and parameter value updates are devised by transforming the \gls{mart} into the corresponding notation model, and then to text form and value map.
+
+Table~\ref{tab:delivery-platform--value-map-running-example} exemplifies the variable names and values collected for our running example. The model transformation creates variables according to the deployed resources, matching those present in the template and its instances. The information displayed in the table represents the value map used to update the template instance.
+
+\begin{figure}[p]
+	\centering
+	\begin{lstlisting}[style=json,language=java]
+		{
+			"listVcenterHost": [
+			"host-112"
+			],
+			"listVmFilteredByHost": {
+				"host-112": [
+				"vm-123"
+				]
+			},
+			"listVcenterFolder": [
+			{
+				"folder": "folder-1",
+				"name": "My-Deployment",
+				"type": "VIRTUAL_MACHINE"
+			}
+			],
+			"listVcenterDatacenter": [
+			"datacenter-1",
+			"datacenter-2"
+			],
+			"listVcenterVmFilteredByDatacenter": {
+				"datacenter-1": [
+				"vm-123"
+				],
+				"datacenter-2": []
+			},
+			"listVcenterVm": [
+			"vm-123"
+			],
+			"getVcenterVm": [
+			{
+				"vm":"vm-123",
+				...
+				"cpu": { ... },
+				"disks": [ ... ],
+				"memory": { ... },
+				"name": "my-vm-123",
+				...
+			}
+			],
+			"listVcenterResourcePool": {
+				"value": [
+				{
+					"name": "Resources",
+					"resource_pool": "resgroup-1"
+				}
+				]
+			},
+			...
+		}
+	\end{lstlisting}
+	\caption{Historian's output summary for our running example}
+	\label{lst:delivery-platform--json-sample-view}
+\end{figure}
+
+\begin{table}[p]
+	\centering
+	\caption{The run-time agent's value map for our running example}
+	\label{tab:delivery-platform--value-map-running-example}
+	\begin{tabular}{l | l}
+		\toprule
+		\multicolumn{1}{c}{\textbf{Variable Name}} & \multicolumn{1}{c}{\textbf{Value}} \\
+		\midrule
+		datastore\_1\_name & CAM02-RSX6-002 \\
+		vm\_1\_disk\_1\_label & camc-vis232c-vm-123/camc-vis232c-vm-123.vmdk \\
+		vm\_1\_disk\_1\_size & 45 \\
+		vm\_1\_disk\_1\_unit\_number & 0 \\
+		vm\_1\_folder & folder-1 \\
+		vm\_1\_name & my-vm-123 \\
+		network\_1\_interface\_1\_label & VIS232 \\
+		vm\_1\_num\_of\_cores\_per\_socket & 1 \\
+		vm\_1\_number\_cpus & 2 \\
+		vm\_1\_guest\_os\_id & UBUNTU\_64 \\
+		vm\_1\_memory & 1024 \\
+		resource\_pool\_1\_name & Resources \\
+		\bottomrule
+	\end{tabular}
+\end{table}
+
+
+\subsection{Continuous \glsentryfullpl{mart} Evolution}
+\label{subsect:delivery-platform--continuous-model-evolution}
+
+Synchronizing a state model with the managed system is not a trivial task. Model evolution is typically implemented following the publish/subscribe design pattern.\footnote{Two popular implementations are the Viatra framework (\url{https://www.eclipse.org/viatra}) and EMF Cloud's model server (\url{https://www.eclipse.org/emfcloud})} In the case of a changing cloud infrastructure, the publisher is the cloud platform and the events are change notifications. The latter is usually triggered for every state the system experiences, including before, during, and after a modification takes place. It also includes myriad events unrelated to the updates of interest, such as authentication, role management, and billing notifications. Model synchronization can quickly become an architecturally significant requirement for the \gls{ci} loop. The volume of functionality stemming from implementing hundreds of event handlers and mapping them with model updates is very large, especially if several cloud platforms need to be supported. Moreover, cloud providers usually use distinct notification communication technology. To make matters worse, the level of granularity and the information included in the events vary per vendor and product. To reduce the implementation effort, we decided to adopt a different strategy to continuous \gls{mart} evolution.
+
+This section introduces Historian, the monitoring component depicted in Figure~\ref{fig:delivery-platform--ci-loop}. Once Historian is notified by the Scheduler, it periodically collects resource data from the cloud platform's \gls{api} to update the \gls{mart} as described in Section~\ref{subsect:delivery-platform--ci-loop}. It creates a simple view of the computing infrastructure by requesting data of interest through the cloud's \gls{api}. This view is then passed to a model-to-model transformation, which creates an instance of the run-time agent's \gls{mart}. Since the view only contains concepts of interest (\cf{Listing~\ref{lst:delivery-platform--json-sample-view}}), the transformation is simple to implement.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=1\columnwidth]{fig/delivery-platform/delivery-platform--monitoring-metamodel.pdf}
+	\caption{A metamodel for monitoring \gls{rest} \glspl{api}}
+	\label{fig:delivery-platform--monitoring-metamodel}
+\end{figure}
+
+Historian relies on the OpenAPI standard to derive relevant monitoring information related to the cloud platform's \gls{api}. This allows Historian to target any cloud \gls{api}. Given an OpenAPI specification, Historian generates a Java program that will interface with the run-time agent. The initial step in the project generation consists of transforming the input (OpenAPI) specification into an instance of Historian's monitoring model. Next, Historian generates the necessary configuration data to setup its run-time library. This includes configuration parameters such as data collection periodicity, authentication information, endpoint dependencies, among others.
+
+Figure~\ref{fig:delivery-platform--monitoring-metamodel} depicts Historian's metamodel for monitoring \gls{rest} \glspl{api}. Besides authentication information, a monitoring model (\cf{Concept \texttt{Root}}) contains a set of polling monitors (\cf{Concept \texttt{Monitor}}). Each of them is associated with a data model (\cf{Concept \texttt{Schema}}) and an endpoint that returns instances of the data model. A data model is expressed as a collection of properties.
+
+Historian's run-time library contains classes to perform \acrshort{http} requests and handle the result. The most relevant part of the library is an implementation of the \textsc{Fork and Collect} algorithm. Our Fork and Collect resolves data dependencies between the \gls{api} endpoints. For example, consider VMware's vCenter\footnote{vCenter is the centralized management utility for VMware, and is used to manage virtual machines, hosts, and all dependent components from a single centralized location.} \gls{api}; to request details of a \gls{vm}, the request must include the unique identifier of the \gls{vm}. Provided the identifier, the corresponding endpoint will provide general details of the \gls{vm} itself, but not about its associated  resources, such as attached disks and \acrshortpl{cdrom}. Such details must be requested from other endpoints that also provide the resource identifier. If requests are performed in a certain order, some endpoints can provide data required by others. We consider these implicit links as data dependencies among endpoints. Although they must be manually configured, this process is done only once per cloud provider. It can be reused afterwards. Moreover, Historian assists in configuring them by generating the list of endpoints along with their required inputs.
+
+Because data dependencies are present in any \gls{api}, Historian expects the target \gls{api} represented as a dependency graph. That is, a \gls{dag} in which the edges are explicit dependency declarations in the form ``endpoint A provides value O, which sources input I from endpoint B.'' As an example, Figure~\ref{fig:delivery-platform--vmware-graph} depicts VMware's vCenter \gls{api} as a dependency graph. Green nodes represent endpoints with no dependencies, which means they will be collected first. Blue nodes will be collected after their only dependency is released. Finally, all red nodes are collected, as they have at least two dependencies.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.9\columnwidth]{fig/delivery-platform/delivery-platform--vmware-graph.pdf}
+	\caption{VMWare's vCenter \gls{api} as a dependency graph}
+	\label{fig:delivery-platform--vmware-graph}
+\end{figure}
+
+\subsubsection{The Fork and Collect Algorithm}
+\label{subsubsect:delivery-platform--fork-and-collect-algorithm}
+
+Algorithm~\ref{alg:delivery-platform--fork-and-collect} lists \textsc{Fork and Collect}. Our algorithm aims to collect and aggregate resource information based on the aforementioned dependency graph. The algorithm starts by identifying the set of vertices (\ie{endpoints}) without dependencies (\cf{Line 2}). Each vertex is considered to be a branch. That is, an endpoint that will fork into many HTTP requests based on its inputs and collected values. For example, consider the endpoints \texttt{listVm} and \texttt{getVm} from Figure~\ref{fig:delivery-platform--vmware-graph}. The first one lists existing \glspl{vm} and the second one gets the details of a specific \gls{vm}. There is a dependency on the \gls{vm} identifier from \texttt{getVm} to \texttt{listVm}. Suppose \texttt{listVm} collects identifiers \texttt{vm-123}, \texttt{vm-124} and \texttt{vm-125}. This means that \texttt{getVm} forks into \texttt{getVm(vm-123)}, \texttt{getVm(vm-124)} and \texttt{getVm(vm-125)}.
+
+\IncMargin{2em}
+\begin{algorithm}[h]
+	\footnotesize
+	\DontPrintSemicolon
+	\SetKwInOut{Input}{input}
+	\SetKwInOut{Output}{output}
+	\SetKwProg{FnG}{Function}{}{\KwRet D}
+	\SetKwProg{FnI}{Function}{}{\KwRet D}
+	\SetKwProg{FnB}{Function}{}{\KwRet B}
+	\FnG{State(G)}{
+		\Input{a \gls{dag} $G$ composed of vertices $V$ and edges $E$}
+		\Output{the current state of the monitored resources}
+		\BlankLine
+		
+		\tcp{Initial fork step (vertices without dependencies)}
+		$B \longleftarrow \{v\in V \mid \forall u\in V. (v, u) \notin E\}$\;
+		$D \longleftarrow ForkAndCollect(B, G, \emptyset)$\;
+	}
+	\BlankLine
+
+	\FnI{ForkAndCollect(B, G, R)}{
+		\Input{a set of vertices $B$; a \gls{dag} $G$ composed of vertices $V$ and edges $E$; A set of released dependencies $R$ (vertices)}
+		\Output{a document $D$ containing collected content from the \gls{api} endpoints}
+		\BlankLine
+
+		$D \longleftarrow \emptyset$\;
+		\For{$branch \in B$}{
+			$content \longleftarrow Collect(branch)$\;
+			$R \longleftarrow R \cup \{branch\}$\;
+			$D \longleftarrow D \cup f(content)$\;
+			$X \longleftarrow \emptyset$\;
+			\For{$output \in branch.outputs$}{
+				$values \longleftarrow Extract(content, output.selector)$\;
+				$X \longleftarrow X \cup \{(output.name, values)\}$\;
+			}
+			\For{$values \in X$}{
+				$N \longleftarrow Fork(branch, values)$\;
+				$D \longleftarrow D \cup ForkAndCollect(N, G, R)$\;
+			}
+		}
+	}
+	%	\BlankLine
+	%	\FnB{Fork(b, values)}{
+	%		
+	%	}
+	\caption{Fork and Collect}
+	\label{alg:delivery-platform--fork-and-collect}
+\end{algorithm}
+
+For each branch, the algorithm collects the resource data, marks the branch as released and optionally alters the collected data (\cf{Lines 8, 9 and 10}). Altering the data means transforming the result by either augmenting it with an input value, selecting a single value, or grouping a set of attributes by an input value. These transformations aim to simplify the resulting model.
+
+Figure~\ref{fig:delivery-platform--json-transformation-group-by} displays an example of a group-by transformation. The document on the left shows a list of \glspl{vm} for each host as returned by vCenter's \gls{api}. The document on the right displays the \gls{vm} identifiers grouped by their containing host. Since the \texttt{getVm} endpoint already provides details of a specific \gls{vm}, only the identifier is necessary when using the group by transformation. Figure~\ref{fig:delivery-platform--json-transformation-select} displays an example of a value select transformation. The document on the left lists two hosts as returned by vCenter's \gls{api}, including four attributes per host. The document on the right lists the same hosts, including only the identifier. Figure~\ref{fig:delivery-platform--json-transformation-augment} displays an example of a value augmentation transformation. The document on the left shows a \gls{vm} as returned by vCenter's \gls{api}. The document on the right contains the same data, but includes the \gls{vm} identifier.
+
+\begin{figure}[h]
+	\centering
+	\begin{minipage}{.48\textwidth}
+		\begin{lstlisting}[style=json,language=java]
+{
+	"listVmFilteredByHost": [
+		{
+			"value": [
+				{"vm": "vm-123", ...},
+				{"vm": "vm-124", ...},
+			]
+		},
+		{
+			"value": [
+				{"vm": "vm-125", ...},
+				{"vm": "vm-126", ...},
+			]
+		}
+	]
+}
+		\end{lstlisting}
+	\end{minipage}
+	\hfill
+	\begin{minipage}{.48\textwidth}
+		\begin{lstlisting}[style=json,language=java]
+{
+	"listVmFilteredByHost": {
+		"host-112": [
+			"vm-123",
+			"vm-124"
+		],
+		"host-113": [
+			"vm-125",
+			"vm-126"
+		]
+	}
+}
+	
+	
+	
+(*@\textcolor{white}{.}@*)
+		\end{lstlisting}
+	\end{minipage}
+	\caption{Before and after applying a group by transformation}
+	\label{fig:delivery-platform--json-transformation-group-by}
+\end{figure}
+
+\begin{figure}[p]
+	\centering
+	\begin{minipage}{.58\textwidth}
+		\begin{lstlisting}[style=json,language=java]
+{
+	"listHost": {
+		"value": [
+			{
+				"connection_state": "CONNECTED",
+				"host": "host-112",
+				"name": "h112.domain.com",
+				"power_state": "POWER_ON"
+			},
+			{
+				"connection_state": "CONNECTED",
+				"host": "host-113",
+				"name": "h113.domain.com",
+				"power_state": "POWER_ON"
+			}
+		]
+	}
+}
+		\end{lstlisting}
+	\end{minipage}
+	\hfill
+	\begin{minipage}{.4\textwidth}
+		\begin{lstlisting}[style=json,language=java]
+{
+	"listHost": [
+		"host-112",
+		"host-113"
+	]
+}
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+(*@\textcolor{white}{.}@*)
+		\end{lstlisting}
+	\end{minipage}
+	\caption{Before and after selecting a single value}
+	\label{fig:delivery-platform--json-transformation-select}
+\end{figure}
+
+\begin{figure}[p]
+	\centering
+	\begin{minipage}{.48\textwidth}
+		\begin{lstlisting}[style=json,language=java]
+{
+	"getVm": [
+		{
+			"value": {
+				"boot": {
+					"delay": 0,
+					"setup_mode": false,
+					"retry": false,
+					"retry_delay": 10000,
+					"type": "BIOS"
+				}
+				...
+			}
+		}
+	]
+}
+(*@\textcolor{white}{.}@*)
+		\end{lstlisting}
+	\end{minipage}
+	\hfill
+	\begin{minipage}{.48\textwidth}
+		\begin{lstlisting}[style=json,language=java]
+{
+	"getVm": [
+		{
+			"vm": "vm-123",
+			"value": {
+				"boot": {
+					"delay": 0,
+					"setup_mode": false,
+					"retry": false,
+					"retry_delay": 10000,
+					"type": "BIOS"
+				}
+				...
+			}
+		}
+	]
+}
+		\end{lstlisting}
+	\end{minipage}
+	\caption{Before and after augmenting the document with an input value}
+	\label{fig:delivery-platform--json-transformation-augment}
+\end{figure}
+
+Lines 11 to 15 of the algorithm extract values from the collected data to source the inputs from dependent endpoints. The values are represented as XML Xpath selectors. Based on these values, the algorithm forks the current branch into the branches for the next iteration. That is, the algorithm finds the vertices whose dependencies have already been released. Then, for each of them, it creates one branch per input value, as described previously in the \texttt{getVm} example. In Line 17, new branches are created by forking the current branch based on the collected input values. Finally, in Line 18, the new branches are passed as an argument to a recursive invocation of Fork and Collect. The resulting data is added to the current document.
+
+\subsection{Run-time State Synchronization and Specification Update Workflows}
+\label{subsect:delivery-platform--run-time-state-synchronization}
+
+Our reverse engineering strategy comprises two main components: run-time state synchronization and automatic source specification update. We separate these workflows based on their primary concern: \gls{mart} evolution and specification update. Figure~\ref{fig:delivery-platform--ci-loop-evolution-coordinator} extends the configuration previously presented in Figure~\ref{fig:delivery-platform--ci-self-evolution-flows}. It includes an evolution coordinator component as well as an \gls{iac} template manager as part of the evolution life cycle of the specification. The former coordinates various types of updates to the specification based on the template and instance notions discussed in Section~\ref{sect:overview--iac-case-study}---\emph{Infrastructure Management Case Study}. The latter manages template instances and their parameters. Notice that the deployment of infrastructure resources is no longer performed by the delivery server but the template manager.
+
+The run-time agent no longer interfaces with the code repository directly but through the evolution coordinator. Its job consists of maintaining an up-to-date specification model, and sending it to the coordinator periodically. Whenever there is a change, the coordinator updates the source code as well as the parameter values in the template manager. These updates can be performed directly or by duplicating the update target---it depends on the contribution strategy.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.85\columnwidth]{fig/delivery-platform/delivery-platform--ci-loop-evolution-coordinator-v2.pdf}
+	\caption{Evolution coordination for template and instance updates}
+	\label{fig:delivery-platform--ci-loop-evolution-coordinator}
+\end{figure}
+
+Figure~\ref{fig:delivery-platform--run-time-state-synchronization-flow} illustrates the aforementioned workflows as an activity diagram. Once \textsc{Fork and Collect} has collected the resource data, the run-time agent updates its \gls{mart} and creates a map of parameter values. Then, it sends both elements to the evolution coordinator. It first compares the updated and current model. This ensures that elements contributed by developers are not removed in the update. This is the case of inline documentation (\ie{comments}), which are not preserved or used in the run-time context. To conduct this comparison, the template in the local repository is instantiated as a model. If the models are found structurally different, they are merged into a new model. The new model is converted into a textual representation that conforms to the notation model. These files are used to update the local clone of the template’s repository. If no merge conflict is found and the template was in fact updated, the changes are pushed to the remote repository. The coordinator then compares the collected parameter values with the current ones. If there was a change, it updates the template instance or creates a new version in the template management system.
+
+% First workflow
+%\begin{figure}[h]
+%	\centering
+%	\includegraphics[width=0.7\columnwidth]{fig/delivery-platform/delivery-platform--runtime-state-synchronization-v2.pdf}
+%	\caption{Run-time state synchronization}
+%	\label{fig:delivery-platform--runtime-state-synchronization}
+%\end{figure}
+
+% Second workflow
+%\begin{figure}[h]
+%	\centering
+%	\includegraphics[width=0.7\columnwidth]{fig/delivery-platform/delivery-platform--template-and-instance-update.pdf}
+%	\caption{Automatic template and instance update}
+%	\label{fig:delivery-platform--template-and-instance-update}
+%\end{figure}
+
+% Activity diagram including both workflows
+\begin{figure}[h]
+	\hspace{-1.4cm}
+	\includegraphics[width=1.2\columnwidth]{fig/delivery-platform/delivery-platform--run-time-state-synchronization-flow-v2.pdf}
+	\caption{Run-time state synchronization and automatic template and instance update}
+	\label{fig:delivery-platform--run-time-state-synchronization-flow}
+\end{figure}
+
+\section{Chapter Summary}
+
+% Integration of system development and execution through the already established delivery pipeline
+% Take advantage of other execution environments to develop knowledge. This chapter presents the base to achieve that
+% Two perspectives: the autonomic manager (from where to start the evolution) and the artifact (how to perform the evolution)
+
+An implicit assumption in software engineering and autonomic computing has been that persistent changes exclusively originate during development. This approach to software evolution is a legacy of traditional software engineering, where changes would typically flow from requirements elicitation to deployment, overlooking run-time management. In the last decade, an industry shift has put the focus on run-time technology, effectively changing software development and system administration practices. Operational concerns are now part of software planning and design, and development methods have been adopted on the infrastructure side (\eg{Infrastructure- and Configuration-as-Code}). Nevertheless, a more revolutionary change is yet to occur.
+
+The implicit connection between operational requirements and changes on the development side remains largely unexplored. In spite of recent works contributing to making such a connection explicit, the focus tends to be on one side, still requiring stakeholders to conduct the evolution process. Further integration between development and operation requires a holistic approach to software evolution. Ideally, changes on either side (\ie{development and operation}) would cause the corresponding changes on the other side.
+
+This chapter explored the integration between system development and operation from a software evolution perspective. We proposed a support layer that connects development-time and run-time artifacts. We leverage existing techniques and practices of continuous software engineering and autonomic computing. As a result, run-time changes are turned into traceable code contributions. By producing persistent updates from run-time changes, we aim to complete the evolution cycle. That is, make the connection between software changes from either side explicit.
+
+Our contribution makes use of the already established delivery pipeline. It extends the concept of \gls{ci} to consider run-time changes as part of the development process. Therefore, our support layer effectively turns autonomic managers into contributors to the software evolution. By leveraging the delivery pipeline, code updates go through the same quality assurance process applied to changes that originate during development. Moreover, this chapter presented an alternative evolution workflow that allows momentarily bypassing quality controls when context conditions require an immediate application of the changes. In this case, the autonomic manager adapts the system directly. The support layer monitors changes to the system and enforces quality criteria through the delivery pipeline, if required.
+
+We used round-trip engineering to realize the \gls{ci} loop. From left to right (\ie{forward engineering}), we rely on the delivery pipeline as it is with a few alterations. From right to left (\ie{reverse engineering}), we put in place a model-driven system to monitor and transform run-time changes into various types of persistent updates. It is worth noting that implementing the monitoring system can quickly become an architecturally significant requirement. To reduce the investment on development effort and time, we developed an algorithm to monitor changes to the running system.
+% We followed a model-driven approach to derive monitoring information from the underlying cloud's OpenAPI specification. Moreover, we proposed an algorithm to keep an up-to-date model of the system's current state.
+
+The next chapter presents our proposal for realizing a second type of self-evolution, which relies on the contributions from this chapter. It consists of actively improving the system artifacts during development.

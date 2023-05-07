@@ -1,0 +1,20 @@
+{\reset@font\mtcSfont\mtc@string\contentsline{section}{\noexpand \leavevmode \numberline {6.1}Overview of the Reference Architecture in Our Solution Strategy}{\reset@font\mtcSfont 93}{section.6.1}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {6.1.1}Dependability and Resiliency in Autonomic Cyber-Physical Systems}{\reset@font\mtcSSfont 93}{subsection.6.1.1}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {6.1.2}Adaptation and Evolution as Autonomic Operational Modes}{\reset@font\mtcSSfont 94}{subsection.6.1.2}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {6.1.3}Self-Regulated Evolution of Run-Time Artifacts}{\reset@font\mtcSSfont 96}{subsection.6.1.3}}
+{\reset@font\mtcSfont\mtc@string\contentsline{section}{\noexpand \leavevmode \numberline {6.2}Architecture Overview}{\reset@font\mtcSfont 96}{section.6.2}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {6.2.1}Achieving a Dependable Autonomy}{\reset@font\mtcSSfont 98}{subsection.6.2.1}}
+{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode \numberline {6.2.1.1}Error mitigation through multi-model identification}{\reset@font\mtcSSSfont 98}{subsubsection.6.2.1.1}}
+{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode \numberline {6.2.1.2}Reliable models through model inference}{\reset@font\mtcSSSfont 99}{subsubsection.6.2.1.2}}
+{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode \numberline {6.2.1.3}Evidence collection through experimentation}{\reset@font\mtcSSSfont 100}{subsubsection.6.2.1.3}}
+{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode \numberline {6.2.1.4}Autonomic behavior through adaptive control}{\reset@font\mtcSSSfont 100}{subsubsection.6.2.1.4}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {6.2.2}Achieving Resilient Operations}{\reset@font\mtcSSfont 101}{subsection.6.2.2}}
+{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode \numberline {6.2.2.1}Predictable adaptation through reliable models}{\reset@font\mtcSSSfont 101}{subsubsection.6.2.2.1}}
+{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode \numberline {6.2.2.2}Run-time validation through evidence collection}{\reset@font\mtcSSSfont 102}{subsubsection.6.2.2.2}}
+{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode \numberline {6.2.2.3}Error mitigation through parameter estimation}{\reset@font\mtcSSSfont 102}{subsubsection.6.2.2.3}}
+{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode \numberline {6.2.2.4}Goal achievement through hyperparameter optimization}{\reset@font\mtcSSSfont 102}{subsubsection.6.2.2.4}}
+{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode \numberline {6.2.2.5}Assurance through viability zones and control objectives}{\reset@font\mtcSSSfont 102}{subsubsection.6.2.2.5}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {6.2.3}Realizing the Knowledge Layer}{\reset@font\mtcSSfont 103}{subsection.6.2.3}}
+{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode \numberline {6.2.3.1}Implicit and Explicit Knowledge Processing}{\reset@font\mtcSSSfont 105}{subsubsection.6.2.3.1}}
+{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode \numberline {6.2.3.2}Online Knowledge Synthesis}{\reset@font\mtcSSSfont 107}{subsubsection.6.2.3.2}}
+{\reset@font\mtcSfont\mtc@string\contentsline{section}{\noexpand \leavevmode \numberline {6.3}Chapter Summary}{\reset@font\mtcSfont 109}{section.6.3}}

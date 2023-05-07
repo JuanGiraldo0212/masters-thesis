@@ -1,0 +1,397 @@
+% Enable referencing paragraphs
+% From https://tex.stackexchange.com/a/7628/46854
+\setcounter{secnumdepth}{6}
+
+% Define globally used colors
+\definecolor{linkcolor}{rgb}{0.0,0.0,0.55}
+\definecolor{refcolor}{rgb}{0.0,0.42,0.24}
+
+% Use footnotes inside table and tabular environments
+% From: https://tex.stackexchange.com/a/109471/46854
+\makesavenoteenv{tabular}
+\makesavenoteenv{table}
+
+% Color links
+\hypersetup{
+	% These options produce an error:
+	% backref     = true,
+	% pagebackref = true,
+	%
+	colorlinks  = true,
+	linkcolor   = linkcolor,
+	anchorcolor = linkcolor,
+	citecolor   = refcolor,
+	filecolor   = linkcolor,
+	urlcolor    = linkcolor
+}
+
+% Change the page title for the ToC
+% From: https://tex.stackexchange.com/a/539977/46854
+\renewcaptionname{english}{\contentsname}{Table of Contents}
+
+% Header and footer setup
+\pagestyle{headings}
+
+% Define util commands to reduce boilerplate
+\newcommand\startchapter[1]{\stepcounter{mtc}\chapter{#1}\thispagestyle{empty}}
+\newcommand\startappendix[1]{\chapter{#1}\thispagestyle{empty}}
+\newcommand\startfirstchapter[1]{\stepcounter{mtc}\chapter{#1}}
+\newcommand\myphantomsection[2]{
+	\thispagestyle{plain}
+	\phantomsection
+	\addcontentsline{toc}{chapter}{#1}
+	#2
+	\clearpage}
+
+% Format the figure number (Figure 1.|: the caption)
+\renewcommand{\figureformat}{\figurename~\thefigure\autodot|}
+
+% Remove period after section number in the Table of Contents
+% From: https://tex.stackexchange.com/a/223855/46854
+\BeforeStartingTOC{\def\autodot{}}
+
+% Remove period after part number (e.g., Part I.)
+% From: https://tex.stackexchange.com/a/102313
+\renewcommand*{\partformat}{\partname~\thepart}
+
+% Enlarge chapter titles but keep the chapter label and number of the same size
+% Also, remove period after chapter number (e.g., Chapter 1.)
+\definecolor{chlabelcolor}{rgb}{0.25,0.25,0.25}
+\renewcommand*{\chapterformat}{%
+	\normalfont\fontsize{18pt}{18pt}\selectfont\color{chlabelcolor}%
+	\chapapp~\thechapter\enskip}
+\addtokomafont{chapter}{\normalfont\fontsize{26pt}{26pt}\selectfont}
+
+% Prefix parts
+% From: https://tex.stackexchange.com/a/358371/46854
+\xpatchcmd\addparttocentry
+{\addtocentrydefault{part}{#1}{#2}}
+{\ifstr{#1}{}
+	{\addtocentrydefault{part}{#1}{#2}}%
+	{\addtocentrydefault{part}{}{\partname\nobreakspace\texorpdfstring{#1\autodot\enskip}{}#2}}%
+}
+{}{}
+\RedeclareSectionCommand[tocnumwidth=0pt]{part}
+
+% Prefix chapters
+\xpatchcmd\addchaptertocentry
+{\addtocentrydefault{chapter}{#1}{#2}}
+{\ifstr{#1}{}
+	{\addtocentrydefault{chapter}{#1}{#2}}%
+	{\addtocentrydefault{chapter}{}{\hspace*{1.5em}\chapapp\nobreakspace\texorpdfstring{#1\autodot\enskip}{}#2}}%
+}
+{}{}
+\RedeclareSectionCommand[tocnumwidth=0pt]{chapter}
+
+% Indent sections, subsections, and subsubsections
+\setlength\cftsecindent{3.0em}
+\setlength\cftsubsecindent{4.4em}
+\setlength\cftsubsubsecindent{5.8em}
+
+% Add vertical space after the table of contents inside chapters
+\let\oldminitoc\minitoc
+\renewcommand{\minitoc}[0]{\oldminitoc\vspace{1em}}
+
+% Move the table of contents inside chapters to the left (reset indentation)
+% From: https://tex.stackexchange.com/a/268206/46854
+\mtcsetoffset{minitoc}{-1.5em}
+\setlength{\mtcindent}{0em}
+
+% Increase the depth of the table of contents inside chapters to display subsubsections
+% From: https://tex.stackexchange.com/a/348281/46854
+\setcounter{minitocdepth}{3}
+
+% Float Customization
+\renewcommand{\floatpagefraction}{0.01}
+
+% Customization of Tables of Contents and List of Figures/Tables (package tocloft)
+\renewcommand\cfttabpresnum{Table\ }
+\renewcommand\cfttabnumwidth{0.75in}
+\renewcommand\cftfigpresnum{Figure\ }
+\renewcommand\cftfignumwidth{0.80in}
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
+
+% Setup old style numerals macro
+\newcommand\osn[1]{\oldstylenums{#1}\xspace}
+
+% Increase table cell padding
+\renewcommand*\arraystretch{1.1}
+
+% Squeeze a little some spaces
+% More options: https://cs.dartmouth.edu/~dfk/advice/latex-squeeze.html
+\setstretch{1.1}
+\setlength{\parindent}{1.5em}
+
+% Make the glossary
+\makenoidxglossaries
+% Enable links to the acronyms page
+\glsenablehyper
+
+% Cleveref section format (e.g., Sections 1.3-5)
+% From: https://tex.stackexchange.com/a/155951
+\crefrangelabelformat{section}{#3#1#4--#5\crefstripprefix{#1}{#2}#6}
+
+% Correct bug when using tocloft and minitoc
+% Section titles should be bold in minitoc's table of contents
+% From: https://tex.stackexchange.com/a/300547/46854
+\renewcommand{\cftsecfont}{\small\bfseries}
+
+% Style description environments
+\setlist[description]{font=\hspace{1.5em}\normalfont}
+
+% Define a fake citation command to have arbitrary text as citations
+\newcommand{\fakecite}[3]{%
+\hypersetup{linkcolor=refcolor}\nocite{#1}%
+[\hyperlink{#2}{#3}]\hypersetup{linkcolor=linkcolor}}
+
+% Create invisible hyperlinks over figures (used on CH1 - Fig 1.1.)
+% From https://tex.stackexchange.com/a/111451/46854
+\newcommand\invlink[4]{%
+	\node at (a.center)
+	[anchor=center,xshift=#1,yshift=#2]
+	% Comment out/uncomment these lines to uncover/cover the link on the figure
+	{\hyperref[#3]{\phantom{#4}}};
+%	{\hyperref[#3]{#4}};
+}
+
+% Circle around letter
+% Another alternative from: https://tex.stackexchange.com/a/123926/46854
+\newcommand\encircle[1]{\textcircled{\footnotesize #1}}
+
+% Colored circle around letter
+%
+\definecolor{myyellow}{HTML}{ffc200}
+\definecolor{myblack}{HTML}{262626}
+\definecolor{myblue}{HTML}{007DFF}
+\definecolor{mypurple}{HTML}{7030a0}
+% Draw a circled char
+\NewDocumentCommand{\encirclecolor}{ O{myblack} O{white} m }{
+	\tikz[baseline=(char.base)]{
+		\node[shape=circle,inner sep=0.9pt,fill=#1,text=#2] (char) {\ttfamily\bfseries\footnotesize#3};
+	}
+}
+\newcommand\encircleblack[1]{\encirclecolor{#1}}
+\newcommand\encircleblue[1]{\encirclecolor[myblue][white]{#1}}
+\newcommand\encirclepurple[1]{\encirclecolor[mypurple][white]{#1}}
+\newcommand\encircleyellow[1]{\encirclecolor[myyellow][black]{#1}}
+\newcommand\encirclered[1]{\encirclecolor[red][white]{#1}}
+\NewDocumentCommand{\encirclecolord}{ O{myblack} O{white} O{myyellow} m }{
+	\tikz[baseline=(char.base)]{
+		\node[shape=circle,inner sep=0.9pt,fill=#3,text=#3] at (0.15, 0) (char) {\ttfamily\bfseries\footnotesize#4};
+		\node[shape=circle,inner sep=0.9pt,fill=#1,text=#2] at (0, 0) (char) {\ttfamily\bfseries\footnotesize#4};
+	}
+}
+
+% Create a paragraph followed by a new line
+\newcommand{\startparagraph}[1]{\paragraph{#1}\mbox{}\\}
+
+% Simulate a new line break
+\newcommand\mylinebreak{\\[10pt]}
+
+% Setup algorithm environments
+% comments
+\newcommand\commentsfont[1]{\footnotesize\ttfamily\textcolor{refcolor}{#1}}
+\SetCommentSty{commentsfont}
+% line numbers
+\newcommand\numbersfont[1]{\normalsize\ttfamily\textcolor{gray}{#1}}
+\SetNlSty{numbersfont}{}{}
+
+
+% Short right arrow
+\makeatletter
+\newcommand\shortto[0]{%
+	\mathrel{\mathpalette\short@to\relax}%
+}
+\newcommand{\short@to}[2]{%
+	\mkern2mu
+	\clipbox{{.4\width} 0 0 0}{$\m@th#1\vphantom{+}{\shortrightarrow}$}%
+}
+\makeatother
+\newcommand\shortra[0]{\rightarrow}
+
+% Double-sided arrow with text at the top and at the bottom
+% Adapted from: https://tex.stackexchange.com/a/51176/46854
+% Super tiny font from: https://tex.stackexchange.com/a/57678/46854
+\makeatletter
+\newcommand\xleftrightarrow[2][]{\ext@arrow 0099{\longleftrightarrowfill@}{\scalebox{.5}{#1}}{\scalebox{.5}{#2}}}
+\def\longleftrightarrowfill@{\arrowfill@\leftarrow\relbar\rightarrow}
+\makeatother
+
+% Setup function plots (evaluation chapter)
+\pgfplotsset{compat=newest, every tick label/.append style={font=\tiny}}
+
+% Small bullet (evaluation chapter)
+\newcommand{\sbt}{\,\begin{picture}(-1,1)(-1,-3)\circle*{2}\end{picture}\ ~}
+
+% Listings
+\definecolor{keywords}{RGB}{127,0,85} % 145,13,93
+\definecolor{code}{RGB}{90,90,90}
+\definecolor{extensions}{RGB}{185,44,39}
+\definecolor{comments}{RGB}{63,127,95}
+\definecolor{strings}{RGB}{74,0,255}
+\definecolor{frame}{RGB}{230,230,230}
+\definecolor{numbers}{RGB}{160,160,160}
+\definecolor{linebg}{RGB}{240,240,240}
+\definecolor{consolebg}{RGB}{21,45,53}
+\definecolor{consoletext}{RGB}{200,200,200}
+\definecolor{consolekeyword}{RGB}{186,50,189}
+\definecolor{consolegreen}{RGB}{88,230,55}
+
+\lstdefinestyle{base}{
+	tabsize=2,
+	captionpos=b,
+	showspaces=false,
+	showtabs=false,
+	breaklines=true,
+	showstringspaces=false,
+	breakatwhitespace=true,
+	escapeinside={(*@}{@*)},
+	commentstyle=\color{comments},
+	keywordstyle=\bfseries\color{keywords},
+	keywordstyle=[2]\color{extensions},
+	stringstyle=\color{strings},
+	basicstyle=\footnotesize\ttfamily,
+	frame=lines,
+	rulecolor=\color{frame},
+	xleftmargin=1.2em,
+	framexleftmargin=1.2em,
+	numbers=left,
+	numbersep=4pt,
+	numberstyle=\footnotesize\ttfamily\color{numbers},
+	aboveskip=1em,
+}
+
+\lstdefinestyle{json}{
+	style=base,
+	language=java,
+	literate=
+	*{0}{{{\color{numbers}0}}}{1}
+	{1}{{{\color{numbers}1}}}{1}
+	{2}{{{\color{numbers}2}}}{1}
+	{3}{{{\color{numbers}3}}}{1}
+	{4}{{{\color{numbers}4}}}{1}
+	{5}{{{\color{numbers}5}}}{1}
+	{6}{{{\color{numbers}6}}}{1}
+	{7}{{{\color{numbers}7}}}{1}
+	{8}{{{\color{numbers}8}}}{1}
+	{9}{{{\color{numbers}9}}}{1}
+	{:}{{{\color{keywords}{:}}}}{1}
+	{,}{{{\color{keywords}{,}}}}{1}
+	{\{}{{{\color{code}{\{}}}}{1}
+	{\}}{{{\color{code}{\}}}}}{1}
+	{[}{{{\color{code}{[}}}}{1}
+	{]}{{{\color{code}{]}}}}{1},
+}
+
+\lstdefinestyle{console}{
+	style=base,
+	language=bash,
+	basicstyle=\color{consoletext}\footnotesize\ttfamily,
+	keywordstyle=\bfseries\color{consolekeyword},
+	frame=none,
+	frameround=tttt,
+	framesep=5em,
+	morekeywords={
+		ForkAndCollectAlgorithm,
+		RuntimeAgent,
+		Server,
+		TerraformRepository,
+		CamClient
+	},
+}
+% Rounded corners - console
+% From: https://tex.stackexchange.com/a/27676/46854
+% Documentation: https://tools.ietf.org/doc/texlive-doc/latex/mdframed/mdframed-example-default.pdf
+\global\mdfdefinestyle{consolestyle}{%
+	leftmargin=0pt,
+	rightmargin=0pt,
+	middlelinewidth=0pt,
+	backgroundcolor=consolebg,
+	fontcolor=consoletext,
+	roundcorner=4
+}
+
+\lstdefinestyle{xml}{
+	style=base,
+	language=xml,
+	morekeywords={
+		augmentation,
+		input,
+		output,
+		mapping,
+		mappings,
+		monitors,
+		monitor,
+		transformation
+	},
+}
+
+\lstdefinestyle{iac}{
+	style=base,
+	morekeywords={
+		variable,
+		output,
+		provider,
+		data,
+		resource,
+		clone,
+		customize,
+		linux\_options,
+		network\_interface,
+		disk,
+		var
+	},
+	literate=
+	*{\$}{{{\color{extensions}\$}}}{1}
+	{.}{{{\color{extensions}{.}}}}{1}
+	{:}{{{\color{extensions}{:}}}}{1}
+	{,}{{{\color{extensions}{,}}}}{1}
+	{\{}{{{\color{extensions}{\{}}}}{1}
+	{\}}{{{\color{extensions}{\}}}}}{1}
+	{[}{{{\color{extensions}{[}}}}{1}
+	{]}{{{\color{extensions}{]}}}}{1}
+}
+
+% mdframed environment for the "Challenges" box in CH 2
+\newenvironment{InfoBox}[1][]{%
+	\ifstrempty{#1}%
+	{\mdfsetup{%
+			frametitle={%
+				\tikz[baseline=(current bounding box.east),outer sep=0pt]
+				\node[line width=0.3pt,anchor=east,rectangle,draw=black!100,fill=black!3]
+				{\strut Information};}}
+	}%
+	{\mdfsetup{%
+			frametitle={%
+				\tikz[baseline=(current bounding box.east),outer sep=0pt]
+				\node[line width=0.3pt,anchor=east,rectangle,draw=black!100,fill=black!3]
+				{\strut #1};}}%
+	}%
+	\mdfsetup{frametitleaboveskip=\dimexpr-\ht\strutbox\relax,linewidth=0.3pt}
+	\begin{mdframed}[]\relax%
+	}{\end{mdframed}}
+
+% i.e., e.g., cf., et al.
+\newcommand\ie[1]{\textit{i.e.}, #1}
+\newcommand\eg[1]{\textit{e.g.}, #1}
+\newcommand\cf[1]{\textit{cf.} #1}
+\newcommand\etal[0]{\textit{et al.}}
+
+% Correct bad hyphenation
+\hyphenation{Cyber-Physical}
+\sloppy
+
+% Title page stuff
+%
+% lək̓ʷəŋən (Lekwungen) but as a figure to prevent any encoding issues
+%  Latex is incapable of processing these characters and I don't want to
+%  use XeLatex or something similar
+\newcommand{\lekwungen}{%
+	\begingroup\normalfont%
+	\begin{minipage}{1.18cm}%
+		\includegraphics[height=1.359\fontcharht\font`\B]{fig/frontmatter/lekwungen.pdf}%
+	\end{minipage}%
+	\endgroup%
+}
+% Draw a horizontal bar below a character, similar to W̱SÁNEĆ (Saanich)
+\newcommand\barbelow[1]{\stackunder[1.2pt]{#1}{\rule{.8ex}{.1ex}}}

@@ -1,0 +1,24 @@
+{\reset@font\mtcSfont\mtc@string\contentsline{section}{\noexpand \leavevmode \numberline {7.1}Infrastructure Management Case Study}{\reset@font\mtcSfont 114}{section.7.1}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {7.1.1}Concrete Case of Application: A Cloud Media Encoding Service}{\reset@font\mtcSSfont 114}{subsection.7.1.1}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {7.1.2}Functional Validation}{\reset@font\mtcSSfont 115}{subsection.7.1.2}}
+{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode \numberline {7.1.2.1}Implementation Details}{\reset@font\mtcSSSfont 116}{subsubsection.7.1.2.1}}
+{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode \numberline {7.1.2.2}Application Scenario 1: Assistance With Knowledge Acquisition}{\reset@font\mtcSSSfont 117}{subsubsection.7.1.2.2}}
+{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode \numberline {7.1.2.3}Application Scenario 2: Prevention of Configuration Drift}{\reset@font\mtcSSSfont 122}{subsubsection.7.1.2.3}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {7.1.3}Experimental Validation of Our Proof of Concept}{\reset@font\mtcSSfont 124}{subsection.7.1.3}}
+{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode \numberline {7.1.3.1}Implementation Details}{\reset@font\mtcSSSfont 124}{subsubsection.7.1.3.1}}
+{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode \numberline {7.1.3.2}Experimentation Setup}{\reset@font\mtcSSSfont 126}{subsubsection.7.1.3.2}}
+{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode \numberline {7.1.3.3}Experimentation Results}{\reset@font\mtcSSSfont 127}{subsubsection.7.1.3.3}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {7.1.4}Qualitative Validation}{\reset@font\mtcSSfont 133}{subsection.7.1.4}}
+{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode \numberline {7.1.4.1}Holistic and Continuous Software Evolution Process}{\reset@font\mtcSSSfont 133}{subsubsection.7.1.4.1}}
+{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode \numberline {7.1.4.2}Contribution to Reduce Remaining Discontinuities}{\reset@font\mtcSSSfont 135}{subsubsection.7.1.4.2}}
+{\reset@font\mtcSfont\mtc@string\contentsline{section}{\noexpand \leavevmode \numberline {7.2}Smart Urban Transit System Case Study}{\reset@font\mtcSfont 136}{section.7.2}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {7.2.1}Concrete Case of Application: The \acrshort {mio} Transportation System}{\reset@font\mtcSSfont 136}{subsection.7.2.1}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {7.2.2}Functional Validation}{\reset@font\mtcSSfont 137}{subsection.7.2.2}}
+{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode \numberline {7.2.2.1}The Managing System's Modeling Layer}{\reset@font\mtcSSSfont 137}{subsubsection.7.2.2.1}}
+{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode \numberline {7.2.2.2}Model Identification Through A Topology-Conforming Simulation}{\reset@font\mtcSSSfont 139}{subsubsection.7.2.2.2}}
+{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode \numberline {7.2.2.3}Multi-Model Identification Mechanism (\acrshort {mim})}{\reset@font\mtcSSSfont 140}{subsubsection.7.2.2.3}}
+{\reset@font\mtcPfont\mtc@string\contentsline{paragraph}{\noexpand \leavevmode \numberline {7.2.2.3.1}Evolutionary optimization}{\reset@font\mtcPfont 141}{paragraph.7.2.2.3.1}}
+{\reset@font\mtcPfont\mtc@string\contentsline{paragraph}{\noexpand \leavevmode \numberline {7.2.2.3.2}Function approximation}{\reset@font\mtcPfont 142}{paragraph.7.2.2.3.2}}
+{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode \numberline {7.2.2.4}Multi-Adjustment Mechanism (\acrshort {am})}{\reset@font\mtcSSSfont 143}{subsubsection.7.2.2.4}}
+{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode \numberline {7.2.2.5}Application Scenario: Model Identification and Run-Time Adjustment}{\reset@font\mtcSSSfont 143}{subsubsection.7.2.2.5}}
+{\reset@font\mtcSfont\mtc@string\contentsline{section}{\noexpand \leavevmode \numberline {7.3}Chapter Summary}{\reset@font\mtcSfont 146}{section.7.3}}

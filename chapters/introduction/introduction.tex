@@ -1,0 +1,69 @@
+\startfirstchapter{Introduction}
+\label{chapter:introduction}
+
+% \minitoc
+
+Quantum Computing (QC) is a new computing field that aims to perform calculations by manipulating quantum bits (i.e., qubits) through the use of quantum mechanical properties such as superposition, entanglement and interference \cite{nielsen-2011-quantum-computation}. Given the nature of these quantum operations, QC has the potential to surpass the capabilities of current classical computers when solving complex problems, including drug discovery, material design and financial optimization. The concept of a quantum computer was first introduced in the 1980s by Richard P. Feyman with the goal of developing a tool that could solve one of the most important problems in physics: simulating quantum mechanical systems \cite{feynman-1986-quantum-computers}. During the following forty years scientists and engineers greatly advanced the field of quantum computing by inventing novel quantum algorithms \cite{deutch-1992-rapid-solutions}, \cite{shor-1997-factorization}, \cite{grover-1996-search} and building quantum computers capable of demonstrating an advantage in specific tasks when compared to their classical counterparts \cite{arute-2019-supremacy}, \cite{madsen-2022-advantage}.
+
+On the quest of finding the most optimal way of building a quantum computer, multiple hardware implementations were developed, each with their own unique characteristics and potential advantages. These implementations referrer specifically to the method by which qubits are represented within the quantum processing unit (QPU). The three most common types of qubit implementations are: superconducting qubits, ion traps, photonic qubits and topological qubits.
+As the development of quantum computers continued, researchers began to explore different ways of executing quantum algorithms efficiently. This led to the emergence of two main QC paradigms: gate-based QC and quantum annealing. Both models of computing make use of quantum mechanical principles and have the potential to solve very complex problems, nevertheless they differ in the type of problems they can solve and in the way qubits are manipulated to perform quantum operations. 
+
+In present day there are still many technical challenges to overcome before quantum computers can be widely used. As a matter of fact the current state of the field has been characterized as the Noisy Intermediate-Scale Quantum (NISQ) era \cite{preskill-2018-nisq}, which refers to the limitations in the applicability and functionality of contemporary quantum devices due to their small number of qubits and considerable amount of errors caused by noise. Generally, the execution of most quantum algorithms requires far better hardware resources than what is provided by NISQ devices. Nonetheless, the emerging field of hybrid quantum-classical computing offers a promising solution to these challenges. By making use of these limited quantum computers and incorporating classical resources into their execution, this approach effectively addresses some of the shortcomings of the quantum device allowing the production of useful results. Hybrid approaches are the prime candidates for demonstrating quantum advantage for real-world applications, such as molecular simulation \cite{peruzzo-2014-vqe} and various instances of optimization \cite{farhi-2014-qaoa}.
+
+The development of hybrid quantum-classical solutions that effectively make use of computing resources and are able to tackle wide-scale real-world problems is one of the main goals of Quantum Software Engineering (QSE). This developing area of research aims to use knowledge from classical software engineering to bootstrap the transition from theoretical QC to practical quantum applications. Many crucial aspects of implementing hybrid systems have begun to be addressed by QSE. These include the impact of QC on the classical software development lifecycle and the new stages to be considered for such applications \cite{weder-2020-lifecycle}, effective techniques for testing quantum software \cite{garcia-2023-testing}, and the evolution of classical development and operations practices to support quantum applications \cite{gheorghe-pop-2020-devops}. However, QSE is still in a very early stage, offering immense opportunities for innovative solutions and pivotal advancements. We believe that continued development of quantum software engineering solutions is crucial in order to fully realize the potential benefits of hybrid quantum-classical computing applications in the near future.
+
+\section{Motivation}
+\label{sect:introduction--motivation}
+
+Over the last ten years, a large number of QC use cases have been explored for solving intractable computational problems. These use cases are aimed at providing practical and efficient near-term solutions for industries such as finance, logistics, and manufacturing. For instance, hybrid quantum-classical algorithms have been used as a tool to find an optimal combination of assets to include in an investment portfolio over a given period, while considering market impact costs \cite{rosemberg-2015-trading}. They have also been employed to optimize the routing of delivery vehicles over different time windows for various logistics scenarios \cite{hardwood-2021-routing}. Additionally, some QC approaches have shown to be an efficient option for modeling and distributing complex large-scale energy supply chains, which are crucial for a range of industrial and civil operations \cite{akshay-2019-energy}. This type of projects, and the significant investment in research and development in quantum computing applications by leading companies, such as Bosch\footnote{https://www.bosch.com/stories/future-of-quantum-computing/}, Airbus\footnote{https://www.airbus.com/en/innovation/disruptive-concepts/quantum-technologies}, and BMW\footnote{https://challenge.quantum.bmw.cloud/}, has sparked a widespread interest in this technology. According to Zapata Computing’s Annual Report on Quantum Computing Adoption\footnote{https://www.zapatacomputing.com/enterprise-quantum-adoption-2022/}, approximately 74\% of enterprises have adopted or were planning to adopt QC in 2022, highlighting the growing recognition of its potential to transform a variety of industries.
+
+With the imminent incorporation of quantum computing into most companies' technology stack, it is only natural that hybrid quantum-classical software applications begin to be developed in-house to tackle industry-specific use cases. However there are multiple limitations within the field that make the implementation of quantum software solutions challenging for early adopters. One of the primary factors contributing to this situation is that QSE is a relatively new field of research, having only been officially established in 2020 with the publication of The Talavera Manifesto for Quantum Software Engineering and Programming  \cite{piattini-2020-talavera}. This seminal work provides a collection of principles, commitments, and calls to action for advancing the field and addressing the challenges faced by quantum software developers. Given that only a few years have passed since, Quantum Software Engineering hasn't had enough time to develop well-defined standards, good practices, and guidelines for the development of quantum software applications. Access to this set of tools is essential to help breach the gap between non-quantum developers and the rapidly expanding array of quantum computing resources, including, libraries, frameworks, development kits, algorithms, and hardware providers. Building on these insights, this thesis works as a guide on how to develop hybrid quantum-classical applications that successfully integrate quantum computing into traditional software systems. More specifically, this work presents guidelines and a flexible structure on how to address the implementation of hybrid software solutions.
+
+\section{Problem Definition and Research Questions}
+\label{sect:introduction--problem}
+
+It is possible to draw a parallel between the current state of quantum software development and the software engineering crisis back in the 60s. As quantum computers become larger and more capable to solve harder problems, the complexity of creating software programs that efficiently use these resources increases. Current practices that work for small quantum solutions and proofs of concepts are not scalable for more intricate and complex quantum software applications with strict functional and non-functional requirements. A well defined methodology for the development of hybrid quantum-classical applications is needed for the advancement of the field and the wide-spread adoption of QC in the software industry. Our work constitutes the first steps towards achieving this ambitious goal.
+This research aims to answer the following questions:
+
+\begin{description}[leftmargin=3.5em]
+	\item[Q1:] How can different computationally challenging problems be formulated in order to be solved using quantum computing?
+	\item[Q2:] What are the benefits and limitations of different quantum computing providers? 
+	\item[Q3:] How can classical software engineering practices be applied to design and develop hybrid quantum-classical applications?
+\end{description}
+
+\section{Contributions}
+\label{sect:introduction--contributions}
+
+The following are the contributions of this thesis.
+
+\begin{description}[leftmargin=3.5em]
+	\item[C1:] Three different QUBO formulations for computationally challenging problems commonly found in the industry. 
+	\item[C2:] A review of benefits and limitations of different quantum computing providers.
+	\item[C3:] A library for the seamless execution of optimization problems on different quantum computing hardware. 
+    \item[C3:] A comprehensive guide for implementing hybrid quantum-classical applications.
+\end{description}
+
+
+\section{Research Methodology}
+\label{sect:introduction--research-methodology}
+
+In order to answer the research questions proposed in this thesis, we aim to develop three different hybrid quantum-classical software solutions for three different use-cases in key application areas of QC (i.e. simulation, optimization and machine learning). We go through the main stages of building a software application, starting from the problem analysis and formulation, moving to the selection of the most appropriate technology and finalizing with the implementation of the solution.
+
+To begin this work we perform an assessment of the three aforementioned impact fields of QC and describe one computationally complex, and relevant, use case for each. We analyze the chosen problems and proceed to realize formulations amenable to a quantum computer, taking into account variables, constraints and the overall objective. This stage helps us answer the first research question.
+
+For the second research question we proceed to review and characterize different quantum computing providers and their respective software development kits (SDK) in order to understand the current state of quantum hardware. We consider three different QC vendors, IBM, D-wave and IonQ. With this selection we cover both QC paradigms (i.e., gate-based and annealing) and two different hardware implementations, superconducting and ion trap. The characterization is performed based on different aspects, including the size of their quantum computers, gate-fidelity, ease-of-use of their SDKs and the level of access to their devices. With this information we are able to clearly identify the benefits and limitations of each provider.
+
+To answer the third research question, we take into account our findings and results from R1 and R2 in conjunction with tools and knowledge from classical software engineering to develop a hybrid quantum-classical solution that effectively integrates QC into classical software systems while addressing the proposed use cases. To accomplish this goal we identify clear requirements for these types of systems and proceed to design a solution that addresses all of them. Finally we proceed to implement our design and report on the trials and tribulations of developing such an application. 
+
+\section{Thesis Outline}
+\label{sect:introduction--thesis-outline}
+This chapter presented our motivation, outlined the research questions to be approached and highlighted the contributions of our work. The remaining chapters of this thesis are organized as follows.
+
+\begin{description}[leftmargin=3.5em]
+	\item[Chapter 2:] formalizes key concepts of this research, describes the background and the state-of-the-art in the literature for this thesis.
+	\item[Chapter 3:] describes the key application areas for QC and presents the selected use cases.
+    \item[Chapter 4:] presents the findings of the review of three different QC providers.
+    \item[Chapter 5:] elucidates the requirements, design and implementation of the proposed solution.
+    \item[Chapter 6:] presents the trials and tribulations of implementing a hybrid software application.
+    \item[Chapter 7:] concludes with a summary of this research and discusses ideas for future work.
+\end{description}

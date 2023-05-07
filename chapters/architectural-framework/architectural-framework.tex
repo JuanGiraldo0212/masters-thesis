@@ -1,0 +1,292 @@
+\startchapter{Quality-driven Self-Improvement Feedback Loop}
+\label{chapter:architectural-framework}
+
+\minitoc
+
+Increasing uncertainty % due to unpredictable environments and changing requirements
+demands organizations to react and adapt to change more quickly than ever before. At the same time, customers expect the continuous delivery of first-rate service quality. Architecture design together with dynamic infrastructure provisioning are critical in achieving the required agility and quality while keeping operational costs under control. Indeed, just-in-time elastic infrastructures allow reducing time to market while enabling the system to respond to ongoing and evolving environmental factors by adding resources on demand. Of course, adding computing power to a system is possible and worthwhile to the extent permitted by the architecture. In other words, power alone is not the only answer~\cite{beyer-2016-site}. Abusing the cloud's elasticity to make up for the lack of adequate design structures could lead to infrastructure over-provisioning, thus, increasing the total cost of software ownership.
+
+Finding a cost-effective software architecture and hardware configuration that satisfy the quality requirements is challenging, especially under uncertain execution conditions. First and foremost because actual workload requirements can change, unexpectedly. For instance, before the launch of Niantic's virtual-reality mobile game \emph{Pok\'{e}mon Go}, the engineering team tested the load capacity of the system to process up to five times their most optimistic traffic estimate. Nonetheless in fact, the launch requests per second rate was nearly fifty times larger~\cite{beyer-2018-site}. In settings like this, a reasonable development process requires consecutive cycles of configuration and deployment. On the one hand, it is necessary to characterize the behavior of the software system under different architecture configuration and execution scenarios. On the other hand, the team must also determine an adequate configuration for infrastructure resources. Second, there is a constant trade-off between spending time finding adequate configurations and developing bug fixes and features. This occurs primarily when the configuration changes do not produce any direct benefit for the users. Oftentimes, over-provisioning the infrastructure is seen as an alternative to meet the agreed quality of service in the face of uncertainty. However, because new code can add additional inefficiencies, a vicious cycle sets in while the cost of operation augments silently until it is too high, or adding more resources stops being effective (\eg{the workload is transferred to the database}).
+
+In software-intensive industries, where the talent shortage only seems to grow~\cite{radant-2014-analysis,breaux-2021-software}, companies must find innovative solutions to the uncertainty problem. We advocate for the application of autonomic computing to development practices, not only to expedite software delivery, but especially to adjust the software based on changes in its execution environment. That is, in addition to continuous assessment of quality requirements as part of the delivery pipeline, we propose performing continuous improvement and adjustment as well. Thereby, self-management capabilities help remove what we consider to be a remaining discontinuity in the development process. Applying self-management as part of the delivery pipeline enables a connection between development and execution beyond the software. Knowledge developed by autonomic managers at development-time can be exploited and augmented at run-time. This, combined with the framework for continuous software evolution pipelines (\cf{Chapter~\ref{chapter:delivery-platform}}), realizes a continuous evolution process, thus mitigating run-time uncertainty.
+
+This chapter presents a self-improvement feedback loop for exploring suitable architecture and infrastructure variants during development as a way of instilling self-evolution. Its main objective is to improve \glspl{kpi} continuously. Such a feedback loop is based on what we call \emph{quality-driven experimentation}. That is, a best-effort approach to quality improvement driven by experiment modeling and statistical analysis. The remainder of this chapter is organized as follows. First, Section~\ref{sect:architectural-framework--overview} contextualizes our self-improvement feedback loop into the overall solution strategy presented in this dissertation. Section~\ref{sect:architectural-framework--online-experiment-design} explores modeling aspects of online experiment design. Section~\ref{sect:architectural-framework--experiment-management} follows the separation of concerns principle by decomposing the proposed feedback loop into experimentation, provisioning and configuration components. Moreover, it details how our feedback loop fits into the framework for continuous software evolution pipelines we presented in Chapter~\ref{chapter:delivery-platform}. Finally, Section~\ref{sect:architectural-framework--system-variant-generation} describes our proposed alternatives to devise architecture and infrastructure variants autonomically, even though our framework can accommodate any other.
+
+\begin{InfoBox}[Correspondences in This Chapter]
+	\emph{Addressed Challenge(s)}: \textsc{Ch}4---Self-improvement mechanisms should use design and analysis of experiments to explore system alternatives for the dimensions of interest; and \textsc{Ch}5---Self-improvement mechanisms should factor execution conditions into the experiment design; 
+	\emph{Question(s)}: \textsc{Q}5---How can autonomic managers produce architectural and deployment variants? and \textsc{Q}6---How to reproduce typical execution scenarios in a controlled environment automatically? 
+	\emph{Goal(s)}: \textsc{G}3---Develop an experimentation-driven self-improvement mechanism to improve \glspl{kpi} during development; 
+	\emph{Contribution(s)}: \textsc{C}2---Quality-driven self-improvement feedback loop.
+\end{InfoBox}
+
+\section{Overview of the Feedback Loop in Our Solution Strategy}
+\label{sect:architectural-framework--overview}
+
+In this dissertation, we distinguish between traditional experimentation in software engineering and quality-driven experimentation. We make this distinction to emphasize the reduced scope of the latter with respect to the former. Classic experimentation has been conducted either by large organizations or research institutions with the purpose of evaluating development processes or practices. It is mainly presented as a research activity, thereby its return on investment may not be perceived as valuable by small companies. Oftentimes, this is the case because they are focused on delivering customer value to survive in increasingly competitive markets. This may be a plausible reason as to why they mostly conduct business-driven experiments. In contrast, we propose quality-driven experimentation as a best-effort approach to continuous improvement. This technique focuses on the qualities that make the subject software better, especially those most directly experienced by end users. Application examples are systematic design pattern selection and configuration, quality attribute optimization, and configuration tuning. It is not necessary to engage in all experimentation activities nonetheless, but only the ones adding quality to the product.
+
+Two common arguments to refuse undertaking experimentation are that it slows progress and that experiments cost too much~\cite{tichy-1998-should}. Quality-driven experiments are not only about trying out innovative solutions or embarking on large-scale studies, but exploring design, configuration and deployment alternatives with a reduced scope. In this chapter, we propose automating the design and execution of experiments, as well as the exploitation of resulting insights to improve performance factors (\eg{service latency and throughput}). To this end, Section~\ref{subsect:architectural-framework--self-improvement} describes how the proposed feedback loop fits into our overall goal of automating software evolution during development. Section~\ref{subsect:architectural-framework--continuous-quality-assessment} explains how our approach contributes to removing one of the remaining discontinuities in the development process. And Section~\ref{subsect:architectural-framework--system-modeling-and-evolution} describes the modeling layers to realize the feedback loop, including the physical and virtual infrastructure, as well as the software application.
+
+\subsection{Self-Managed Evolution of Development Artifacts}
+\label{subsect:architectural-framework--self-improvement}
+
+Chapter~\ref{chapter:delivery-platform} introduced a support layer for synchronizing development-time and run-time artifacts. When used in production, as described throughout the chapter, it frees autonomic managers and stakeholders from producing additional updates to development artifacts, thus contributing to reduce the technical debt. Nevertheless, it fits well in other environments as well. The self-improvement feedback loop, we present in this chapter, takes advantage of the framework for continuous evolution pipelines. It aims to produce persistent updates during development by exploring possible modifications to development artifacts. The end goal, in this case, is to find potential improvements for \glspl{kpi}.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.9\columnwidth]{fig/architectural-framework/architectural-framework--self-improvement.pdf}
+	\caption{Self-evolution through self-improvement}
+	\label{fig:architectural-framework--evolution-outline-self-improvement}
+\end{figure}
+
+Figure~\ref{fig:architectural-framework--evolution-outline-self-improvement} depicts how the self-improvement feedback loop fits into the time-of-change timeline. As discussed in Section~\ref{subsect:overview--time-of-change-timeline}, we choose the development environment for exploring configuration alternatives for two reasons. First, it is stable enough to avoid wasting computational resources, and second, it is not as critical as subsequent environments for introducing changes. The self-improvement process starts once the development team creates a new alpha release. The build server triggers the self-improvement feedback loop, which generates and deploys system variants to an ephemeral controlled environment. Improvements are implemented using the \gls{ci}-aware evolution workflow introduced in Section~\ref{subsect:delivery-platform--self-evolution-workflows}. Thereby, our feedback loop realizes self-evolution from a software engineering viewpoint (\cf{Section~\ref{subsect:overview--self-management}}).
+
+\subsection{Continuous Quality Assessment and Improvement}
+\label{subsect:architectural-framework--continuous-quality-assessment}
+
+As mentioned in Section~\ref{sect:overview--off-line-and-on-line-reconceptualization}, a remaining discontinuity in the development process concerns the continuous adjustment of design, configuration and deployment. Despite development teams automating the reporting of performance inefficiencies, adjustment of design, configuration and deployment artifacts is not as frequent as required. We address this discontinuity by taking advantage of existing performance assessment facilities to improve the run-time quality. That is, from load, stress, spike, soak and scalability testing artifacts, our self-improvement feedback loop measures the response to variations in the software architecture and configuration parameters. It is through continuous quality evaluation that our feedback loop establishes a quality baseline against which system variants are compared.
+
+The experimentation process is independent from developers' work. Since it takes the latest alpha release as a starting point, daily software changes are unlikely to invalidate previously found improvements. In essence, the feedback loop acts as another developer whose main goal is to adjust the computing infrastructure and the software architecture. Once it finds a better alternative, it proposes the changes explaining the modifications and perceptual gains per \gls{kpi}. Thereby, the self-improvement feedback loop aims to keep the system performant regardless of its evolution over time. In case neither the system baseline nor its variants meet the quality requirements, the feedback loop can alert the team.
+
+Our self-improvement feedback loop reduces the risk of deciding too early in the design process. By providing an initial architecture with fewer assumptions (\eg{not choosing a particular strategy to balance or distribute the workload}), the team delays architectural decisions that will impact run-time qualities of the software. The feedback loop can then determine the best possible combination of design variants that will produce the expected quality. The benefit of such an approach is that the architecture will evolve along with the execution context (\eg{user traffic over time}), freeing the team from the related maintenance and development activities, at least at a high level. Moreover, the feedback loop can confirm whether initial assumptions of the execution context still hold and explore possible improvements if necessary.
+
+\subsection{Multi-Layer System Modeling and Evolution}
+\label{subsect:architectural-framework--system-modeling-and-evolution}
+
+Computing systems typically encompass multiple levels of specification and configuration. Accordingly, the self-improvement feedback loop can focus on exploring various aspects of the software architecture and the deployment configuration across these levels. Figure~\ref{fig:architectural-framework--modeling-layers} illustrates a high-level view of our feedback loop applied to four modeling layers, namely: Physical Infrastructure, which comprises \gls{cac} specifications and refers to operating system packages, services, policies and similar artifacts; Virtual Infrastructure, which comprises \gls{iac} specifications and refers to virtual machines, volumes, networks and similar resources; Software Deployment, which comprises any type of software configuration external to the application; and Software Application, which comprises functional elements, typically in the form of component or service definitions. These modeling layers represent aspects of the managed system that can be manipulated by the self-improvement feedback loop. Ultimately, a system variant that outperforms the baseline configuration will be used to update the specifications as described in Chapter~\ref{chapter:delivery-platform}. That is, a run-time agent (\cf{$\encircleblack{\textperiodcentered}$~in Figure~\ref{fig:architectural-framework--modeling-layers}}) will derive the code contributions from its \glspl{mart}.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.65\columnwidth]{fig/architectural-framework/architectural-framework--modeling-layers-2.pdf}
+	\caption{Levels of system specification and configuration}
+	\label{fig:architectural-framework--modeling-layers}
+\end{figure}
+
+The modeling layer is the basis for generating system variants autonomically. For example, given a \gls{vm} with attributes \gls{ram} and number of \glspl{vcpu}, the self-improvement feedback loop can generate variants by selecting a different attribute value each time. It can do so because the models contain domain-specific information, such as valid memory sizes. A more advanced strategy consists in inserting new services into the software deployment to better handle the service demand. For example, a system variant may include a proxy cache to reduce network usage; or a rate-limiting proxy to continue serving requests while new computing nodes are deployed to handle a surge in demand; or a rate-limiting proxy to mitigate a denial of service attack.
+
+In addition to the modeling layers presented in Figure~\ref{fig:architectural-framework--modeling-layers}, we identify an additional documentation layer.\footnote{In this dissertation, we concentrate on the modeling layer nonetheless.} It contains models to coordinate and document the software evolution, namely: a \gls{qos} model to represent \glspl{kpi} and their relationship with the application services (\eg{Kritikos \etal{}'s ideal quality of service metamodel~\cite{kritikos-2013-survey}}); a software changes model to specify the model changes included in a code contribution. This model is highly relevant for humans in the loop since they will likely need to evaluate whether a contribution is valuable and trustworthy, thus needing to understand the changes at an adequate level of abstraction. Furthermore, autonomic managers could use this model to create reconfiguration plans, and run-time agents could use it to propagate changes via their causal connections; and a decision documentation model for explaining to humans in the loop the rationale behind a code contribution and support its traceability from the software requirements (\eg{Hesse and Paech's decision model~\cite{hesse-2013-supporting}}).
+
+
+\section{Online Experiment Modeling}
+\label{sect:architectural-framework--online-experiment-design}
+
+We guide the design of online experiments based on the concept map depicted in Figure~\ref{fig:architectural-framework--concept-map}. A feedback loop controls the planning and execution of experiment trials based on the concepts and relationships included in the concept map. An \emph{experiment} (\cf{$\encircleblack{A}$}) is first scoped by defining what is studied (\eg{the virtual infrastructure}), the particular focus (\eg{effectiveness and cost of the computing cluster's size}) and perspective (\eg{the end user}), the context of execution (\eg{the managed system}), and the intention behind it (\eg{to predict the number of erroneous requests})~\cite{basili-1988-tame,wohlin-2012-experimentation}. Each experiment states a \emph{hypothesis} in the form of an expression that operates on \emph{independent} variables to obtain \emph{dependent} variables across \emph{trials}, performed through observed system executions. Each variable (\cf{$\encircleblack{B}$}) is measured within a sampling rate and a measuring instrument (\eg{through a performance monitor}). An experiment consists of a set of trials whose \emph{object} is typically a managed system and \emph{subject} is an autonomic manager. The trials can be executed sequentially or concurrently (\cf{attribute \texttt{execMode} of concept \emph{experiment}}). Each trial entails a \emph{treatment} that considers a particular factor (\ie{an independent variable}), such as the number of computing nodes in a cluster, and a set of confoundings (\ie{extraneous variables}), such as whether the computing cluster runs on a shared physical infrastructure.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.7\columnwidth]{fig/architectural-framework/architectural-framework--concept-map.pdf}
+	\caption{Our concept map to guide the online design of experiments}
+	\label{fig:architectural-framework--concept-map}
+\end{figure}
+
+An experiment can be a \emph{controlled experiment}---conducted in a lab or a replica of the production environment; a \emph{field experiment}---conducted in production, along with the object of study; or a \emph{natural experiment}---its object of study is determined by factors outside the control of the subject (\eg{an experiment-agnostic human in the loop}). A field experiment can be deployed selecting among various strategies, namely: \emph{canary release}---the experimental code is exposed to a subset of users only, aiming at finding bugs on a small sample of the user population~\cite{humble-2010-continuous}; \emph{gradual rollout}---the system variant is exposed to a percentage of the user base, which increases over time until it reaches 100\%~\cite{humble-2010-continuous}; \emph{A/B testing}---two user groups access the system baseline and variant; and \emph{dark launch}---the system variant is deployed to the production environment silently (\ie{without being visible to any user}) to test performance regressions using real user traffic. Since we chose the development environment for conducting self-improvement, this chapter focuses on controlled experiments only.
+
+For experiments conducted on managed systems, each experiment can be implemented through a feature \emph{toggle} or \emph{variant}. Since a feature toggle is shipped together with the original object, the effect on dependent variables can be measured based on actual user traffic. For feature variants, the outputs can be measured based on various strategies, namely: \emph{traffic routing}, meaning that user traffic is routed to the variant as it happens;  \emph{traffic simulation}, consisting of statistical simulation of user behavior (\eg{queuing theory}); \emph{traffic emulation}, consisting of reproducing historical user traffic; and \emph{regression testing}, consisting of automated load, stress, spike, soak and scalability tests.
+
+In Figure~\ref{fig:architectural-framework--concept-map} we omitted the definition of attribute types to simplify the concepts. The complete metamodel definition is depicted in Figure~\ref{fig:architectural-framework--metamodel}.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=1\columnwidth]{fig/architectural-framework/architectural-framework--metamodel.pdf}
+	\caption{Our metamodel for online design of experiments}
+	\label{fig:architectural-framework--metamodel}
+\end{figure}
+
+\section{Online Experiment Management}
+\label{sect:architectural-framework--experiment-management}
+
+% This section describes how we use quality-driven experimentation for online decision making. Then, it explains our feedback loop and describes its components.
+
+Our feedback loop for planning and conducting online experiments is based on the \gls{acra}~\cite{ibm-2005-architectural} and the DYNAMICO reference model~\cite{villegas-2013-dynamico}. We reuse the control hierarchy from the former, and the goal management from the latter. Moreover, we address the separation of concerns in the experimentation process by decomposing the self-improvement feedback loop into three feedback loops with a reduced scope. Each of them is based on the \gls{mapek} reference model~\cite{kephart-2003-vision}. Figure~\ref{fig:architectural-framework--feedback-loops-overview} illustrates them and their high-level interactions. The \emph{\acrlong{efl}} (\acrshort{efl}) controls the satisfaction of high-level experimentation goals through online experiment design (\cf{component~$\encircleblack{A}$}). The \emph{\acrlong{pfl}} (\acrshort{pfl}) derives, deploys and monitors infrastructure configuration variants (\cf{component~$\encircleblack{B}$}) in the form of \gls{iac}; and the \emph{\acrlong{cfl}} (\acrshort{cfl}) derives, deploys and monitors architectural design variants (\cf{component~$\encircleblack{C}$}). The deployment of system variants is done through the continuous evolution pipeline. Components Run-time agent, Evolution coordinator and Deployment template manager in Figure~\ref{fig:architectural-framework--feedback-loops-overview} reference the workflow depicted previously in Chapter~\ref{chapter:delivery-platform}, Section~\ref{subsect:delivery-platform--run-time-state-synchronization}. Once an experiment is finished, the \gls{efl} performs a persistent update through the run-time agent based on the system variant with the highest performance, if any.
+
+\begin{figure}[p]
+	\centering
+	\includegraphics[width=0.55\columnwidth]{fig/architectural-framework/architectural-framework--feedback-loops-overview-2.pdf}
+	\caption{Structural view of the self-improvement feedback loop}
+	\label{fig:architectural-framework--feedback-loops-overview}
+	(FL stands for Feedback Loop)
+\end{figure}
+
+The \gls{pfl} derives system variants by applying combinatorial techniques to configuration parameters of declared virtual resources. In contrast, the \gls{cfl} derives system variants by applying domain-specific design patterns to the managed system's architecture. The \gls{cfl} relies on its capability to measure the impact of design patterns on \glspl{kpi}.
+
+Although the impact of design patterns is quantifiable under controlled conditions, their application during software design is generally not data-driven. In practice, there is a vast body of knowledge to understand the motivating forces, structure and behavior of design patterns. However, there is a lack of quantitative data and analysis of their impact at run-time. We claim that our online experiments can help on two fronts. First, they help deciding which combination of patterns is best for specific workloads and quality requirements (\ie{the experimentation goal}). Second, our experiments help in tuning configuration parameters of each pattern. For example, setting up the number of worker connections and the limit on worker processes for a load balancer. Furthermore, the number of proxy workers must be determined according to the workload, taking into account that too many workers will negatively impact the database performance, or worse, will not contribute at all but will consume resources nonetheless. These are tasks for which development and operation teams have to account, relying on informal communications, metrics, logs and, oftentimes, trial and error.
+
+Figure~\ref{fig:architectural-framework--experimentation-architecture} illustrates the elements composing each feedback loop and their interactions. We describe these elements in detail in \cref{subsect:architectural-framework--E-FL,subsect:architectural-framework--P-FL,subsect:architectural-framework--C-FL}.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.9\columnwidth]{fig/architectural-framework/architectural-framework--experimentation-architecture.pdf}
+	\caption{Internal feedback loops for experimentation, provisioning and configuration}
+	\label{fig:architectural-framework--experimentation-architecture}
+	We omitted the Knowledge element of the \gls{mapek} model.
+\end{figure}
+
+\subsection{The Experimentation Feedback Loop (\acrshort{efl})}
+\label{subsect:architectural-framework--E-FL}
+
+The \gls{efl} synthesizes experiments based on a factorial design with 5 factors: i) the execution scenario modeled by the testing artifacts; ii) the arrangement of architectural elements; iii) the amount of \gls{ram} per computing node; iv) the number of \glsentryfullpl{vcpu} per node; and v) the number of nodes in the computing cluster. The execution scenario is either constant traffic, linear growth of service demand, exponential growth of service demand, or quick surge of user requests (\ie{a spike}). The \gls{efl} explores the search space aiming to meet high-level \glsentryfull{qos} goals. An example \gls{qos} goal is minimizing the latency for a particular software service.
+
+Since the experiments exhaustively explore the search space, a first assessment of the approach may be that it takes too long to be useful or too expensive to be worth it. Nevertheless, new alpha releases of the software system are unlikely to affect past explorations heavily and frequently. This means that memoization techniques, along with a reassessment strategy,\footnote{For example, testing various combinations of factor values randomly to verify whether past explorations yield a similar result.} can considerably reduce the experimentation time in subsequent releases. Moreover, even though experiments are conducted in the development environment, the search space exploration can be tremendously useful at run-time. The combination of factor values and measured \glspl{kpi} serves as a data set to predict the behavior of the system during known execution scenarios. Run-time autonomic managers can bypass the exploration phase, perform pruning on the search space, or rather augment the data set, thus collaborating across environments.
+
+The \emph{Analyzer} uses partial and complete experiment results, if any, collected by the \emph{Monitor} (\cf{interactions~$\encircleblack{D}$ and~$\encircleblack{E}$ in Figure~\ref{fig:architectural-framework--experimentation-architecture}}) to determine whether the \emph{Planner} needs to update the current experiment design or create a new one. In the first case, the Planner will stop underperforming trials or discard those considered as less effective by the \emph{Analyzer}. In the second case, the Planner fetches deployment and configuration patterns from the \emph{Knowledge} element, and synthesizes one experiment design for the infrastructure and another for the software architecture. Both designs describe a controlled experiment implemented with feature variants according to our metamodel (\cf{Figure~\ref{fig:architectural-framework--metamodel}}). The design contains at least one trial per variant, but can include more for increased accuracy. The \emph{Executor} component instantiates the \gls{pfl} and \gls{cfl}, passing as arguments the experiment designs and the \gls{qos} reference values. In case the \gls{qos} goal changes, this Executor updates the reference values in the \gls{pfl} and \gls{cfl} (\cf{interactions~$\encircleblack{A}$ and~$\encircleblack{B}$}).
+
+\subsection{Statistical Analysis of Experiment Results}
+
+%\remarks{Hausi: Example of how these tests are calculated / performed?}
+
+Depending on the type of experiment and the quality attribute under improvement, the target system is instrumented for data gathering and action enactment. Data gathering is performed by monitors deployed in the system. Once the experiment finishes, a set of statistical analyzers is launched to compute the selected \glspl{kpi} of interest.
+
+To select the system variant with the highest performance, the \gls{efl} processes collected samples---included in the experiment results---from two fronts. On the one hand, the \gls{efl} generates multiple charts per variant as well as summary charts comparing the mean, standard deviation, standard error and confidence interval of the data. These charts are relevant for humans in the loop who want to further understand why the \gls{efl} selected a particular variant. The charts are accessible through the merge request created by the Evolution Coordinator component of the framework for continuous software evolution pipelines (\cf{Section~\ref{subsect:delivery-platform--run-time-state-synchronization}}). On the other hand, the \gls{efl} runs various tests on the data to determine which variant performed best and whether there is a significant difference in the measured \gls{kpi} with respect to the other variants. These tests are conducted per application service because the results can significantly vary. The statistical tests are executed as follows.
+
+\begin{enumerate}
+	\item Consolidate the samples into a single data set and filter out erroneous requests.
+	\item Use the Shapiro-Wilk test to determine whether the samples are normal.
+	\item Determine if the mean value is significantly different across variants using an analysis of variance (ANOVA) or a Kruskal-Wallis test depending on whether the samples are normal. In case more than one \gls{kpi} is being studied, ANCOVA must be used instead.
+	\item If the mean values are found not significantly different, select any variant as the best one. In the opposite case, perform Dunn’s test or Tukey HSD to cluster similar variants, depending on whether the samples are normal.
+	\item Combine the results for all the application services to select a single best variant. The selection is made by minimizing or maximizing the \gls{kpi} under analysis, depending on each case.
+\end{enumerate}
+
+\subsection{The Provisioning Feedback Loop (\acrshort{pfl})}
+\label{subsect:architectural-framework--P-FL}
+
+The \gls{pfl} targets the experiment design part that is related to the virtual infrastructure where the configuration variants will be executed (\eg{in cloud-provisioned virtual machines}). The \emph{Planner} synthesizes a provisioning plan based on the experiment trials involving the infrastructure. Using the provisioning plan, the \emph{Executor} deploys and configures the corresponding resources accordingly and provides the \gls{cfl} with infrastructure data (\cf{interaction~$\encircleblack{C}$}). The \emph{Monitor} collects measurements from the deployed resources, and the \emph{Analyzer} aggregates and classifies them into partial and complete experiment results to feed them back to the \gls{efl} (\cf{interaction~$\encircleblack{E}$}). In case the \gls{efl} provides a new experiment design or updates the current one, the \emph{Analyzer} determines whether the provisioning plan should be resynthesized, thus triggering the redeployment of computing resources.
+
+\subsection{The Configuration Feedback Loop (\acrshort{cfl})}
+\label{subsect:architectural-framework--C-FL}
+
+The \gls{cfl} deals with software architecture design variants based on the factors specified in the design supplied by the \gls{efl}. The \emph{Planner} derives system variants based on the software architecture part of the experiment design. Next, the \emph{Executor} deploys the variant being tried. Once it is running, the \emph{Executor} deploys the necessary \emph{Monitor}(s) for collecting the software \gls{qos} metrics and starts the testing strategy defined in the experiment design (\eg{traffic emulation}). This assumes that the baseline code includes the necessary testing artifacts to ensure these actions. Since there can be significant variability in the monitoring requirements, the deployment of the monitors might be non-trivial~\cite{villegas-2013-context}. For instance, measuring throughput may require a particular data aggregation strategy across various services. Once the monitors have been deployed, the \emph{Analyzer} aggregates and classifies the collected metrics into partial and complete experiment results to feed them back to the \gls{efl} (\cf{interaction~$\encircleblack{D}$}). It also determines whether it is necessary to derive the variants again, and therefore redeploy the software variants when the experiment design is updated by the \gls{efl}.
+
+
+\section{System Variant Generation}
+\label{sect:architectural-framework--system-variant-generation}
+
+As mentioned before, this chapter focuses on system variants at the virtual infrastructure and software deployment levels. This section details what variants are included and how they are derived. \Cref{subsect:architectural-framework--infrastructure-variant-generation,subsect:architectural-framework--infrastructure-variant-generation,subsect:architectural-framework--architectural-variant-generation} describe infrastructure and architectural variants, respectively.
+
+\subsection{Infrastructure Variant Generation}
+\label{subsect:architectural-framework--infrastructure-variant-generation}
+
+The \gls{pfl} derives system variants by applying combinatorial techniques to the managed system's Virtual Infrastructure modeling layer (\cf{Section~\ref{subsect:architectural-framework--system-modeling-and-evolution}}). It generates numerical and nominal values corresponding to virtual resources' attributes, thus producing distinct configurations of them. We focus on cluster configuration by evaluating the number of virtual machines (\ie{computing nodes}), the \gls{ram} size and number of \glspl{vcpu} per node.
+
+Infrastructure variants generation follows the standard implementation of a genetic algorithm with integer genes. Each possible configuration is represented as an array of integer values, where each element refers to a concrete value for a particular attribute of the cluster. For example, the configuration $[1, 2, 3]$ represents a cluster with 1 node, 4GB of \gls{ram} per node, and 6 \glspl{vcpu} per node. The number of nodes range from 1 to 6; \gls{ram} belongs to the set ${2, 4, 6, 8}$; and \glspl{vcpu} belongs to the set ${2, 4, 6, 8}$. The algorithm uses two alterers: a single point crossover and a mutator. The goal is to minimize the fitness score, which comprises \glspl{kpi} of interest measured both in the infrastructure (\eg{resource utilization}) and the software application (\eg{service latency}).
+
+Infrastructure variants generation can either affect the \gls{iac} template, the template instance, or both. In the first case, selecting a concrete parameter value may require updating the declaration of resources in the \gls{iac} template. This requirement is technology- and vendor-specific.\footnote{For example, vendor A may provide an abstraction to declare computing clusters, including the number of nodes as a parameter, whereas vendor B requires declaring the computing nodes as independent virtual machines.} In the second case, the \gls{pfl} will update parameter values of the template instance. In both cases, the \gls{pfl} performs these persistent updates through the run-time agent (\cf{Figure~\ref{fig:architectural-framework--feedback-loops-overview}}), following the direct evolution workflow (\cf{Section~\ref{subsect:delivery-platform--self-evolution-workflows}}).
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.95\columnwidth]{fig/architectural-framework/architectural-framework--metamodel-openstack.pdf}
+	\caption{Our metamodel for virtual resources supported by OpenStack}
+	\label{fig:architectural-framework--model-openstack}
+\end{figure}
+
+%\begin{figure}[h]
+%	\centering
+%	\includegraphics[width=0.9\columnwidth]{fig/architectural-framework/architectural-framework--metamodel-hcl.pdf}
+%	\caption{Metamodel for \gls{iac} specifications using the \gls{hcl}}
+%	\label{fig:architectural-framework--model-hcl}
+%\end{figure}
+
+In the public cloud, vendors usually set the compute and memory capacity of virtual machines to a concrete list of combinations. This is known as \emph{t-shirt sizing}. This limitation greatly reduces the search space based on available sizes. Consider OpenStack\footnote{An open source cloud software solution (\url{https://www.openstack.org}).} as an example. Figure~\ref{fig:architectural-framework--model-openstack} depicts our metamodel for representing the computing resources of OpenStack. An \emph{Instance} represents a virtual machine running on OpenStack. All instances are created based on a particular \emph{Flavor}---a \emph{t-shirt} size. For the attribute values presented at the beginning of this section, there are 96 possible infrastructure variants (\ie{$6*4*4$}), including only 4 options for  \gls{ram} and  \glspl{vcpu}. T-shirt sizing considerably reduces the experimentation time, but at the same time prevents the \gls{pfl} from executing fine-grained control actions.
+
+\begin{figure}[p]
+	\centering
+	\includegraphics[width=0.95\columnwidth]{fig/evaluation/evaluation--im-experimentation-workflow.pdf}
+	\caption{Experimentation workflow to devise, deploy and select infrastructure variants}
+	\label{fig:evaluation--im-experimentation-workflow}
+\end{figure}
+
+Figure~\ref{fig:evaluation--im-experimentation-workflow} depicts a high-level workflow of the infrastructure experimentation process. This figure details, step by step, how the \gls{pfl} conducts each deployment. The \gls{pfl} interfaces with various third-party utilities, which in Figure~\ref{fig:evaluation--im-experimentation-workflow} are exemplified by git, jMeter, Kubernetes, R, and Terraform. Git is used to create a local clone of the managed system's source code. jMeter allows specifying and running performance testing plans. An outcome of these plans is performance data for each service request. R scripts could be used to automate the analysis of the collected data, and the generation of statistical information.
+
+\subsection{Architectural Variant Generation}
+\label{subsect:architectural-framework--architectural-variant-generation}
+
+The \gls{cfl} derives system variants by applying domain-specific design patterns to the Software Deployment modeling layer (\cf{Section~\ref{subsect:architectural-framework--system-modeling-and-evolution}}). More specifically, it applies deployment and configuration patterns for cloud software~\cite{homer-2014-cloud,erl-2015-cloud}, which include design strategies for load balancing, caching, routing, rate limiting, and job handling. Patterns such as proxies, interceptors, and decorators are plugged-in directly into the deployment specification. A generic pattern implementation contains the logic to declare and connect third-party components (\eg{A Web Application Firewall}) with application components. This is possible because new architectural elements are encapsulated in containers, which greatly facilitates their integration with the managed system through port bindings. For example, adding a SQL proxy to a specified database server requires: i)~declaring the proxy in the specification exposing the database server's original connection port; ii)~modifying the database server's connection port to another one that is available; and iii)~configuring the origin server's port in the proxy to be the new database server's port. More advanced patterns can also be implemented as long as they and the software application are prepared beforehand, as in works such as QoS-CARE~\cite{tamura-2012-qos-care}. For example, the Master element of the Master/Worker design pattern is generally application-specific. This limitation comes from the strategy to split and merge each request, which depends upon the application's functional requirements. Furthermore, the service provider and consumer to which Master/Worker is applied must define an explicit service contract using language-agnostic interfaces.\footnote{This can be done using an interface definition language such as Protocol buffers (\url{https://developers.google.com/protocol-buffers}) or Apache Thrift (\url{https://thrift.apache.org})} Based on the interfaces, the \gls{cfl} can generate adapter components required to apply the pattern. Other patterns with similar requirements are Consumer/Producer and Reactor. Adding support for these patterns requires an additional investment of time and effort. Nevertheless, the architectural agility they provide pays off over time as less maintenance and tuning is necessary. Moreover, the extra effort is only required for developing adapter components, not complex business logic.
+
+Figure~\ref{fig:architectural-framework--CMES-LB-deployment} illustrates the Load Balancer pattern applied to a simple client/server application. The left-hand side of the figure depicts Linux containers \texttt{API} and \texttt{Worker} assembled into one \emph{pod}---a group of one or more containers with shared storage and network. The right-hand side of the figure shows the same containers, now exposed through a service each (\cf{frontend-svc and backend-svc}). This allows exposing a single port while balancing requests through multiple pod instances (\cf{frontend and backend}). Figure~\ref{fig:architectural-framework--CMES-PC-deployment} shows the same example application after having applied both Load Balancer and Producer/Consumer. The latter's implementation creates two adapter components based on the service interface. The first one takes requests produced by \texttt{API} and enqueues them into \texttt{queue}. The second one dequeues the requests and passes them to \texttt{Worker}. An implementation of Producer/Consumer without Load Balancer would group \texttt{API} and \texttt{Worker} with the corresponding adapter into a pod.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.9\columnwidth]{fig/architectural-framework/architectural-framework--CMES-LB-deployment-2.pdf}
+	\caption{Deployment configuration before and after applying a Load Balancer}
+	\label{fig:architectural-framework--CMES-LB-deployment}
+\end{figure}
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.7\columnwidth]{fig/architectural-framework/architectural-framework--CMES-PC-deployment.pdf}
+	\caption{Deployment configuration using Producer/Consumer}
+	\label{fig:architectural-framework--CMES-PC-deployment}
+\end{figure}
+
+%\begin{figure}[h]
+%	\centering
+%	\includegraphics[width=0.35\columnwidth]{fig/architectural-framework/architectural-framework--CMES-deployment.pdf}
+%	\caption{Initial deployment configuration of the CMES example}
+%	\label{fig:architectural-framework--CMES-deployment}
+%\end{figure}
+
+%\subsubsection{Generation Algorithm}
+
+Our variant generation algorithm, developed as a possible strategy in this dissertation, is inspired by evolutionary computation. It defines design variants modeling important features as chromosomes~(\(X\)) comprised of connection points (\ie{genes~(\(\Gamma\))}) between architectural elements~(\(E\)). The left-hand side of a connection plays the role of a client and the right-hand side plays the role of a server. These two roles match those present in common design patterns (\(\Phi\)). For example, for Producer/Consumer, Master/Worker and Reactor, the service providers (\ie{Consumer, Worker and Handler}) are the servers and the elements sending requests to them are the clients (\ie{Producer, Master and Client}); for a Load Balancer or any kind of Proxy, Decorator and Interceptor, the original client and server elements take the same role when the pattern is applied. Patterns may introduce new roles according to their structure, thus adding new architectural elements (\eg{\texttt{queue} in Figure~\ref{fig:architectural-framework--CMES-PC-deployment}}).
+
+The variants generation is as follows (\cf~Algorithm \ref{alg:architectural-framework--ga-variants-generation}). First, an initial population of chromosomes is generated by applying each pattern to the connection points defined between the architectural elements (\cf line 1). Then, a chromosome crossover phase takes place following a single-point crossover strategy~\cite{sivanandam-2008-terminologies}. In this phase, two chromosomes are combined to create a new one (\ie{a new variant}). The new chromosome adopts the client from one of the originating chromosomes and the server from the other one  (\cf line 3). Subsequently, the algorithm mutates the chromosomes by introducing a new pattern in one of the genes  (\cf line 13). For example, given the chromosome \mbox{Client$\circ\!\shortra\!\circ$Server}, a Proxy Cache can be added immediately after the client, thus resulting in \mbox{(Client$\shortra$Proxy Cache)$\shortra\!\circ$Server}. In a subsequent phase, the parenthesized elements represent a single connection point (\ie{a gene}), thus allowing to compose the patterns. Once the mutation phase is completed and also after each crossover, the algorithm evaluates the \textit{fitness} of each chromosome (\ie the validity of each variant, \cf lines 4 and 14). The fitness function is a predicate that determines whether a particular variant is worth running. The predicate evaluates the following constraint types: \emph{Exclusion}, which prevents equivalent patterns from being combined; \emph{Precedence}, which prevents invalid pattern combinations; \emph{Uniqueness}, which prevents a particular pattern from being applied multiple times; And \emph{Location}, which constraints the position of a pattern in the chromosome.
+
+The list below describes example constraints to evaluate whether a chromosome is valid.
+
+\begin{enumerate}[wide=0pt, widest={\bfseries Precedence}, leftmargin=*, font=\bfseries]
+	\item[Exclusion] Either Master/Worker or Producer/Consumer can be included in a chromosome but not both.
+	\item[Uniqueness] Master/Worker, Producer/Consumer and Rate Limiting Proxy must be included at most once in a chromosome.
+	\item[Location] Rate Limiting Proxy can only be included right after Client.
+	\item[Precedence] Master/Worker and Producer/Consumer must not be load-balanced. That is, Any preceding Load Balancer must have a distance of at least 2.
+	\item[Precedence] Load Balancer must not be immediately preceded by Master/Worker or Producer/Consumer.
+\end{enumerate}
+
+\begin{algorithm}[h]
+	\footnotesize
+	\DontPrintSemicolon
+	\SetAlgoLined
+	\KwData{\(\Phi=\{\varphi_{i} \mid \varphi_{i} \text{ is a pattern}\}, E=\{\varepsilon_{i} \mid \varepsilon_{i} \text{ is an architectural element} \}, \delta \in \mathbb{N} \)}
+	\KwResult{\(X = \{\chi_{i} \mid \chi_{i} \text{ is a chromosome}; \chi_{i} \ni \{\gamma_{i,1},\gamma_{i,2} \mid \gamma_{i,1},\gamma_{i,2} \text{ are genes} ; \gamma_{i,1},\gamma_{i,2} \in \Gamma; i,j \in \mathbb{N}\}\}\)}
+	
+	\tcp{Initialize the population}
+	\(X = \{\chi_{i} \mid \forall \chi_{i} \exists \gamma_{i,j}; PatternApplied(\gamma_{i,j},\varphi_{i}) \}\)
+	
+	\tcp{Perform the crossover on the population}	
+	\ForEach{\(\chi_{i}, \chi_{j} \in X; i \ne j \)}{
+		childChromosome = \(\{\gamma_{i,1}, \gamma_{j,2} \mid \gamma_{i,1} \in \chi_{i}; \gamma_{j,2} \in \chi_{j}\}\)\; 
+		\If{IsFit(childChromosome)}{
+			\(X = X \cup \{\text{childChromosome}\}\);	
+		}
+		
+	}
+	\tcp{Apply mutations (combinations)}
+	counter = 0\;
+	\While{counter < \(\delta\)}{
+		\ForEach{\(\varphi_{i} \in \Phi\)}{
+			\ForEach{\(\chi_{i} \in X\)}{
+				\ForEach{\(\gamma_{i,j} \in \chi_{i} ; j < |\chi_{i}|\)}{
+					newChromosome = ApplyPattern(\(\chi_{i},\gamma_{i,j},\varphi_{i}\))\;
+					\If{IsFit(newChromosome)}{
+						\(X = X \cup \{\text{newChromosome}\}\);	
+					}
+				}
+			}
+		}
+		counter++;	
+	}
+	
+	\caption{Design Variants Generation Algorithm}
+	\label{alg:architectural-framework--ga-variants-generation}
+\end{algorithm}
+
+
+As an example, consider the deployment depicted in Figure~\ref{fig:architectural-framework--CMES-LB-deployment}. In this case, the generation algorithm was invoked with components Client, API and Worker. Client is a component we injected synthetically that represents a user of the API, thus materializing the connection between them. The variant in the figure represents the output \mbox{(Client$\shortra$LB)$\circ\!\shortra$API$\shortra\!\circ$(LB$\shortra$Worker)}. Such a variant succeeds variants \mbox{(Client$\shortra$LB)$\circ\!\shortra$API$\shortra$Worker} and \mbox{Client$\shortra$API$\shortra\!\circ$(LB$\shortra$Worker)}.
+
+
+\section{Chapter Summary}
+
+The rate at which operational contexts and software requirements change increasingly requires accelerating the evolution of development artifacts. However, software systems grow at an exponential rate~\cite{van-genuchten-2012-compound,hatton-2017-long}, thus making it increasingly harder to match the pace of change. In practice, software changes emerging from the system execution are usually delayed in favor of fixing bugs and creating new software features, usually falling back to infrastructure over-provisioning as an alternative. To make matters worse, the talent shortage in software-intensive industries only seems to grow~\cite{radant-2014-analysis,breaux-2021-software}. The answer to this intricate problem is to balance \emph{manual} and \emph{autonomic} development work~\cite{bosch-2016-data}.
+
+This chapter presented our self-improvement feedback loop for continuous architecture and infrastructure adjustment. Our feedback loop aims to eliminate a remaining discontinuity from the development process. By extending quality assessment with continuous improvement, it frees stakeholders from maintenance work and expedites the implementation of software changes. In other words, it realizes self-improvement at development-time. The exploration and analysis of potential improvements (\ie{system variants}) is based on what we call quality-driven experiments. This is a best-effort approach to eventual quality improvement. When a system variant outperforms the managed system, the self-improvement feedback loop proposes the corresponding code contribution through a continuous software evolution pipeline (\cf{Chapter~\ref{chapter:delivery-platform}}).
+
+Following the separation of concerns principle, we decomposed our self-improvement feedback loop into three feedback loops with a reduced scope. The \emph{\acrlong[hyper=false]{efl}} (\acrshort{efl}) controls the satisfaction of high-level experimentation goals through online experiment design. The \emph{\acrlong[hyper=false]{pfl}} (\acrshort{pfl}) derives, deploys and monitors infrastructure configuration variants. And the \emph{\acrlong[hyper=false]{cfl}} (\acrshort{cfl}) derives, deploys and monitors architectural design variants. Both the \gls{pfl} and the \gls{cfl} derive system variants based on evolutionary computing. In the first case, the \gls{pfl} experiments with configuration parameters of declared virtual resources. In the second case, the \gls{cfl} experiments with domain-specific design patterns to create distinct arrangements of architectural components. Overall, the design of experiments, the generation of system variants and the update of software artifacts are driven by \glspl{mart}.
+
+Now that we have presented our approach for realizing self-evolution from a software engineering point of view, we shift the perspective to control theory. The next chapter presents our run-time evolution reference architecture for dependable autonomy and operational resiliency.

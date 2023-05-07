@@ -1,0 +1,79 @@
+\babel@toc {english}{}\relax 
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {2.1}{\ignorespaces Feedback and control loops\relax }}{14}{figure.caption.14}%
+\contentsline {figure}{\numberline {2.2}{\ignorespaces Reference models for adaptive control\relax }}{16}{figure.caption.15}%
+\contentsline {figure}{\numberline {2.3}{\ignorespaces The \acrshort {mapek} loop\relax }}{19}{figure.caption.16}%
+\contentsline {figure}{\numberline {2.4}{\ignorespaces The \acrlong [hyper=false]{iac} life cycle according to Terraform\relax }}{29}{figure.caption.17}%
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {3.1}{\ignorespaces Discontinuities in the development process\relax }}{33}{figure.caption.18}%
+\contentsline {figure}{\numberline {3.2}{\ignorespaces Offline and online reconceptualization\relax }}{35}{figure.caption.19}%
+\contentsline {figure}{\numberline {3.3}{\ignorespaces Self-evolution through self-improvement, self-regulation and self-management\relax }}{38}{figure.caption.20}%
+\contentsline {figure}{\numberline {3.4}{\ignorespaces Autonomic and continuous software evolution process\relax }}{39}{figure.caption.21}%
+\contentsline {figure}{\numberline {3.5}{\ignorespaces Conceptual model of \gls {suts} case study\relax }}{45}{figure.caption.22}%
+\contentsline {figure}{\numberline {3.6}{\ignorespaces Feature-based classification scheme for \gls {scps}.\relax }}{47}{figure.caption.23}%
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {4.1}{\ignorespaces Self-evolution through self-management\relax }}{50}{figure.caption.24}%
+\contentsline {figure}{\numberline {4.2}{\ignorespaces Overview of our self-evolution support layer\relax }}{52}{figure.caption.25}%
+\contentsline {figure}{\numberline {4.3}{\ignorespaces Direct and CI-aware self-evolution workflows\relax }}{53}{figure.caption.26}%
+\contentsline {figure}{\numberline {4.4}{\ignorespaces Domain and notation modeling relationships\relax }}{57}{figure.caption.27}%
+\contentsline {figure}{\numberline {4.5}{\ignorespaces Components of the \gls {ci} loop\relax }}{58}{figure.caption.28}%
+\contentsline {figure}{\numberline {4.6}{\ignorespaces Historian's output summary for our running example\relax }}{60}{figure.caption.29}%
+\contentsline {figure}{\numberline {4.7}{\ignorespaces A metamodel for monitoring \gls {rest} \glspl {api}\relax }}{62}{figure.caption.31}%
+\contentsline {figure}{\numberline {4.8}{\ignorespaces VMWare's vCenter \gls {api} as a dependency graph\relax }}{63}{figure.caption.32}%
+\contentsline {figure}{\numberline {4.9}{\ignorespaces Before and after applying a group by transformation\relax }}{65}{figure.caption.34}%
+\contentsline {figure}{\numberline {4.10}{\ignorespaces Before and after selecting a single value\relax }}{66}{figure.caption.35}%
+\contentsline {figure}{\numberline {4.11}{\ignorespaces Before and after augmenting the document with an input value\relax }}{66}{figure.caption.36}%
+\contentsline {figure}{\numberline {4.12}{\ignorespaces Evolution coordination for template and instance updates\relax }}{67}{figure.caption.37}%
+\contentsline {figure}{\numberline {4.13}{\ignorespaces Run-time state synchronization and automatic template and instance update\relax }}{68}{figure.caption.38}%
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {5.1}{\ignorespaces Self-evolution through self-improvement\relax }}{74}{figure.caption.39}%
+\contentsline {figure}{\numberline {5.2}{\ignorespaces Levels of system specification and configuration\relax }}{76}{figure.caption.40}%
+\contentsline {figure}{\numberline {5.3}{\ignorespaces Our concept map to guide the online design of experiments\relax }}{77}{figure.caption.41}%
+\contentsline {figure}{\numberline {5.4}{\ignorespaces Our metamodel for online design of experiments\relax }}{78}{figure.caption.42}%
+\contentsline {figure}{\numberline {5.5}{\ignorespaces Structural view of the self-improvement feedback loop\relax }}{80}{figure.caption.43}%
+\contentsline {figure}{\numberline {5.6}{\ignorespaces Internal feedback loops for experimentation, provisioning and configuration\relax }}{81}{figure.caption.44}%
+\contentsline {figure}{\numberline {5.7}{\ignorespaces Our metamodel for virtual resources supported by OpenStack\relax }}{84}{figure.caption.45}%
+\contentsline {figure}{\numberline {5.8}{\ignorespaces Experimentation workflow to devise, deploy and select infrastructure variants\relax }}{86}{figure.caption.46}%
+\contentsline {figure}{\numberline {5.9}{\ignorespaces Deployment configuration before and after applying a Load Balancer\relax }}{87}{figure.caption.47}%
+\contentsline {figure}{\numberline {5.10}{\ignorespaces Deployment configuration using Producer/Consumer\relax }}{88}{figure.caption.48}%
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {6.1}{\ignorespaces Self-regulation based on adaptive control\relax }}{96}{figure.caption.50}%
+\contentsline {figure}{\numberline {6.2}{\ignorespaces The proposed architecture\relax }}{97}{figure.caption.51}%
+\contentsline {figure}{\numberline {6.3}{\ignorespaces The dimensional control adapter\relax }}{98}{figure.caption.52}%
+\contentsline {figure}{\numberline {6.4}{\ignorespaces Viability zone for a particular variable of interest\relax }}{99}{figure.caption.53}%
+\contentsline {figure}{\numberline {6.5}{\ignorespaces The experimentation subsystem\relax }}{100}{figure.caption.54}%
+\contentsline {figure}{\numberline {6.6}{\ignorespaces Model identification workflow\relax }}{101}{figure.caption.55}%
+\contentsline {figure}{\numberline {6.7}{\ignorespaces Knowledge layer to support stakeholder interactions beyond change\relax }}{104}{figure.caption.56}%
+\contentsline {figure}{\numberline {6.8}{\ignorespaces Implicit and explicit knowledge processing\relax }}{105}{figure.caption.57}%
+\contentsline {figure}{\numberline {6.9}{\ignorespaces Conceptual continuous engineering cycle for run-time evolution\relax }}{107}{figure.caption.58}%
+\contentsline {figure}{\numberline {6.10}{\ignorespaces Iterative process to optimize configuration parameters\relax }}{109}{figure.caption.59}%
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {7.1}{\ignorespaces Deployment diagram for the bare minimum configuration of the \gls {cmes}\relax }}{115}{figure.caption.60}%
+\contentsline {figure}{\numberline {7.2}{\ignorespaces Fluent interface for navigating Kubernetes resources\relax }}{125}{figure.caption.61}%
+\contentsline {figure}{\numberline {7.3}{\ignorespaces Sample pattern definition using our fluent interface\relax }}{126}{figure.caption.62}%
+\contentsline {figure}{\numberline {7.4}{\ignorespaces Latency for the Regular scenario\relax }}{130}{figure.caption.65}%
+\contentsline {figure}{\numberline {7.5}{\ignorespaces Latency for the Spike scenario\relax }}{131}{figure.caption.66}%
+\contentsline {figure}{\numberline {7.6}{\ignorespaces Latency for the Linear scenario\relax }}{132}{figure.caption.67}%
+\contentsline {figure}{\numberline {7.7}{\ignorespaces Mean latency and confidence interval (95\%) per variant\relax }}{134}{figure.caption.68}%
+\contentsline {figure}{\numberline {7.8}{\ignorespaces Topology of stations, stops and lines of the \gls {mio} system\relax }}{137}{figure.caption.69}%
+\contentsline {figure}{\numberline {7.9}{\ignorespaces Data pre-processing workflow\relax }}{138}{figure.caption.70}%
+\contentsline {figure}{\numberline {7.10}{\ignorespaces Density-histogram plots for reference bus inter-arrival times\relax }}{139}{figure.caption.72}%
+\contentsline {figure}{\numberline {7.11}{\ignorespaces Density-histogram plots for reference service times\relax }}{139}{figure.caption.73}%
+\contentsline {figure}{\numberline {7.12}{\ignorespaces Density-Histogram plots for reference passenger inter-arrival times\relax }}{140}{figure.caption.74}%
+\contentsline {figure}{\numberline {7.13}{\ignorespaces Queuing network configuration\relax }}{140}{figure.caption.75}%
+\contentsline {figure}{\numberline {7.14}{\ignorespaces Components of the fitness function\relax }}{142}{figure.caption.76}%
+\contentsline {figure}{\numberline {7.15}{\ignorespaces Overall fitness performance over time\relax }}{144}{figure.caption.77}%
+\contentsline {figure}{\numberline {7.16}{\ignorespaces Correlation and behavior of independent variables and measured metrics with respect to the excess waiting time\relax }}{144}{figure.caption.78}%
+\contentsline {figure}{\numberline {7.17}{\ignorespaces Approximated functions\relax }}{145}{figure.caption.79}%
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {B.1}{\ignorespaces Latency box plots for the Regular scenario\relax }}{168}{figure.caption.83}%
+\contentsline {figure}{\numberline {B.2}{\ignorespaces Latency box plots for the Linear scenario\relax }}{169}{figure.caption.84}%
+\contentsline {figure}{\numberline {B.3}{\ignorespaces Latency box plots for the Spike scenario\relax }}{170}{figure.caption.85}%
+\contentsline {figure}{\numberline {B.4}{\ignorespaces Latency QQ plots for the Regular scenario\relax }}{171}{figure.caption.86}%
+\contentsline {figure}{\numberline {B.5}{\ignorespaces Latency QQ plots for the Linear scenario\relax }}{172}{figure.caption.87}%
+\contentsline {figure}{\numberline {B.6}{\ignorespaces Latency QQ plots for the Spike scenario\relax }}{173}{figure.caption.88}%
+\providecommand \tocbasic@end@toc@file {}\tocbasic@end@toc@file 
