@@ -1,407 +1,79 @@
-\startchapter{Context and State-of-the-Art Background}
+\startchapter{Background and Related Work}
 \label{chapter:background}
 
-\minitoc
+Lorem ipsum
 
-\noindent The research problem we address in this dissertation intersects autonomic computing, continuous software engineering, and run-time software evolution. Hence, this chapter presents fundamental concepts from these areas, key research challenges and approaches, as related to the scope of this dissertation.
+\section{Quantum Computing}
+\label{sect:background--quantum-computing}
 
-This chapter is organized as follows. In Section~\ref{sect:background--continuous-software-engineering}, we describe practices of continuous software engineering relevant for our research, namely \acrlong[hyper=false]{ci}, Continuous Delivery, Continuous Experimentation, and DevOps. Section~\ref{sect:background--autonomic-computing} introduces the fundamental concepts of autonomic computing and its foundational ideas. Moreover, we identify run-time processes of autonomic software systems and describe current approaches to integrate them into the \gls{sdlc}. Section~\ref{sect:background--run-time-software-evolution} introduces self-adaptation and self-evolution, and contrast relevant definitions and approaches from the state of the art. Finally, Section~\ref{sect:background--infrastructure-as-code} introduces \acrlong[hyper=false]{iac} and its life cycle.
+Lorem ipsum
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% CONTINUOUS SOFTWARE ENGINEERING
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Gate-based QC}
+\label{subsect:background--gate-based-quantum-computing}
 
-\section{Continuous Software Engineering}
-\label{sect:background--continuous-software-engineering}
+Lorem ipsum
 
-Software-intensive industries have experienced a radical transformation in the way they deliver services~\cite{bosch-2014-continuous},
-led by agile and continuous software engineering practices. Recent trends have helped organizations transform their culture and practices to deliver software more rapidly and with increased quality. Moreover, high levels of automation in the delivery process have enabled them to shift software development activities from development to execution. Therein, recent methodological and technological progress help software development teams break the rigid transition from development to production~\cite{fitzgerald-2014-continuous,fitzgerald-2017-continuous}. Consequently, companies have reduced time to market~\cite{bass-2015-devops} and significantly boosted their productivity~\cite{kim-2016-devops,kalliosaari-2016-devops}. Nevertheless, discontinuities among business goals, software development and operations lead to challenges and open questions regarding the adoption of a continuous engineering mindset in the software industry~\cite{fitzgerald-2017-continuous}. Further research is required to facilitate the continuous evolution and maintenance of software systems and their corresponding architectures, prominently in the run-time context. A more holistic approach is necessary rather than one which is merely focused on continuous integration of software~\cite{fitzgerald-2014-continuous}.
+\subsection{Adiabatic Computing}
+\label{subsect:background--adiabatic-computing}
 
-This section introduces key practices for contextualizing our work in this dissertation, namely continuous integration, delivery and experimentation. We describe these practices in the following sections as follows. Section~\ref{subsect:background--continuous-integration} introduces the concept of \glsreset{ci}\gls{ci}. Section~\ref{subsect:background--continuous-delivery} describe the practice of continuous delivery. Section~\ref{subsect:background--continuous-experimentation} contextualizes and describes the practice of continuous experimentation. Finally, Section~\ref{subsect:background--devops} introduces DevOps by describing its main principles and adoption paths.
+Lorem ipsum
 
-\subsection{\acrlong[hyper=false]{ci}}
-\label{subsect:background--continuous-integration}
+\section{Hybrid Quantum-Classical Computing}
+\label{sect:background--hybrid-quantum-classical-computing}
 
-\glsreset{ci}\gls{ci} is an agile software engineering practice that allows developers to frequently merge work to a shared mainline multiple times per day~\cite{fitzgerald-2017-continuous,shanin-2017-continuous}. It includes frequent automated building and testing of the software in response to code modifications. A typical implementation of this practice includes a \gls{ci} server that pulls code from a version control repository and executes interconnected steps to compile the code, run unit tests, check quality and build deployable artifacts. Even though automating the integration process is important for adoption, the relevance of \gls{ci} lies in the frequency of integration. It has to be regular enough to provide quick feedback to developers, thereby improving their productivity and the software quality~\cite{fitzgerald-2017-continuous}. \gls{ci} has the effect of producing shorter release cycles.
+Lorem ipsum
 
-\subsection{Continuous Delivery}
-\label{subsect:background--continuous-delivery}
 
-Continuous delivery is a software engineering approach---aligned with the DevOps principles and the \textit{deployment} adoption path---that promotes to deliver added value to end-users as soon and as frequently as possible, by deploying successful releases of a subject software system \cite{humble-2010-continuous}.
-The major benefits of this approach are the empowerment of teamwork between development and operations, the injection of fewer bugs (therefore reducing costs and risks), generation of less pre-release team stress, and a more flexible deployment process. To achieve these benefits, a software provider must promote a culture of collaboration between all teams involved in the delivery process, the sharing of knowledge and tools among participants, the establishment of measurement metrics, and the gathering of regular feedback for continuous improvement. That is, software providers must subscribe to DevOps principles to acquire continuous delivery benefits \cite{humble-2011-enterprises} and guarantee a repeatable and reliable process for releasing software, the automation of deployment and operation activities, %the definition of a proper Software Configuration Management (SCM) process,
-the automation of integration, testing, and release processes, and the definition of an effective quality assurance process \cite{humble-2010-continuous}.
+\subsection{Hybrid Algorithms}
+\label{subsect:background--hybrid-algorithms}
 
-Although not every organization is able perform these processes as such, a similar concept to continuous delivery, popularized by Timothy Fitz,\footnote{\url{http://timothyfitz.com/2009/02/08/continuous-deployment/}} named \textit{Continuous Deployment}, has emerged as an alternative to constantly provide added value to end-users. The only difference between these two approaches lies in the fact that a software provider must be able to deploy every change that passes the corresponding automated test to production for enabling continuous deployment \cite{humble-2010-continuous}. Both methods have now a widespread diffusion in the largest and most influential software-based companies in the world such as Amazon, Facebook, Flickr, Google, and Netflix, where new (atomic) features or bug fixes are deployed in short periods of time \cite{savor-2016-continuous}.
+Lorem ipsum
 
-\subsection{Continuous Experimentation}
-\label{subsect:background--continuous-experimentation}
+\subsection{Hybrid Systems and Runtimes}
+\label{subsect:background--hybrid-systems-and-runtimes}
 
-In the field of software engineering, experimentation refers to reducing software construction suppositions, assumptions, speculations and beliefs to concrete facts~\cite{juristo-2013-basics}. Experimentation leads organizations to gain understanding of quality properties of \emph{good} software, as well as the process to make software well~\cite{pfleeger-1999-albert}. Software engineering is more than building software products. Engineers follow a design and development process to build products with quality. Thereby intellectual investigation to what produces the best software is desirable. Software engineering experimentation has been extensively used in empirical studies by researchers. Nevertheless, practitioners seem not to gain valuable outcomes, as there is and has been a lack of experimentation in the industry. The lack of conducting controlled experiments has been pointed out as one of the reasons of software engineering immaturity~\cite{ebert-1997-road} (as cited by Juristo and Moreno~\cite{juristo-2013-basics}).
+Lorem ipsum
 
-Systematic experimentation is a valuable technique for practitioners. They can gain insights about new methods, techniques or tools before introducing them into the organization~\cite{wohlin-2012-experimentation}. When confronted with an array of options for building software, software engineers should seek proof that a particular option is better than another; they need reliable evidence and facts rather than assumptions~\cite{juristo-2013-basics}.
+\section{Quantum Computing Application Areas}
+\label{sect:background--quantum-computing-applications}
 
-Basili points out that experimentation in software engineering should be viewed from two perspectives, namely research and business~\cite{basili-1993-experimental}. In the first case, researchers need industry-based facilities for understanding the software engineering processes and products, and build descriptive models accordingly. Nevertheless, Basili questions the direct benefits of such models for the software development teams. In the second case, software development teams need products and processes to help them build quality systems productively and profitably. Aligned with this perspective, a growing trend over the last decade consists of using experimentation to increase user satisfaction from a functional standpoint, while maximizing business profitability.% Organizations test ideas early in development and analyze associated business metrics, such as user engagement, to decide whether to continue their development.
+Lorem ipsum
 
-Organizations in software-intensive industries are moving away from value delivery based on guesswork to a more systematic and continuous approach~\cite{fagerholm-2014-building}. In this systematic approach, customers and customer usage behavior play a central role in driving the development process and, therefore, customer satisfaction and revenue growth~\cite{bosh-2012-building,fabian-2017-right}. The continuous testing of business hypotheses and assumptions based on customer feedback is known as continuous experimentation~\cite{fagerholm-2014-building,kevic-2017-characterizing}. This practice is based on the coupling between rapid development and an experimental framework to evaluate the impact of changes on usage behavior~\cite{kevic-2017-characterizing}.
+\subsection{Quantum Simulation}
+\label{subsect:background--quantum-simulation}
 
-While so far mainly applied in the context of business decisions and regression testing, continuous experimentation can be used to validate assumptions and make more informed decisions in the evolution of software systems~\cite{fagerholm-2014-building,fagerholm-2017-right}. Recent research~\cite{schermann-2018-continuous} shows that regression-driven experiments are more widespread than business-driven experiments. Obstacles, such as the lack of expertise and uncertain conditions, hamper the adoption of continuous experimentation practices, especially those associated with business concerns. We describe these two categories below.
+Lorem ipsum
 
-\begin{description}[style=unboxed,leftmargin=0pt,font=\normalsize\bfseries]
-	\item[Business-driven experiments] aim to evaluate the business impact of software changes to guide the development of new features. Development teams formulate hypotheses about customer usage behavior in response to a software change. Then, the team defines the metrics needed to verify the hypotheses and instrument the associated software components~\cite{kevic-2017-characterizing}. This is continuously performed to learn how users react to the experiments and decide whether the changes should be deployed to all users or be abandoned. Fagerholm \etal{} point out that a suitable experimentation system requires the ability to release a minimum set of viable features with appropriate instrumentation, as well as capabilities to design and manage experiment plans~\cite{fagerholm-2014-building}.
-	
-	\item[Regression-driven experiments] aim to identify and mitigate the impact of software regressions. As described by Schermann, this kind of experimentation corresponds to the application of DevOps' shift right concept~\cite{kaulgud-2016-shiting}. This approach to experimentation validates the software quality through live testing techniques, such as A/B tests, dark launches, canary releases, and gradual rollouts~\cite{schermann-2016-bifrost}.
-\end{description}
+\subsection{Quantum Optimization}
+\label{subsect:background--quantum-optimization}
 
-Schermann \etal{} surveyed 187 software professionals and found two implementation techniques used in industry~\cite{schermann-2018-live}, namely feature toggles and run-time traffic routing. We describe each one of these implementation techniques below.
+Lorem ipsum
 
-\begin{description}[style=unboxed,leftmargin=0pt,font=\normalsize\bfseries]
-	\item[Feature toggles\autodot] According to Schermann \etal{}, 36\% of the survey respondents realize feature experiments at the code level, creating multiple versions of the features in the code base. This means that certain feature may be enabled or disabled for a given user or user group. This technique is also known as feature switches, feature flags, feature flippers, and conditional features. 
+\subsection{Quantum Machine Learning}
+\label{subsect:background--quantum-machine-learning}
 
-	%- One of the core factors for running experiments with confidence is a suitable software architecture. Our survey participants reported the architecture as the main reason for not conducting experiments \cite{schermann-2018-continuous}
+Lorem ipsum
 
-	%- One of the intrinsic drawbacks of feature toggles is technical debt, among others found by M.T. Rahman and his colleagues. When experiments finish, toggles need to be removed to avoid dead code and manage the number of experiment states \cite{schermann-2018-continuous}
+\section{Quantum Software Engineering}
+\label{sect:background--quantum-software-engineering}
 
-	%- Another challenge with feature toggles is that the current state of an experiment (e.g., a new feature rolled out to 5\% of US users) has to be kept in sync across all components or services \cite{schermann-2018-continuous}
+Lorem ipsum
 
-	\item[Runtime traffic routing\autodot] Schermann \etal{} report that 30\% of the survey respondents deploy and operate multiple service or component instances running the original feature and its variants. In this case, the control group is routed to the original instance while the treatment groups are routed to the variants. The routing can be done by using filtering criteria based on the users' request information or at the network level.
+\section{Software Development}
+\label{sect:background--software-development}
 
-	%- However, deploying “immutable” instances requires launching and operating additional instances for every experiment: management, resource utilisation, and overhead (routing) \cite{schermann-2018-continuous}
-\end{description}
+Lorem ipsum
 
-Several practices exist to deploy customer experiments, most importantly canary releases, dark launches, gradual rollouts and A/B testing. A \emph{Canary release} allows to test the experimental code under real production conditions safely. The new release is exposed to a subset of users only, aiming at finding bugs on a small sample of the user population~\cite{humble-2010-continuous}. In a \emph{Dark launch}, the pilot code is deployed to the production environment silently (\ie{without being visible for any user}) to test performance regressions using real user traffic. This is achieved by duplicating the traffic from the stable version of the application~\cite{schermann-2016-bifrost}. \emph{Gradual rollout} is a technique to incrementally roll out the experimental code to production~\cite{humble-2010-continuous}. The new release is exposed to a percentage of the user base. This percentage increases over time until it reaches 100\%. \emph{A/B testing} is a technique to test two alternative implementations of the same software feature. In this case, two user groups access the two alternatives.
+\subsection{Software Engineering}
+\label{subsect:background--software-engineering}
 
-Significant work has been done in live testing and customer experiments. There are many research and industry opportunities in automation and tool support to facilitate planning, conducting and analyzing experiments. Nevertheless, Research on this topic is mainly focused on business- and regression-driven experiments. Other kinds of experiments could bring benefits to the development process itself, without looking at the business value proposition but the quality built into the software product. Specifically, software engineering experiments and exploratory activities could support non-functional decisions, promoting collaborative work between architects, developers and operators. This combination of experimentation and quality assurance has not been explored at large.
+Lorem ipsum
 
-Mattos~\etal{} identified architecture qualities and key research challenges to support automated experiments in software systems~\cite{mattos-2017-towards}. They propose an architectural framework for automated experimentation to coordinate experiment executions and system adaptations through monitor probes and effectors. This work, however, does not address experimenting with software patterns to create architecture variants, adaptations to the experimentation itself nor integration with delivery pipelines.
+\subsection{Software Architecture}
+\label{subsect:background--sofware-architecture}
 
-Gerostathopoulos~\etal{} propose the realization of systematic experiments expressed using declarative specifications to allow developers confirm design assumptions~\cite{gerostathopoulos-2016-towards}. In this approach, automated experiments are conducted by adjusting configuration properties of the system, avoiding the use of system replicas. The experimentation process is a closed loop that continually assesses the effectiveness of experiment executions by monitoring their effects on the system, and halts experiments when certain variable reaches a threshold. This approach does not consider architecture variants of the system. Conversely, Porter~\etal{} propose \textit{TESS}, an experimentation testbed that facilitates evaluating self-healing and self-adaptive distributed systems~\cite{porter-2018-tess}. \textit{TESS} enables the automatic generation and deployment of random architecture variants by conducting different types of experiments (\eg{self-healing of component and node failures, and self-adaptation experiments}), in order to collect evaluation metrics. These measures are used to analyze the effectiveness of recovery and adaptation frameworks. Although this approach considers experimenting with architectural configurations, it is aimed at evaluating and testing recovery and adaptation frameworks only.
-
-
-\subsection{DevOps}
-\label{subsect:background--devops}
-
-% TODO Talk about continuous improvement in DevOps / continuous software engineering
-
-There is a lack of consensus on the definition of DevOps~\cite{jabbari-2016-what}. Some researchers and practitioners refer to it as a paradigm, a method, or a set of principles and practices, whose main purpose is \emph{closing the gap} between software development and \gls{it} infrastructure operations. The truth is that DevOps emerged out of the disconnection between development and operations teams. As simply put by Bass~\etal{}, after years of \emph{siloed} software development and operation, a series of approaches have been flourishing between the two teams~\cite{bass-2015-devops}. Therefore, much of the cultural and organizational changes associated with the adoption of DevOps relate to communication and collaboration. Nevertheless, adopting DevOps has technical and socio-technical implications~\cite{artac-2017-devops,bass-2015-devops}. For example, it may be necessary to re-architect an existing software system to apply software engineering practices to infrastructure code.
-
-While no common definition of DevOps exists, IBM consolidated the main principles developed in the evolution of the DevOps movement \cite{sharma-2017-devops-dummies}. Humble~\etal{} played an influential role in advocating the practices supporting these principles~\cite{humble-2006-deployment,humble-2010-continuous,humble-2011-enterprises,kim-2016-devops}. These principles are:
-(i) develop and test against production-like systems, the main premise of the shift-left concept moving operations toward development;
-(ii)  deploy with repeatable and reliable processes, for which automation is essential;
-(iii) monitor and validate operational quality, based on functional and non-functional software characteristics;
-(iv) amplify feedback loops, reacting and producing changes more rapidly. Similarly, IBM proposed four paths and respective foci of concerns for adopting DevOps: (i) \textit{steer}: continuous business planning; (ii) \textit{develop/test}: continuous integration and testing; (iii)  \textit{deploy}: continuous release and deployment; and (iv) \textit{operate}: continuous monitoring~\cite{sharma-2017-devops-dummies}.
-
-Two prominent DevOps practices are shift left and shift right. They are usually applied in the context of testing, primarily on shift left testing. In this case, the focus is on testing as early as possible in the \gls{sdlc}. In contrast, shift-right promotes testing software updates with live production traffic~\cite{kaulgud-2016-shiting}. However, these practices apply in any context, and consist of moving concerns from development later to the operations side, and from operations earlier, toward development. The first principle described above, for example, stems from the shift-left concept. In spite of these concepts being beneficial for producing quality software products, there is a lack of attention on the topic, especially in areas outside testing.
-
-%\afterpage{
-	\begin{InfoBox}[Identified Challenges on Continuous Software Engineering]
-		\begin{description}[style=unboxed,leftmargin=0pt,font=\normalsize\bfseries]
-			\item[Shifting operations left by automating software experiments\autodot] Many organizations adopt DevOps from a traditional point of view, that is, focusing on deployment as a checkpoint going forward from development to operations---considering it as an end for that purpose. However, from a wider DevOps perspective, automated deployment is a crucial phase, for instance, to explore different design, configuration and deployment implementations in the operations setting, enabling the collection of data efficiently. This data, used backwards, is key to improving development artifacts, and in this process, deployment serves as a medium rather than as an end. Achieving DevOps requires to find ways of traversing development and operations processes in both directions, and the shift-left concept enforces especially its backward application.
-
-%			\item[Continuous adjustment of design, configuration and deployment\autodot] Despite development teams automating the reporting of performance inefficiencies, adjustment of design, configuration and deployment artifacts is not as frequent as required.
-
-%			\item[Continuous evolution of development artifacts\autodot] \remarks{TBD}.
-		\end{description}
-	\end{InfoBox}
-%}
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% AUTONOMIC COMPUTING
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\section{Autonomic Computing}
-\label{sect:background--autonomic-computing}
-
-In 2001, IBM released a manifesto alerting the software engineering community about a looming software complexity crisis~\cite{horn-2001-autonomic}. The motivation behind the manifesto was the increasing complexity of installing, configuring, tuning, and maintaining computing systems. Emerging computing systems at the time underwent an unprecedented success, thus growing beyond company and geographic boundaries into the internet~\cite{weyns-2021-introduction}. Resulting levels of complexity became unmanageable, even by the most skilled \gls{it} professionals. In fact, the manifesto pointed out that managing such systems was well beyond the administration of individual software environments~\cite{kephart-2003-vision}. Declared initially by IBM's senior vice president of research Paul Horn, a consensus grew that self-management was the only viable alternative to cope with the anticipated crisis~\cite{horn-2001-autonomic,kephart-2003-vision}.
-
-The complexity stemmed from factors internal and external to the software systems, causing uncertainties that were difficult to anticipate during design, development, configuration, and deployment. Key factors include the heterogeneity of the underlying communication and computing infrastructure, changes to the availability of resources, and continuously evolving requirements and environments~\cite{inverardi-2006-software}. The need for autonomic computing, then and now, is rooted in the ability of software systems to manage themselves autonomously. In this regard, autonomic computing is conceptually closer to automating the day-to-day operation of computing systems than it is to building ``thinking machines'' that embody the popular conception of artificial intelligence~\cite{horn-2001-autonomic}.
-
-Self-management refers to computing systems that can adapt autonomously to achieve their high-level goals. Such computing systems are usually called self-adaptive systems, and are closely related to, and are often even referred to as, other types of software systems. The most prominent are autonomic and self-managing systems. Many researchers, in fact, use these terms interchangeably~\cite{salehie-2009-self-adaptive}. In this regard, self-management capabilities pertain to any of these systems insofar their goals require it.
-
-The rest of this section introduces relevant concepts from autonomic computing. Section~\ref{subsect:background--control-theory} describes control-based software adaptation, including feedback loops and adaptive control. Section~\ref{subsect:background--self-management-regulation-improvement} defines self-management, self-regulation and self-improvement, as needed in this dissertation. Section~\ref{subsect:background--run-time-processes} describes run-time processes present in prominent models for architecting self-adaptive software systems. Finally, Section~\ref{subsect:background--design-time-processes} discusses approaches in autonomic computing that consider integrating self-adaptation processes into the \gls{sdlc}.
-
-
-\subsection{Control-based Software Adaptation}
-\label{subsect:background--control-theory}
-
-Feedback loops are a fundamental concept of control theory~\cite{doyle-2013-feedback}. They automate system control by analyzing the behavior of the controlled system and continuously producing corrective actions. Their main objective is to ensure the adherence of the system to expected or anticipated behavior. Consequently, feedback loops manage uncertainty, which allows the controlled system to deal with environmental disturbances~\cite{hellerstein-2004-feedback,astrom-2013-adaptive}. As depicted in Figure~\ref{fig:background--ct-feedback-loop}, feedback loops are closed loops in which control actions adjust the system's inputs to achieve a desired output (\cf{setpoint in Figure~\ref{fig:background--ct-feedback-loop}}). The controller's job is to compare reference inputs and measured outputs to decide on the application of control actions to the controlled system.
-
-\begin{figure}[h]
-	\centering
-	\begin{subfigure}[b]{0.6\linewidth}
-		\centering
-		\includegraphics[width=\columnwidth]{fig/background/background--feedback-loop.pdf}
-		\caption{Block diagram of a control system}
-		\label{fig:background--ct-feedback-loop}
-		Adapted from~\cite{hellerstein-2004-feedback}.
-		\vspace{3em}
-	\end{subfigure}
-	\begin{subfigure}[b]{0.6\linewidth}
-		\centering
-		\includegraphics[width=\columnwidth]{fig/background/background--adaptive-control.pdf}
-		\caption{Block diagram of an adaptive control loop}
-		\label{fig:background--ct-adaptive-control}
-		Adapted from~\cite{astrom-2013-adaptive}.
-	\end{subfigure}
-	\caption{Feedback and control loops}
-	\label{fig:background--ct-feedback-loops-all}
-\end{figure}
-
-For systems with uncertain or varying parameters, additional control structures are necessary either to adjust the control actions according to run-time disturbances, or to compensate for possible inaccuracies in the initial system model~\cite{weyns-2021-introduction}. This is known as adaptive control, and refers to the ability of a system controller to adjust its working parameters over time. This is usually achieved through the definition of one or more supplementary feedback loops dedicated to parameter adjustment, providing flexibility to the controlling mechanism~\cite{astrom-2013-adaptive}. Adaptive control provides an additional mechanism for managing uncertainty, thus contributing to the resiliency of controlled systems (\eg{\glspl{cps}}). Figure~\ref{fig:background--ct-adaptive-control} depicts the structure of a classic adaptive control system where control operations performed over a controlled system are synthesized from parameter adjustments. Adaptive control mechanisms have been implemented successfully in different domains, including industrial plants, flight control systems, ship steering, and automobile control~\cite{astrom-2013-adaptive}. There exist several reference models for adaptive control. We concentrate on three of them, namely, \gls{mrac}, \gls{miac}, and \gls{mmac}. We describe these models below.
-
-\begin{figure}[p]
-	\centering
-	\begin{subfigure}[b]{0.6\linewidth}
-		\centering
-		\includegraphics[width=\linewidth]{fig/background/background--mrac.pdf}
-		\caption{Block diagram for \gls{mrac}}
-		\label{fig:background--ct-mrac}
-		Adapted from~\cite{astrom-2013-adaptive}.
-		\vspace{3em}
-	\end{subfigure}
-	\begin{subfigure}[b]{0.6\linewidth}
-		\centering
-		\includegraphics[width=\linewidth]{fig/background/background--miac.pdf}
-		\caption{Block diagram for \gls{miac}}
-		\label{fig:background--ct-miac}
-		Adapted from~\cite{muller-2014-highly}.
-		\vspace{3em}
-	\end{subfigure}
-	\begin{subfigure}[b]{0.6\linewidth}
-		\centering
-		\includegraphics[width=\linewidth]{fig/background/background--mmac.pdf}
-		\caption{Block diagram for \gls{mmac}}
-		\label{fig:background--ct-mmac}
-		Adapted from~\cite{landau-2011-multimodel}.
-	\end{subfigure}
-	\caption{Reference models for adaptive control}
-	\label{fig:background--ct-adaptive-control-all}
-\end{figure}
-
-\begin{description}[style=unboxed,leftmargin=0em,font=\normalsize\bfseries]
-	\item[\glsentryfull{mrac}] is also known as \gls{mras}. It refers to the use of a reference model, established in advance, to adjust the way a controller defines proper control actions to achieve the desired output on the controlled system. In this regard, anticipated---or predicted---behavior delineates tolerance intervals for the dynamics of the controlled system, and adjustment actions take place when discrepancies occur. Figure~\ref{fig:background--ct-mrac} depicts the main components of \gls{mrac}. The adjustment mechanism acts as a high-level controller over the feedback loop's controller. In this case, the controlled input refers to the control parameters, and the measured output is a control signal. The adjustment mechanism relies on a reference model, which is analogous to the controller's setpoint.
-
-	\item[\glsentryfull{miac}] establishes that control parameters are obtained from the identification or inference of a model characterizing the behavior of the controlled system. Run-time system identification methods allow the identification of this model. Figure~\ref{fig:background--ct-miac} depicts the main components of \gls{miac}. The convergence between the control signal (control actions) and the measured outputs enables the identification of a reference model. The usage of this outcome is twofold. First, it is used to determine how the adjustment mechanism calculates the control parameters. Second, it also determines how a controller directs a controlled system to achieve a desired output.
-
-	\item[\glsentryfull{mmac}] combines multiple controllers aiming to increase the accuracy of the control actions. Figure~\ref{fig:background--ct-mmac} depicts the main components of \gls{mmac} with switching. \gls{mmac} defines four major blocks for realizing adaptive control. The multi-estimator block predicts (identifies) possible outputs of a controlled system using a set of estimators (models). Each of them uses the reference inputs and measured outputs of the controlled system to calculate the estimates. Moreover, each estimator is associated with a controller of the multi-controller block. Controllers stabilize and satisfy the required performance for estimators. Following predefined criteria, the supervisor block selects, via the switches, the estimator with the smallest error. Consequently, the control output applied to the controlled system at each instant is selected by the supervisor. The selection is based on switching logic and a function of the estimation error to indicate the best estimator at each time~\cite{landau-2011-multimodel}.
-\end{description}
-
-
-\subsection{Self-Management, Self-Regulation, and Self-Improvement}
-\label{subsect:background--self-management-regulation-improvement}
-
-During the past two decades, much effort has been devoted to instrumenting software systems with feedback loops. The objective is to provide software systems with improved intelligence and autonomy, aiming to reduce their operational complexity and increase the value offered to external systems and final users~\cite{brun-2009-engineering}. This goal has so far been predominantly researched in the context of self-management. A set of well-known properties of self-management, as introduced by IBM, are self-configuration, self-optimization, self-healing, and self-protection~\cite{bantz-2003-autonomic,kephart-2003-vision}. These properties are often referred to as self-* (\ie{self-star}), self-X, or adaptivity properties~\cite{salehie-2009-self-adaptive,huebscher-2008-survey}. We describe them as follows, based on Kephart and Chess, Bantz~\etal{}, and Salehie and Tahvildari.
-
-\begin{description}[style=unboxed,leftmargin=0pt,font=\normalsize\bfseries]
-	\item[Self-configuration] refers to a system's capability to re-configure itself as a response to changes in its environment, or in its high-level goals. Self-configuration is conducted dynamically, during execution, by configuring, installing, updating, upgrading, integrating, composing and decomposing software elements seamlessly and automatically.
-
-	\item[Self-optimization] refers to the capability of managing software qualities and computing resources to improve their own performance and efficiency. It is also known as self-tuning or self-adjustment~\cite{sterritt-2005-concise}.
-
-	\item[Self-healing] refers to the capability of discovering, diagnosing, and reacting to unanticipated disruptions. Moreover, it also refers to detecting problems and counteracting errors, faults, and failures. It is related to self-diagnosing and self-repair~\cite{de-lemos-2002-architectural}, which focus on problem diagnosis and recovery, respectively.
-
-	\item[Self-protection] refers to the capability of detecting and defending against security threats and breaches, malicious attacks, and cascading failures automatically. Moreover, protection actions can concentrate on proactive measures to avoid security problems or mitigate them to prevent further damage.
-\end{description}
-
-Salehie and Tahvildari present a hierarchical view of the self-* properties composed of three levels. At the bottom of the hierarchy they place the \emph{primitive} level, containing self-awareness, self-monitoring, self-situated, and context-awareness. This level generally refers to the system being aware of its self states and behaviors, as well as its context. In the middle, Salehie and Tahvildari place the \emph{major} level, containing the self-* properties introduced by IBM. And at the top of the hierarchy, they place the \emph{general} level, containing the properties of self-adaptiveness and self-organization. They define self-adaptiveness in terms of sub-properties self-management, self-governance, self-maintenance, and self-evaluation. They define self-organization as the capacity of a system to support emergent and decentralized functionality.
-
-Insaurralde and Vassev approach self-regulation from a biological perspective~\cite{insaurralde-2015-autonomic}. In this sense, self-regulation helps achieving continuous adaptation to the environment by changing internal conditions. It is a physiological response of an organism to control its internal state. According to Merriam-Webster's dictionary, self-regulation refers to controlling or supervising from within instead of by an external entity or authority.\footnote{\url{https://www.merriam-webster.com/dictionary/self-regulation}} In the case of a self-adaptive system, we define this property as the system's capability of keeping internal conditions in an appropriate state according to its environment. More specifically, internal conditions include state models, analytical and predictive functions, and other types of context-dependent knowledge artifacts. Appropriateness may vary by domain, but generally refers to stability, accuracy, fidelity, and properties alike.
-
-Krupitzer~\etal{} define self-improvement with respect to a self-adaptive system as \emph{the adjustment of the adaptation logic to handle former unknown circumstances or changes in the environment or the managed resources}~\cite{krupitzer-2016-comparison}. They define improvement in terms of self-adjustment of the adaptation logic, which generally refers to adaptive control from the perspective of control theory (\cf{\cref{fig:background--ct-adaptive-control}}). Similarly, from the perspective of autonomic computing, this definition fits well with hierarchical autonomic systems (\eg{IBM's \gls{acra}~\cite{ibm-2005-architectural}}). Therefore, We define self-improvement from the perspective of continuous process improvement, commonly used in Lean philosophy as kaizen (\ie{continuous and incremental improvement}). Although self-optimization is closely related to self-improvement, by our definition, its application is commonly scoped to the run-time context (\ie{as part of self-management}) and involves performance factors as the primary focus. In contrast, self-improvement refers to any software quality and may be conducted at any time in the software life cycle.
-
-\subsection{Run-Time Processes of Self-Adaptive Software Systems}
-\label{subsect:background--run-time-processes}
-
-%Oreizy~\etal{} identify the need for creating a run-time change management process, stating that consistency and correctness are critical qualities of run-time change and should be approached from a systematic standpoint~\cite{oreizy-1998-architecture}.
-
-%Oreizy~\etal{} distinguishes changes to system requirements from changes to system implementation that do not alter requirements~\cite{oreizy-1998-architecture}.
-
-Various self-management feedback loop models have been proposed in the autonomic computing literature. Among them, there are approaches leaning toward the architecture, focusing on high-level components and their interconnections (\ie{\cite{ibm-2005-architectural,kramer-2007-self,villegas-2013-dynamico}}). Other models tend to focus more on explicitly defining phased cycles, clearly delineating functions present in the feedback loops (\ie{\cite{oreizy-1999-architecture,dobson-2006-survey}}). In both cases, there are common activities shared across the models, namely measurement, requirements management, analysis, change management, and evolution.
-
-Oreizy~\etal{}~\cite{oreizy-1999-architecture} presented two management cycles, one for ephemeral adaptations and another one for persistent evolution actions. The adaptation management cycle plans and deploys architectural updates at run-time. The evolution management cycle maintains the consistency and integrity between a software architecture model and its implementation. These two cycles aim to realize a comprehensive methodology to bridge adaptation in the small to adaptation in the large.
-
-\begin{figure}[h]
-	\centering
-	\includegraphics[width=0.68\linewidth]{fig/background/background--mape-k.pdf}
-	\caption{The \acrshort{mapek} loop}
-	\label{fig:background--mape-k}
-	Adapted from~\cite{kephart-2003-vision}.
-\end{figure}
-
-Kephart and Chess introduced the \gls{mapek} loop for monitoring and analyzing a managed system's context, and then planning and executing actions to counteract potential disturbances~\cite{kephart-2003-vision}. The combination of monitoring, analysis, planning, execution, and knowledge management in this loop is usually known as an autonomic manager (\cf Figure~\ref{fig:background--mape-k}). The \gls{mapek} loop has played a significant role in providing software systems with improved intelligence and autonomy. IBM later refined its feedback loop and introduced \gls{acra}, a reference architecture for autonomic computing. It features the four elements composing an autonomic element, including standard interfaces Sensor and Effector as interaction touch points between the managing and managed systems. However, in \gls{acra}, autonomic managers may be managed as well, thus facilitating building hierarchical autonomic systems. Similar to the \gls{mapek} elements, Dobson~\etal{}~\cite{dobson-2006-survey} defined an autonomic control loop composed of activities Collect, Analyze, Decide and Act.
-
-Kramer and Magee~\cite{kramer-2007-self} proposed a three-layer reference model to self-managed systems. The bottom most layer corresponds to a component control layer, which includes an architectural model similar to that of Oreizy~\etal{}'s work. The control layer provides operations over such a model to create, delete, bind, and unbind components at run-time, as well as set properties of their inner state. The middle and top layers are responsible for change and goal management, respectively.
-
-Villegas~\etal{}~\cite{villegas-2013-dynamico} also presented a three-layer reference model for governing control objectives (\ie{adaptation goals}) and context relevance in self-adaptive software systems. The top most layer monitors the reference control objectives and synthesizes context inputs to adapt the monitoring infrastructure eventually. The middle layer is based on IBM's \gls{mapek} elements and represents the application adaptation feedback loop. And the bottom most layer monitors the system's context to guarantee that the monitoring infrastructure remains relevant in the face of context changes.
-
-All the models above rely on run-time representations of the managed system for various reasons. These representations are \glspl{mart}\footnote{In the literature often referred to as models@run.time \cite{blair-2009-models,bencomo-2019-models}}. That is, abstract constructs intended to represent up-to-date information about a system's structure, behavior or goals, at run-time. \glspl{mart} can be causally connected with the system they represent, allowing run-time modification of a managed system through its models~\cite{blair-2009-models}. They have played a significant role in research advances toward self-adaptive software systems by enabling run-time reasoning of domain semantics, system architectures, goals, requirements, software components, context, source code, among many other concerns~\cite{bencomo-2019-models}.
-% TODO Talk about this paper: Traceability Between Run-Time and Development Time Abstractions
-
-We now describe further details on how the aforementioned models define each of the identified run-time processes.
-
-\begin{description}[style=unboxed,leftmargin=0cm,font=\bfseries\normalsize]
-	\item[Measurement] Oreizy~\etal{}'s management cycles define two activities for collecting and monitoring observations from the managed system. IBM's reference architecture follows the same approach and opts for a similar nomenclature, namely sensing and monitoring. Dobson~\etal{} and Kramer and Magee mention the use of system and environmental sensors. Villegas~\etal{} present a layered approach based on IBM's architecture, therefore their model uses sensors and monitors as well. However, they make emphasis on dynamically monitoring control objectives, the target system and its context.
-
-	\item[Requirements management] Although the models do not explicitly account for managing requirements at run-time, their run-time representation is fundamental to identify adaptation symptoms and guide the change management activity. Because of this, there is a clear need for specifying control requirements in one way or another at design-time. Oreizy~\etal{}'s model requires the formulation of behavioral requirements or environmental assumptions. IBM's \gls{mapek}, Dobson~\etal{}'s control loop and Kramer and Magee's architectural model rely on the specification of high-level adaptation goals. Villegas~\etal{}'s DYNAMICO explicitly requires reference control objectives, which are specified based on adaptation properties of the managed system.
-
-	\item[Analysis] All the models evaluate whether the managed system satisfices the specified control requirements---or high-level goals. They analyze observations, rules and policies to determine whether an adaptation is necessary. Kramer and Magee's three-layer model analyzes state changes coming from the software components or the management goals with the same purpose. Villegas~\etal{}'s DYNAMICO analyzes changes in the reference control objectives, their satisfaction, and the system's context.
-
-	\item[Change management] Similarly to the analysis activity, change management is rather uniform across all the models. The managing system is expected to synthesize an adaptation plan to adapt the managed system's behavior through its structure or operating parameters. A common strategy to realize this is to devise a set of adaptation tactics at design-time, defining criteria to select them at run-time. Out of these models, DYNAMICO performs additional changes to keep its monitoring infrastructure relevant to the system's context and the reference control objectives.
-
-	\item[Evolution] Although all the models follow a similar execution process of the synthesized adaptation plan, some perform additional tasks. Oreizy~\etal{}'s management cycles include an activity to maintain the consistency between an architectural model and its implementation. This activity bridges the execution and development of the managed system. Dobson~\etal{}'s control loop includes a final step to inform stakeholders about the enacted changes. This additional step also bridges the execution and development contexts, in this case for communication purposes.
-\end{description}
-
-None of the aforementioned models explicitly considers activities to validate or verify properties of the managing and managed systems during the adaptation cycle. Notwithstanding, Tamura~\etal{}~\cite{tamura-2013-towards} extended IBM's \gls{mapek} model with run-time validation and verification (V\&V) tasks and enablers. They proposed to augment the Planner component with run-time validator and verifier elements to verify adaptation plans either before or after their execution. Additionally, they define V\&V monitors for monitoring and enforcing the V\&V tasks performed by the validator and verifier elements. Tamura~\etal{} consider models at run-time as enablers for V\&V. They highlight the relevance of having requirement specifications at run-time for meeting control objectives and realizing dynamic context monitoring.
-
-\subsection{Autonomic Computing in Software Development}
-\label{subsect:background--design-time-processes}
-
-%TODO Include:
-%
-%A Literature Review of Using Machine Learning in Software Development Life Cycle Stages~\cite{shafiq-2021-literature}
-
-%Figure~\ref{fig:sdlc} depicts a typical continuous \gls{sdlc}. This figure illustrates how changes flow throughout various environments without adopting a particular \gls{sdlc} model. The small cycles within the figure represent the continuous and iterative nature of the work done in each environment (\cf{\texttt{PLAN}, \texttt{LOCAL}, \texttt{CI} and \texttt{PROD}}). Notice that the \gls{ci} environment contains activities that could be otherwise accommodated in test, development and staging environments. These optional environments are represented as small circles between \gls{ci} and production (\cf{The delivery pipeline~\cite{humble-2010-continuous}, represented by the transition between $\,\encircleyellow{C}$ and $\,\encircleyellow{D}$}). As we show in this figure,
-Most works on self-adaptive and self-managing systems focus on run-time aspects only (\eg{~\cite{dobson-2006-survey,cheng-2009-software,patikirikorala-2012-systematic,de-lemos-2013-software,de-lemos-2017-software,weyns-2021-introduction}}). Therefore, self-management capabilities have been traditionally relegated to the production environment. However, some researchers have proposed various considerations to integrate the offline and online parts of the \gls{sdlc}. A smooth transition between these two sides demands the integration and coordination of corresponding activities from both sides.
-
-%\begin{figure}[h]
-%	\centering
-%	\includegraphics[width=0.9\columnwidth]{fig/background/background--SDLC.pdf}
-%	\caption{The \gls{sdlc} depicted as a continuum of smaller cycles.}
-%	\label{fig:sdlc}
-%	\texttt{PLAN} stands for Planning; \texttt{CI} stands for Continuous Integration; and \texttt{PROD} stands for Production.
-%\end{figure}
-
-Qureshi and Perini argue that design-time uncertainty can only be addressed through \gls{re} at run-time, and differentiate between design-time and run-time activities~\cite{qureshi-2010-requirements}. On the one hand, at design-time, stakeholders conduct elicitation and analysis activities to produce a goal-oriented specification containing goals, soft goals, preferences, as well as monitoring specifications, evaluation criteria and adaptation actions. On other hand, at run-time, the system uses such a specification to guide the adaptation process. The differentiation proposed by Qureshi and Perini effectively realizes a \gls{re} process on each side (\ie{design-time and run-time}) connected through software artifacts.
-
-Sawyer~\etal{} take a similar position to that of Qureshi and Perini, arguing that distinct operational contexts may demand different requirements trade-offs~\cite{sawyer-2010-requirements}. They propose the use of run-time models to represent requirements at run-time, thus enabling managing systems to reason about them.
-
-Ghezzi~\etal{} identifies strong similarities between the automated process of self-adaptation, and the existing semi-manual process of Change Management of \gls{itil}~\cite{ghezzi-2008-dynamically}. They even analyze the potential for automation, ultimately, focusing on the design and enactment of change at design-time and run-time. Furthermore, Ghezzi~\etal{} pose that supporting online software evolution and reconciling it with dependability require revisiting the entire software development process in terms of methods, techniques, languages, and tools.
-
-In line with Ghezzi~\etal{}, Gacek~\etal{} and Andersson~\etal{} address the offline and online integration beyond \gls{re} and analyze the relationship between design-time and run-time evolution processes~\cite{gacek-2008-friends,andersson-2013-software}. Gacek~\etal{} discuss the co-existence of self-adaptation and traditional change management. However, they do not discuss the implications on software engineering processes. Andersson~\etal{} argue that responsibilities for development activities shift from stakeholders to the system, thus causing the traditional boundary between development and execution to blur; an idea also proposed by Baresi and Ghezzi~\cite{baresi-2010-disappearing}. Furthermore, Andersson~\etal{} characterize the running system as a stakeholder with a specific role in the development process, as it actively affects software development and maintenance. They propose an integration between offline and online activities through interaction points to synchronize the activities themselves or corresponding software artifacts. Their contribution focuses on mapping offline activities with online activities, thereby making explicit how to engineer self-adaptation and self-management capabilities at design-time, as well as how to integrate them with the \gls{sdlc}.
-
-Goltz~\etal{} provide insights into the need for co-evolution of software systems along with their environments~\cite{goltz-2015-design}. They recognize the significance of integrating development, operation, adaptation, monitoring, and maintenance throughout software evolution. In a similar vein, Iftikhar and Weyns contemplate integrating self-adaptation with operation activities in the DevOps life cycle~\cite{iftikhar-2017-activforms}. In their approach, development activities are triggered by unanticipated change stemming from the system operation, whereas self-adaption refers to anticipated change under run-time conditions.
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% RUN-TIME SOFTWARE EVOLUTION
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\section{Run-Time Software Evolution}
-\label{sect:background--run-time-software-evolution}
-
-Software evolution refers to the application of maintenance actions to a software system aiming to generate a new operational version of the system. These actions are expected to guarantee the system's functionalities and qualities according to changes in its requirements and environments~\cite{chapin-2001-types,muller-2014-highly}. Software systems that run on highly changing environments, or whose requirements are subject to change frequently, pose additional requirements on their maintenance and evolution~\cite{mens-2005-challenges}. They often need updates while they are running, without causing them to pause, or even to shut down. These requirements give rise to run-time software evolution.
-
-Oreizy~\etal{} conceive run-time software evolution as a way to support run-time change~\cite{oreizy-1998-architecture}. Their visionary work focuses on quality assurance during system execution, such as high system availability. In this context, they identify the need for providing guarantees about the consistency and correctness of run-time change in a systematic way. Andersson~\etal{} classifies run-time software evolution as an online process, meaning that its activities are conducted by self-adaptive software systems~\cite{andersson-2013-software}. This also means that some stakeholders' responsibilities on the offline side shift toward the execution, thereby connecting the two sides of software evolution. Similarly, M\"{u}ller and Villegas differentiate between offline and run-time software evolution~\cite{muller-2014-highly}. They define the former as the process of modifying a software system relying on intensive human intervention and the interruption of the system operation. In contrast, according to their definition, the latter is conducted while the system is running with minimum human intervention. This differentiation is compatible with Andersson~\etal{}'s offline and online process reconceptualization, in which offline evolution is performed in tandem with run-time adaptation coordinately~\cite{andersson-2013-software}.
-
-Even though Oreizy~\etal{} consider changes at the implementation level, they view run-time software evolution as a complement to stakeholders' work. That is, systems provide themselves important updates during execution, while taking advantage of preconceived invariants for preserving run-time qualities. This vision is compatible with that of Bosch and Olsson, who advocate for a balance between autonomic and manual work~\cite{bosch-2016-data}. More specifically, in their vision, development teams build the software functionality and set guardrails, while smart systems experiment and adjust their behavior autonomously. Gacek~\etal{}'s vision aligns well too. They explore the integration between \acrshort{itil}'s Change Management process and self-adaptation~\cite{gacek-2008-friends}. They identify a need for integrating change management with run-time activities in terms of roles, responsibilities, metrics, artifacts, and outcomes. Andersson~\etal{} go a step further and propose a more holistic process approach in which offline and online activities interact throughout the software life cycle~\cite{andersson-2013-software}, thus contributing to blur what has been traditionally a rigid boundary~\cite{baresi-2010-disappearing}. They, as well as M\"{u}ller and Villegas~\cite{muller-2014-highly}, envision the planning of software engineering processes according to their associated cost. Evolution activities are accommodated on the offline or online side according to certain properties, such as the level of uncertainty and required change frequency. In this regard, run-time software evolution has implications beyond system execution, as it potentially produces long-lasting effects on the planning, development and operation of the software product. These effects are nonetheless planned and decided offline by stakeholders in the described approaches.
-
-Oreizy~\etal{} pioneered a comprehensive methodology to balance software evolution on the development and execution sides~\cite{oreizy-1999-architecture}. Their approach synchronizes run-time adaptations to an architecture model (\ie{a \gls{mart}}) with its corresponding implementation. Therefore, it combines quality assurance concerns stemming from offline and online quality attributes (\eg{maintainability and availability, respectively}). Modern work on run-time software evolution intersects with advances in deployment, monitoring, and management technology, especially in the context of DevOps. Iftikhar and Weyns contemplate the integration of self-adaptation with operation activities in the DevOps feedback loop~\cite{iftikhar-2017-activforms}. In their conception of software evolution, under dynamic conditions, development activities are triggered by unanticipated change stemming from system operation. Conversely, self-adaption refers to anticipated change under run-time conditions. Following the same line of argument, Goltz~\etal{} provide high-level insights into the need for co-evolution of software systems along with their environments~\cite{goltz-2015-design}. They recognize the significance of integrating development, operation, adaptation, monitoring, and maintenance throughout software evolution. Weyns~\etal{} conceive the coordination of run-time adaptation and evolution as a key enabler for sustainable software systems resilient to changing surrounding conditions~\cite{weyns-2015-design}. Their work extends Oreizy~\etal{}'s architecture-based approach~\cite{oreizy-1999-architecture} by augmenting their evolution management cycles with various types of uncertainties.
-
-So far in this section, we have described run-time software evolution as an autonomic process that manages software changes at run-time. However, such a process can also be described from a time perspective, including the time horizon and the time of change. Section~\ref{subsect:background--self-adaptation-and-self-evolution} discusses the differences between self-adaptation and self-evolution. And Section~\ref{subsect:background--time-of-change-timeline} describes the time of change timeline and how it relates to run-time software evolution.
-
-\subsection{Self-Adaptation and Self-Evolution}
-\label{subsect:background--self-adaptation-and-self-evolution}
-
-Run-time software evolution and adaptation are often used interchangeably (\eg{\cite{salehie-2009-self-adaptive,andersson-2013-software,inverardi-2013-software}}). However, there seems to be a consensus on their specific meaning when it is relevant to separate them. Gacek~\etal{} establish the difference between these terms with respect to the system's goals~\cite{gacek-2008-friends}. They present an approach comprising two iteratively interacting and concentric cycles. The outermost cycle concentrates on evolution and is based on Kramer and Magee's goal management architecture layer~\cite{kramer-2007-self}. The innermost cycle focuses on adaptation, and addresses control and change management. In this regard, Gacek~\etal{}'s work is aligned with Oreizy~\etal{}'s change management process for run-time evolution. Their assumption is that change management and self-adaptation will co-exist synergistically and will improve incrementally. Their position is that run-time evolution tackles uncertainty in the long term, in contrast to software adaptation's short-term focus. Weyns~\etal{} defines run-time software evolution and adaptation similarly~\cite{weyns-2015-design}. For them, adaptation refers to the ability of mitigating uncertainty to keep satisfying the system's goals, whereas evolution refers to the ability of accommodating uncertainty to handle goal changes. Contrary to consensus, for Baresi and Ghezzi, evolution refers to the offline process, while adaptation refers to the online process~\cite{baresi-2010-disappearing}.
-
-Mens~\etal{} define software evolution's time horizon as the effort required to achieve a particular result (\eg{short, medium or long-term effort})~\cite{mens-2005-challenges}. Although this definition does not directly apply to the duality of evolution and adaptation, it is useful for describing the expected time horizon of a maintenance task. In this regard, a software change is intended to be either short or long lasting. In other words, whether the change addresses a low-level control objective or a high-level governing goal, respectively. Weyns~\etal{} approach the time horizon from a sustainability standpoint~\cite{weyns-2015-design}. According to Weyns and Becker~\etal{}, sustainability refers to the longevity of a software system, its infrastructure and their adequate evolution under changing environmental conditions~\cite{becker-2015-karlskrona}. Software evolution then applies to high-level goals, whereas adaptation refers to low-level control objectives. Therefore, evolution and adaptation entail distinct design considerations.
-
-Since control objectives are subject to changing environmental conditions, software adaptations are generally ephemeral. It is enough that changes occur in the context of the system for it to change again. Not all contextual conditions change rapidly nonetheless. In this case, the effect of corresponding adaptation actions may last days, weeks or even months, and therefore can be considered persistent evolution actions. Based on this distinction, this dissertation defines self-adaptation and self-evolution as autonomic capabilities of a software system to conduct software evolution and adaption actions autonomously, as a response to emerging behavior, regardless of whether it was anticipated or not.
-
-Since evolution actions can be conducted by a self-adaptive software system, and persisted on the development or the execution side, it is possible to define self-evolution further. From a software engineering perspective, self-evolution is the process of producing a new operative version of a software product, with minimum human intervention. From a control theory perspective, self-evolution is the process of changing the underlying management rules or procedures governing a self-adaptive system, with minimum human intervention and while the system is running. The work by Oreizy~\etal{}~\cite{oreizy-1999-architecture} fits well in the first perspective. Their management cycle synchronizes a run-time model of the software architecture with its implementation. Thus, it makes adaptation actions persistent through changes in the source code. The evolution process presented by Gacek~\etal{}~\cite{gacek-2008-friends} fits well in the control theory perspective. Their outermost cycle realizes a goal management layer that adapts production rules in the innermost (adaptation) cycle.
-
-Self-evolution and self-adaptation entail distinct processes, design considerations and quality concerns. The latter has been explored multiple times, as described in this section. However, the design and quality implications of self-evolution have been largely unexplored, especially with respect to the software engineering perspective.
-
-\subsection{The Time of Change Timeline}
-\label{subsect:background--time-of-change-timeline}
-
-According to the taxonomy of software change proposed by Buckley~\etal{}, software changes are subject to multiple themes and dimensions, regarding what changes are made, when, where and how~\cite{buckley-2005-towards}. They classify them into the following groups. System properties, such as availability and safety, indicate \emph{what} is being changed. Temporal properties, such as time and frequency, refer to \emph{when} changes are made. The object of change, such as an artifact, relates to \emph{where} changes are made. Finally, change support, such as the degree of automation, refers to \emph{how} changes are accomplished.
-
-To define the time of change, Buckley~\etal{} focused on the development life cycle from the programming language's perspective. They identified three categories based on when changes are incorporated into a software system, namely static, load-time, and dynamic. \emph{Static} refers to changes added to the source code, thus requiring recompiling the software for them to become available. \emph{Load-time} refers to changes that occur while software elements are being loaded into an executable environment. Finally, \emph{dynamic} refers to changes introduced while the software system is running. In light of these categories, the resulting time of change comprises three stages, namely compile-time, load-time and run-time.
-
-Andersson~\etal{} build on the identified change times, broadening the timeline to include development-time and deployment-time~\cite{andersson-2013-software}. Moreover, they argue that the timeline is missing a more fine-grained perspective to include self-adaptive systems' concerns. According to Andersson~\etal{}, software changes can be enacted offline by stakeholders, or online by the software system~\cite{andersson-2013-software}. These new categories arise from a software engineering process-oriented perspective. That is, what activities are carried out by whom and where, and how do they intertwine. They argue that such a reconceptualization of the time of change blurs the boundary between development and execution. Thus, it is necessary to reassess the software engineering process in light of said new timeline. M\"{u}ller and Villegas define equivalent categories offline and run-time to denote the degree of human intervention~\cite{muller-2014-highly}, but emphasize software evolution concerns, such as frequency of change and level of uncertainty, as opposed to the whole development life cycle.
-
-Out of Buckley~\etal{}'s dimensions and themes, the time and the object of change have particularly grown outdated over time. Some of the key factors causing this include the emergence and widespread adoption of DevOps~\cite{riungu-kalliosaari-2016-devops,lwakatare-2019-devops,luz-2019-adopting}, and the accelerated progress in software engineering automation~\cite{humble-2010-continuous}. Because of this, the proposed taxonomy falls short in describing when and what changes are made in modern development settings. Even when including Andersson~\etal{}'s proposed times and offline and online categories, the timeline fails to include relevant times associated with computing environments other than development and production. This is because the development and execution duality of the software engineering life cycle has been the predominant paradigm in run-time software evolution (\eg{~\cite{oreizy-1999-architecture,baresi-2010-disappearing,weyns-2015-design}}). In recent research on machine learning~\cite{shafiq-2021-literature}, automated testing and program repair can potentially introduce changes as part of the delivery pipeline. For example, SapFix and Sapienz, tested at scale by Facebook, are able to cover the entire repair life cycle, from designing the test cases to fixing and retesting detected bugs~\cite{mao-2016-sapienz,marginean-2019-sapfix}. Moreover, new artifact life cycles have been introduced to software engineering. Therefore, new perspectives require consideration beyond the programming language's one studied by Buckley~\etal{}, and the process' one proposed by Andersson~\etal{}. Examples of this include containers~\cite{syed-2015-software} and machine learning models~\cite{amershi-2019-software}. In both cases, new times need to be considered for quality attribute evaluation, such as security for containers, and transparency, fairness and explainability for machine learning models, as well as offline activities that are now being conducted online. Grounded in the aforementioned reasons, the time of change timeline ought to be reconciled under the light of advances in adaptive systems and deployment technologies.
-
-\afterpage{
-	\begin{InfoBox}[Identified Challenges on Run-Time Software Evolution]
-		\begin{description}[style=unboxed,leftmargin=0pt,font=\normalsize\bfseries]
-			\item[Linking development and run-time software concepts\autodot] Systematic approaches to maintain the correspondence between distinct views of a particular artifact are rarely used in practice (\eg{design artifacts and source code~\cite{nugroho-2007-survey}}). However, software and its deployment evolve independently over time. The mapping between development and run-time artifacts is specified across various specification notations, with no explicit references among them, which makes it loose and overall implicit. Mens~\etal{} refers to this challenge as supporting co-evolution of artifacts~\cite{mens-2005-challenges}, and Goltz~\etal{} as supporting co-evolution of software systems and their environment~\cite{goltz-2015-design}. Therefore, mapping run-time changes with source code contributions is a challenging problem. From left to right, this has been successfully managed through the delivery pipeline. However, these mappings are non-existent from right to left.
-
-			\item[Adaptivity and configuration management at run-time\autodot] The dynamic nature of the cloud computing paradigm enables architectural agility that allows applications to evolve along with application requirements dynamically~\cite{inzinger-2014-madcat}. Cloud native software requires mechanisms for seamlessly integrating new components and updating the ones already running as part of its normal operation. Furthermore, the flexibility of the cloud enables today’s systems to update infrastructure resources at execution time. Regardless of the characteristics of these mechanisms, deployment and configuration specifications should remain updated with respect to the actual system deployment as it adapts. The challenge here is to depict the deployment and configuration evolution, not only by performing isolated architectural changes in the infrastructure but especially tracking and visualizing them in the specification effectively.
-
-			\item[Continuous integration infrastructure for self-evolving systems\autodot] Self-management capabilities rarely cross the boundary to the development side. Evidence of this, in part, is denoted by the lack of attention to models at the code level~\cite{bencomo-2019-models}. Therefore, \gls{ci} infrastructure is necessary to integrate software changes produced online, and to guarantee minimum levels of acceptable quality~\cite{bosch-2016-data-driven}.
-			% integrate changes into the development, but also into the execution sides. How can all these changes be integrated?
-		\end{description}
-	\end{InfoBox}
-}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% INFRASTRUCTURE AS CODE
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\section{\acrlong[hyper=false]{iac}}
-\label{sect:background--infrastructure-as-code}
-
-% TODO Talk about technical debt on Infrastructure-as-Code (configuration drift, snowflake servers and infrastructure erosion [Morris, 2016]))
-
-\glsreset{iac}\gls{iac} is an approach to provisioning and managing dynamic infrastructures through machine-readable specifications~\cite{nelson-smith-2013-test,morris-2016-infrastructure}. It is also referred to as programmable infrastructure in reference to the application of practices and tools from software engineering to IT infrastructure management. Changes to the infrastructure are made in a structured way, by means of reliable and established processes. The main enabler for \gls{iac} has been the advent of cloud computing technology, such as virtualization, which allow the provisioning, configuration and management of computational resources~\cite{guerriero-2019-infrastructure}. The benefits of \gls{iac} include repeatability of creating and configuring execution environments, management automation, development agility and infrastructure scalability~\cite{morris-2016-infrastructure}.
-
-The state of the practice for testing \gls{iac} is based on static analysis and functional tests~\cite{huttermann-2012-infrastructure,nelson-smith-2013-test,morris-2016-infrastructure}. The former provides quick feedback on minor programming mistakes, such as syntax errors. The latter consists of deploying the infrastructure and executing unit, integration and system tests to determine if the deployed resources and their configuration are adequate. Deploying and re-deploying the system and its infrastructure to sandbox environments is resource and time consuming nonetheless.
-
-Multiple implementations of \gls{iac} tools have been widely adopted by development teams, especially those following DevOps practices. Among those, Terraform\footnote{\url{https://www.terraform.io}} is one of the most popular tools for infrastructure provisioning~\cite{guerriero-2019-infrastructure}. Terraform is an open source software tool that provides a consistent workflow to manage cloud services. It manages source specifications written in the \gls{hcl}, which allows the specification of resources in a declarative way. That is, the specification contains the desired state of the infrastructure as opposed to the procedures to deploy it. Each specification contains a collection of resources, such as \glspl{vm}, according to the target cloud. Although syntactic rules are the same regardless of the resource and cloud provider, resource names, identifiers, and attributes vary by provider. In fact, anyone can develop modules and make them publicly available to the open source community by publishing the module to the Terraform Registry.
-
-\begin{lstlisting}[style=iac,caption={A Terraform template containing Oracle resources},label=lst:background--infrastructure-as-code-example]
-variable "storage_mount_target_path" {
-	default = "/sharedfs"
-}
-provider "oci" {
-	tenancy_ocid     = var.tenancy_ocid
-	user_ocid        = var.user_ocid
-	fingerprint      = var.fingerprint
-	private_key_path = var.private_key_path
-	region           = var.region
-}
-data "oci_identity_availability_domains" "availability_domains" {
-	compartment_id = var.tenancy_ocid
-}
-resource "oci_file_storage_file_system" "file_system" {
-	availability_domain = var.availablity_domain_name
-	compartment_id      = oci_identity_compartment.Compartment.id
-	display_name        = "P-FL-FileSystem"
-}
-output "mount_target_ocid" {
-	value = oci_file_storage_mount_target.MountTarget.id
-}
-\end{lstlisting}
-
-Listing~\ref{lst:background--infrastructure-as-code-example} depicts an example \gls{hcl} template containing resource definitions for Oracle cloud, as follows. Variables (\cf{Line~1-3}) are input parameters. Lines~5-9 exemplify how variables are used to specify attribute values. Providers (\cf{Lines~4-10}) are collections of authentication and authorization data attributes. Requests to the cloud \gls{api} are secured using this information. Data sources (\ie{Lines~11-13}) query information about existing resources, such as identifiers and attributes. Resources (\cf{Lines~14-18}) are elements from the target cloud that can be deployed through Terraform. In this case, the resource in the listing is a file system object (\ie{non-volatile storage}). Lastly, outputs are data that can be queried once the deployment finishes, such as \acrshort{ip} addresses, configuration files, and data alike. Typically, outputs are only known to Terraform after the deployment successfully finishes.
-
-\begin{figure}[h]
-	\centering
-	\includegraphics[width=0.6\columnwidth]{fig/background/background--infrastructure-as-code-life-cycle.pdf}
-	\caption{The \acrlong[hyper=false]{iac} life cycle according to Terraform}
-	\label{fig:background--infrastructure-as-code-life-cycle}
-\end{figure}
-
-Figure~\ref{fig:background--infrastructure-as-code-life-cycle} depicts the \gls{iac} life cycle according to Terraform. DevOps practitioners develop Terraform templates and store them in a source code repository. Every time a new software change is pushed to the repository, a \gls{ci} server triggers a set of jobs for functionally testing the template, as well as checking the quality statically. In this regard, \gls{iac} source code goes through the same integration process as application source code. The deployment of a Terraform template requires running at least three commands, namely init, plan, and apply. Init downloads required modules to setup the Terraform project. Plan queries the target cloud based on the specified resources' names to find out which resources already exist, and compare them with the desired infrastructure state. It then presents a deployment plan to the user, including actions to delete, update and create cloud resources. Finally, apply executes the deployment plan. In enterprise settings, it is common to manage Terraform templates through a deployment management software, such as IBM \gls{cam} and Terraform Cloud. The DevOps team publishes the templates, and makes them accessible throughout the organization. Other business units can then take advantage of pre-configured templates to deploy and manage their own instances independently from other teams, following security guidelines, compliance regulation, and governance policies setup transversely to all teams and departments.
+Lorem ipsum
 
 \section{Chapter Summary}
 
-In this chapter, we introduced foundational concepts of continuous software engineering, autonomic computing, run-time software evolution, and infrastructure as code. Furthermore, we have analyzed current concerns, approaches and key challenges with respect to the scope of our work in this dissertation. 
-
-We summarize below the most relevant challenges we identified, which correspond to the challenges addressed by this dissertation at different levels, as follows:
-
-\begin{itemize}[noitemsep]
-	\item In continuous software engineering:
-	\begin{itemize}[noitemsep]
-		\item The capacity of shifting operations left by automating the design and execution of software experiments, assisting stakeholders to make data-driven decisions, and providing autonomic managers with a foundation for contributing to the evolution of software artifacts on the development side.
-	\end{itemize}
-	\item In run-time software evolution:
-	\begin{itemize}[noitemsep]
-		\item The linkage between development and run-time software concepts to explicitly connect run-time variability with software evolution on the development side.
-		\item The update of computing infrastructure deployment specifications as a direct response to adaptivity and configuration management at run-time.
-		\item The continuous integration infrastructure for enabling self-evolving systems to persist software changes on the development side, providing guarantees on their effectiveness and quality.
-	\end{itemize}
-\end{itemize}
-
-The next chapter provides an overview of our contributions. It identifies two remaining discontinuities in the \gls{sdlc}, reassesses self-management capabilities, and proposes the use of self-evolution to tackle these discontinuities.
+Summary
